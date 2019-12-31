@@ -10,10 +10,10 @@ on:
       - master
     paths:
       - '.config'
-#  schedule:
-#    - cron: 0 6 * * 5
-#  watch:
-#    types: [started]
+  schedule:
+    - cron: 0 6 * * 5
+  watch:
+    types: [started]
 
 jobs:
   build:
