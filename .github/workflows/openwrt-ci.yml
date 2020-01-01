@@ -11,9 +11,9 @@ on:
     paths:
       - '.config'
   schedule:
-    - cron: 0 6 * * 5
-#  watch:
-#    types: [started]
+    - cron: 0 7 * * *
+  watch:
+    types: [started]
 
 jobs:
   build:
