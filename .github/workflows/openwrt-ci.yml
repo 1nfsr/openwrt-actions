@@ -51,10 +51,12 @@ jobs:
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
     - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
+      working-directory: ./openwrt
+      run: ./scripts/feeds update -a
 
     - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
+      working-directory: ./openwrt
+      run: ./scripts/feeds install -a
 
     - name: Load custom configuration
       env:
@@ -69,8 +71,9 @@ jobs:
         make defconfig
 
     - name: Download package
+      working-directory: ./openwrt
       run: |
-        cd openwrt && make download -j8
+        make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
