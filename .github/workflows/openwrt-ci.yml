@@ -12,8 +12,8 @@ on:
       - '.config'
   schedule:
     - cron: 0 6 * * 5
-  watch:
-    types: [started]
+#  watch:
+#    types: [started]
 
 jobs:
   build:
@@ -27,7 +27,6 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        echo "Deleting files, please wait ..."
         docker rmi `docker images -q`
         sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
         sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
@@ -37,15 +36,15 @@ jobs:
         sudo -E apt-get clean
 
         sudo mkdir -p -m 777 /mnt/openwrt/bin /mnt/openwrt/build_dir/host /mnt/openwrt/build_dir/hostpkg /mnt/openwrt/dl /mnt/openwrt/feeds /mnt/openwrt/staging_dir
-        ln -s /mnt/openwrt/bin ./bin
+        ln -s /mnt/openwrt/bin ./openwrt/bin
         mkdir -p ./build_dir
-        ln -s -f /mnt/openwrt/build_dir/host ./build_dir/host
-        ln -s -f /mnt/openwrt/build_dir/hostpkg ./build_dir/hostpkg
-        ln -s /mnt/openwrt/dl ./dl
-        ln -s /mnt/openwrt/feeds ./feeds
-        ln -s /mnt/openwrt/staging_dir ./staging_dir
+        ln -s -f /mnt/openwrt/build_dir/host ./openwrt/build_dir/host
+        ln -s -f /mnt/openwrt/build_dir/hostpkg ./openwrt/build_dir/hostpkg
+        ln -s /mnt/openwrt/dl ./openwrt/dl
+        ln -s /mnt/openwrt/feeds ./openwrt/feeds
+        ln -s /mnt/openwrt/staging_dir ./openwrt/staging_dir
 
-    - name: Clone source code
+    - name: Clone Source
       env: 
         REPO_URL: https://github.com/coolsnowwolf/lede
         REPO_BRANCH: master
@@ -87,12 +86,12 @@ jobs:
         cd openwrt
         make -j1 V=s
 
-    - name: Upload bin directory
-      uses: actions/upload-artifact@master
-      if: always()
-      with:
-        name: OpenWrt_bin
-        path: openwrt/bin
+#    - name: Upload bin directory
+#      uses: actions/upload-artifact@master
+#      if: always()
+#      with:
+#        name: OpenWrt_bin
+#        path: openwrt/bin
 
     - name: Organize files
       if: always()
