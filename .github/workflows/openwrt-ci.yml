@@ -75,28 +75,22 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Multi-thread compile
+      working-directory: ./openwrt
       run: |
-        cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc)
 
     - name: Single-thread compile
       if: failure()
+      working-directory: ./openwrt
       run: |
-        cd openwrt
         make -j1 V=s
-
-#    - name: Upload bin directory
-#      uses: actions/upload-artifact@master
-#      if: always()
-#      with:
-#        name: OpenWrt_bin
-#        path: openwrt/bin
 
     - name: Organize files
       if: always()
+      working-directory: ./openwrt
       run: |
-        cd openwrt/bin/targets/*/*
+        cd ./bin/targets/*/*
         rm -rf packages
         echo "::set-env name=FIRMWARE::$(pwd)"
 
