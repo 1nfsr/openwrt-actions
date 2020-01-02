@@ -12,8 +12,6 @@ on:
       - 'config.speed'
   schedule:
     - cron: 30 6 * * *
-  watch:
-    types: [started]
 
 jobs:
   build:
