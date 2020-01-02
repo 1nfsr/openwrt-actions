@@ -3,8 +3,6 @@
 name: OpenWrt(X86_64) Continuous Integration
 
 on: 
-  release:
-    types: [published]
   push:
     branches: 
       - master
