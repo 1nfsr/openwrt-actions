@@ -37,11 +37,13 @@ jobs:
         REPO_BRANCH: master
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: Update&&Install feeds
+    - name: Update feeds
       working-directory: ./openwrt
-      run: | 
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
+      run: ./scripts/feeds update -a
+
+    - name: Install feeds
+      working-directory: ./openwrt
+      run: ./scripts/feeds install -a
 
     - name: Load custom configuration
       env:
@@ -54,19 +56,22 @@ jobs:
         cd openwrt
         ../$SCRIPTS_FILE
         make defconfig
-
     - name: Download package
       working-directory: ./openwrt
       run: |
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: Multi-thread || Single-thread compile
+    - name: Multi-thread compile
       working-directory: ./openwrt
       run: |
-        make -j$(nproc) || make -j1 V=s
-
+        echo -e "$(nproc) thread compile"
+        make -j$(nproc)
+    - name: Single-thread compile
+      if: failure()
+      working-directory: ./openwrt
+      run: |
+        make -j1 V=s
     - name: Organize files
       if: always()
       working-directory: ./openwrt
@@ -74,7 +79,6 @@ jobs:
         cd ./bin/targets/*/*
         rm -rf packages
         echo "::set-env name=FIRMWARE::$(pwd)"
-
     - name: Upload firmware
       uses: actions/upload-artifact@master
       if: always()
