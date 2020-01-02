@@ -9,7 +9,7 @@ on:
     branches: 
       - master
     paths:
-      - '.config'
+      - 'config.speed'
   schedule:
     - cron: 30 6 * * *
 
@@ -47,7 +47,7 @@ jobs:
 
     - name: Load custom configuration
       env:
-        CONFIG_FILE: '.config'
+        CONFIG_FILE: 'config.speed'
         SCRIPTS_FILE: 'scripts.sh'
       run: |
         [ -e files ] && mv files openwrt/files
