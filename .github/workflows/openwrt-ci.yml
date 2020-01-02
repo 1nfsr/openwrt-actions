@@ -1,6 +1,6 @@
 #
 
-name: OpenWrt Continuous Integration
+name: OpenWrt(X86_64) Continuous Integration
 
 on: 
   release:
@@ -11,9 +11,7 @@ on:
     paths:
       - '.config'
   schedule:
-    - cron: 0 7 * * *
-  watch:
-    types: [started]
+    - cron: 30 6 * * *
 
 jobs:
   build:
@@ -41,13 +39,11 @@ jobs:
         REPO_BRANCH: master
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: Update feeds
+    - name: Update&&Install feeds
       working-directory: ./openwrt
-      run: ./scripts/feeds update -a
-
-    - name: Install feeds
-      working-directory: ./openwrt
-      run: ./scripts/feeds install -a
+      run: | 
+      ./scripts/feeds update -a
+      ./scripts/feeds install -a
 
     - name: Load custom configuration
       env:
@@ -68,17 +64,10 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Multi-thread compile
+    - name: Multi-thread || Single-thread compile
       working-directory: ./openwrt
       run: |
-        echo -e "$(nproc) thread compile"
-        make -j$(nproc)
-
-    - name: Single-thread compile
-      if: failure()
-      working-directory: ./openwrt
-      run: |
-        make -j1 V=s
+        make -j$(nproc) || make -j1 V=s
 
     - name: Organize files
       if: always()
