@@ -9,7 +9,7 @@ on:
     paths:
       - 'config.speed'
   schedule:
-    - cron: 30 6 * * *
+    - cron: 30 10 * * *
 
 jobs:
   build:
