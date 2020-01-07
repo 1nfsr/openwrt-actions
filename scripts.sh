@@ -10,6 +10,17 @@ git clone https://github.com/Mrbai98/luci-theme-atmaterial package/mine/luci-the
 # Serverchen
 git clone https://github.com/tty228/luci-app-serverchan package/mine/luci-app-serverchan
 
+# OpenAppFilter(luci-app-oaf)
+git clone https://github.com/destan19/OpenAppFilter package/mine/OpenAppFilter
+
+# DiskMan for LuCI (WIP)
+git clone https://github.com/lisaac/luci-app-diskman package/mine/luci-app-diskman
+mkdir -p package/mine/parted && cp -i package/mine/luci-app-diskman/Parted.Makefile package/mine/parted/Makefile
+
+# Docker Manager interface for LuCI + Docker Engine API for LuCI
+git clone https://github.com/lisaac/luci-lib-docker package/mine/luci-lib-docker
+git clone https://github.com/lisaac/luci-app-dockerman package/mine/luci-app-dockerman
+
 # get some Lienol packages
 git clone https://github.com/Lienol/openwrt-package package/Lienol-package
 # https://github.com/Lienol/openwrt-package/issues/54
@@ -27,4 +38,4 @@ cp -r package/Lienol-package/package/tcping package/mine/tcping
 rm -rf package/Lienol-package
 
 # luci-app-vssr
-git clone https://github.com/jerrykuku/luci-app-vssr package/mine/luci-app-vssr
+# git clone https://github.com/jerrykuku/luci-app-vssr package/mine/luci-app-vssr
