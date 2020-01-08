@@ -18,9 +18,3 @@ git clone https://github.com/lisaac/luci-app-dockerman package/mine/luci-app-doc
 
 # GET Lienol some packages
 git clone https://github.com/Lienol/openwrt-package package/Lienol-package
-cp -r package/Lienol-package/lienol/luci-app-passwall package/mine/luci-app-passwall
-cp -r package/Lienol-package/package/brook package/mine/brook
-cp -r package/Lienol-package/package/chinadns-ng package/mine/chinadns-ng
-cp -r package/Lienol-package/package/dns2socks package/mine/dns2socks
-cp -r package/Lienol-package/package/tcping package/mine/tcping
-rm -rf package/Lienol-package
