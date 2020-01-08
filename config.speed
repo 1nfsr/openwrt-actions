@@ -150,6 +150,10 @@ CONFIG_PACKAGE_luci-app-verysync=y
 CONFIG_PACKAGE_luci-theme-atmaterial=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
+#CONFIG_PACKAGE_luci-theme-netgear=y
+CONFIG_PACKAGE_luci-theme-argon-mod=y
+#CONFIG_PACKAGE_luci-theme-bootstrap-mod=y
+CONFIG_PACKAGE_luci-theme-netgear-mc=y
 
 ###扩展包
 #CONFIG_PACKAGE_AdGuardHome=y
