@@ -12,6 +12,9 @@ git clone https://github.com/Mrbai98/luci-theme-atmaterial package/mine/luci-the
 # Serverchan
 git clone https://github.com/tty228/luci-app-serverchan package/mine/luci-app-serverchan
 
+# KoolProxy
+# https://github.com/openwrt-develop/luci-app-koolproxy package/mine/luci-app-koolproxy
+
 # Lienol-package
 git clone https://github.com/Lienol/openwrt-package package/Lienol-package
 cp -r package/Lienol-package/lienol/luci-app-passwall package/mine/luci-app-passwall
