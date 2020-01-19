@@ -11,7 +11,7 @@ on:
     paths:
       - 'config.speed'
   schedule:
-    - cron: 30 22 * * *
+    - cron: 30 22 * * 5
 
 jobs:
   build:
