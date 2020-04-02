@@ -23,11 +23,3 @@ cp -r package/Lienol-package/package/chinadns-ng package/own-apps/chinadns-ng
 cp -r package/Lienol-package/package/dns2socks package/own-apps/dns2socks
 cp -r package/Lienol-package/package/tcping package/own-apps/tcping
 rm -rf package/Lienol-package
-
-# SmartDNS
-git clone https://github.com/pymumu/luci-app-smartdns.git package/own-apps/luci-app-smartdns
-git clone https://github.com/pymumu/smartdns.git package/own-apps/smartdns
-
-# 
-git clone https://github.com/vernesong/OpenClash.git package/own-apps/OpenClash
-mv package/own-apps/OpenClash/luci-app-openclash ../
