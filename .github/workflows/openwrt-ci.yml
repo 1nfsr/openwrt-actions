@@ -1,27 +1,30 @@
 #----------------------------------#
+#                                  #
 #+ OpenWrt Continuous Integration +#
+#                                  #
 #----------------------------------#
+name: OpenWrt(X86_64) - CI
 
-name: OpenWrt(X86_64) Continuous Integration
-
-on: 
-  push:
-    branches: 
-      - master
-    paths:
-      - 'config.speed'
-  schedule:
-    - cron: 30 22 * * 5
+on:                                         # 执行条件
+  schedule:                                 
+    - cron: '0 22 * * *'                    
+  push:                                     
+   branches:                                
+     - master                               
+   paths:                                   
+     - 'config.speed'                       
+#  watch:                                   
+#    types: [started]                       
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest                  # 选择编译环境主机
 
     steps:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Initialization environment
+    - name: Initialization environment      # 初始化环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -29,17 +32,17 @@ jobs:
         sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
         sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
         sudo -E apt-get update
-        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler
+        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
 
-    - name: Clone Source
+    - name: Clone sources                   # 克隆源码
       env: 
         REPO_URL: https://github.com/coolsnowwolf/lede.git
         REPO_BRANCH: master
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: Update feeds
+    - name: Update feeds                    # 更新feeds合集
       working-directory: ./openwrt
       run: ./scripts/feeds update -a
 
@@ -47,7 +50,7 @@ jobs:
       working-directory: ./openwrt
       run: ./scripts/feeds install -a
 
-    - name: Load custom configuration
+    - name: Load custom configuration       # 导入自定义脚本和config
       env:
         CONFIG_FILE: 'config.speed'
         SCRIPTS_FILE: 'scripts.sh'
@@ -59,26 +62,26 @@ jobs:
         ../$SCRIPTS_FILE
         make defconfig
 
-    - name: Download package
+    - name: Download packages               # 下载软件包
       working-directory: ./openwrt
       run: |
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Multi-thread compile
+    - name: Multi-thread                    # 多线程编译
       working-directory: ./openwrt
       run: |
         echo -e "$(nproc) thread compile"
         make -j$(nproc)
 
-    - name: Single-thread compile
+    - name: Single-thread                   # 单线程编译
       if: failure()
       working-directory: ./openwrt
       run: |
         make -j1 V=s
 
-    - name: Organize files
+    - name: Organize files                  # 合成路径
       if: always()
       working-directory: ./openwrt
       run: |
@@ -86,7 +89,7 @@ jobs:
         rm -rf packages
         echo "::set-env name=FIRMWARE::$(pwd)"
         
-    - name: Upload firmware
+    - name: Upload OpenWrt_firmware         # 打包上传
       uses: actions/upload-artifact@master
       if: always()
       with:
