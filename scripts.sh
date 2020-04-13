@@ -16,10 +16,10 @@ git clone https://github.com/tty228/luci-app-serverchan package/own-apps/luci-ap
 # https://github.com/openwrt-develop/luci-app-koolproxy package/mine/luci-app-koolproxy
 
 # Lienol-package
-git clone https://github.com/Lienol/openwrt-package package/Lienol-package
-cp -r package/Lienol-package/lienol/luci-app-passwall package/own-apps/luci-app-passwall
-cp -r package/Lienol-package/package/brook package/own-apps/brook
-cp -r package/Lienol-package/package/chinadns-ng package/own-apps/chinadns-ng
-cp -r package/Lienol-package/package/dns2socks package/own-apps/dns2socks
-cp -r package/Lienol-package/package/tcping package/own-apps/tcping
-rm -rf package/Lienol-package
+#git clone https://github.com/Lienol/openwrt-package package/Lienol-package
+#cp -r package/Lienol-package/lienol/luci-app-passwall package/own-apps/luci-app-passwall
+#cp -r package/Lienol-package/package/brook package/own-apps/brook
+#cp -r package/Lienol-package/package/chinadns-ng package/own-apps/chinadns-ng
+#cp -r package/Lienol-package/package/dns2socks package/own-apps/dns2socks
+#cp -r package/Lienol-package/package/tcping package/own-apps/tcping
+#rm -rf package/Lienol-package
