@@ -7,16 +7,10 @@
 sed -i 's/192.168.1.1/192.168.77.1/g' package/base-files/files/bin/config_generate
 
 # atmaterial theme
-git clone https://github.com/Mrbai98/luci-theme-atmaterial package/My_Apps/luci-theme-atmaterial
+#git clone https://github.com/Mrbai98/luci-theme-atmaterial package/own-apps/luci-theme-atmaterial
 
 # Serverchan
-git clone https://github.com/tty228/luci-app-serverchan package/My_Apps/luci-app-serverchan
-
-# DiskMan
-git clone https://github.com/lisaac/luci-app-diskman.git package/My_Apps/luci-app-diskman
-mkdir package/My_Apps/Parted
-mv package/My_Apps/luci-app-diskman/Parted.Makefile package/My_Apps/Parted/Makefile
-
+#git clone https://github.com/tty228/luci-app-serverchan package/own-apps/luci-app-serverchan
 
 # KoolProxy
 # https://github.com/openwrt-develop/luci-app-koolproxy package/mine/luci-app-koolproxy
