@@ -16,8 +16,8 @@ on:
      - master                               
    paths:                                   
      - 'config.speed'                       
-  watch:                                   
-    types: [started]                       
+#  watch:                                   
+#    types: [started]                       
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt.git
