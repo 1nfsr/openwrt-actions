@@ -461,7 +461,7 @@ CONFIG_FEED_helloworld=y
 # CONFIG_PACKAGE_attendedsysupgrade-common is not set
 # CONFIG_PACKAGE_auc is not set
 CONFIG_PACKAGE_base-files=y
-CONFIG_PACKAGE_block-mount=y
+# CONFIG_PACKAGE_block-mount is not set
 # CONFIG_PACKAGE_blockd is not set
 # CONFIG_PACKAGE_bridge is not set
 CONFIG_PACKAGE_busybox=y
@@ -1652,7 +1652,7 @@ CONFIG_PACKAGE_grub2=y
 # Extra packages
 #
 CONFIG_PACKAGE_autocore=y
-CONFIG_PACKAGE_automount=y
+# CONFIG_PACKAGE_automount is not set
 # CONFIG_PACKAGE_autosamba is not set
 # CONFIG_PACKAGE_ipv6helper is not set
 # CONFIG_PACKAGE_k3wifi is not set
@@ -3636,9 +3636,9 @@ CONFIG_PACKAGE_boost-system=y
 # CONFIG_PACKAGE_libartnet is not set
 # CONFIG_PACKAGE_libasm is not set
 # CONFIG_PACKAGE_libaudiofile is not set
-# CONFIG_PACKAGE_libavahi-client is not set
+CONFIG_PACKAGE_libavahi-client=y
 # CONFIG_PACKAGE_libavahi-compat-libdnssd is not set
-# CONFIG_PACKAGE_libavahi-dbus-support is not set
+CONFIG_PACKAGE_libavahi-dbus-support=y
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
 # CONFIG_PACKAGE_libavl is not set
 # CONFIG_PACKAGE_libbfd is not set
@@ -3655,12 +3655,12 @@ CONFIG_PACKAGE_libcomerr=y
 # CONFIG_PACKAGE_libcryptopp is not set
 # CONFIG_PACKAGE_libcurl is not set
 # CONFIG_PACKAGE_libcxx is not set
-# CONFIG_PACKAGE_libdaemon is not set
+CONFIG_PACKAGE_libdaemon=y
 # CONFIG_PACKAGE_libdaq is not set
-# CONFIG_PACKAGE_libdb47 is not set
+CONFIG_PACKAGE_libdb47=y
 # CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
-# CONFIG_PACKAGE_libdbus is not set
+CONFIG_PACKAGE_libdbus=y
 CONFIG_PACKAGE_libdevmapper=y
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
@@ -3682,7 +3682,7 @@ CONFIG_PACKAGE_libevent2=y
 # CONFIG_PACKAGE_libeventlog is not set
 # CONFIG_PACKAGE_libevhtp is not set
 # CONFIG_PACKAGE_libexif is not set
-# CONFIG_PACKAGE_libexpat is not set
+CONFIG_PACKAGE_libexpat=y
 # CONFIG_PACKAGE_libexslt is not set
 CONFIG_PACKAGE_libext2fs=y
 # CONFIG_PACKAGE_libextractor is not set
@@ -3702,14 +3702,14 @@ CONFIG_FFMPEG_X86ASM=y
 # CONFIG_PACKAGE_libfreetype is not set
 # CONFIG_PACKAGE_libftdi is not set
 # CONFIG_PACKAGE_libftdi1 is not set
-# CONFIG_PACKAGE_libgcrypt is not set
+CONFIG_PACKAGE_libgcrypt=y
 # CONFIG_PACKAGE_libgd is not set
-# CONFIG_PACKAGE_libgdbm is not set
+CONFIG_PACKAGE_libgdbm=y
 # CONFIG_PACKAGE_libgee is not set
 # CONFIG_PACKAGE_libglpk is not set
 # CONFIG_PACKAGE_libgmp is not set
 # CONFIG_PACKAGE_libgnurl is not set
-# CONFIG_PACKAGE_libgpg-error is not set
+CONFIG_PACKAGE_libgpg-error=y
 # CONFIG_PACKAGE_libgphoto2 is not set
 # CONFIG_PACKAGE_libgps is not set
 # CONFIG_PACKAGE_libhamlib is not set
@@ -3906,7 +3906,7 @@ CONFIG_PACKAGE_libuv=y
 # CONFIG_PACKAGE_libx264 is not set
 # CONFIG_PACKAGE_libxerces-c is not set
 # CONFIG_PACKAGE_libxerces-c-samples is not set
-# CONFIG_PACKAGE_libxml2 is not set
+CONFIG_PACKAGE_libxml2=y
 # CONFIG_PACKAGE_libxslt is not set
 # CONFIG_PACKAGE_libyaml-cpp is not set
 # CONFIG_PACKAGE_libyang is not set
@@ -4407,7 +4407,7 @@ CONFIG_PACKAGE_wget=y
 # CONFIG_PACKAGE_ksmbd-avahi-service is not set
 # CONFIG_PACKAGE_ksmbd-server is not set
 # CONFIG_PACKAGE_ksmbd-utils is not set
-# CONFIG_PACKAGE_netatalk is not set
+CONFIG_PACKAGE_netatalk=y
 # CONFIG_PACKAGE_nfs-kernel-server is not set
 # CONFIG_PACKAGE_owftpd is not set
 # CONFIG_PACKAGE_owhttpd is not set
@@ -4504,10 +4504,10 @@ CONFIG_PACKAGE_miniupnpd=y
 # CONFIG_PACKAGE_avahi-autoipd is not set
 # CONFIG_PACKAGE_avahi-daemon-service-http is not set
 # CONFIG_PACKAGE_avahi-daemon-service-ssh is not set
-# CONFIG_PACKAGE_avahi-dbus-daemon is not set
+CONFIG_PACKAGE_avahi-dbus-daemon=y
 # CONFIG_PACKAGE_avahi-dnsconfd is not set
 # CONFIG_PACKAGE_avahi-nodbus-daemon is not set
-# CONFIG_PACKAGE_avahi-utils is not set
+CONFIG_PACKAGE_avahi-utils=y
 # CONFIG_PACKAGE_bind-check is not set
 # CONFIG_PACKAGE_bind-client is not set
 # CONFIG_PACKAGE_bind-dig is not set
@@ -5696,7 +5696,8 @@ CONFIG_PACKAGE_coreutils-base64=y
 # CONFIG_PACKAGE_crelay is not set
 # CONFIG_PACKAGE_csstidy is not set
 # CONFIG_PACKAGE_ct-bugcheck is not set
-# CONFIG_PACKAGE_dbus is not set
+CONFIG_PACKAGE_dbus=y
+# CONFIG_PACKAGE_dbus-utils is not set
 # CONFIG_PACKAGE_dc is not set
 # CONFIG_PACKAGE_dfu-util is not set
 # CONFIG_PACKAGE_digitemp is not set
@@ -5855,7 +5856,41 @@ CONFIG_PACKAGE_runc=y
 # CONFIG_PACKAGE_sane-daemon is not set
 # CONFIG_PACKAGE_sane-frontends is not set
 # CONFIG_PACKAGE_setserial is not set
-# CONFIG_PACKAGE_shadow-utils is not set
+# CONFIG_PACKAGE_shadow-chage is not set
+# CONFIG_PACKAGE_shadow-chfn is not set
+# CONFIG_PACKAGE_shadow-chpasswd is not set
+# CONFIG_PACKAGE_shadow-chsh is not set
+CONFIG_PACKAGE_shadow-common=y
+# CONFIG_PACKAGE_shadow-expiry is not set
+# CONFIG_PACKAGE_shadow-faillog is not set
+# CONFIG_PACKAGE_shadow-gpasswd is not set
+CONFIG_PACKAGE_shadow-groupadd=y
+# CONFIG_PACKAGE_shadow-groupdel is not set
+# CONFIG_PACKAGE_shadow-groupmems is not set
+CONFIG_PACKAGE_shadow-groupmod=y
+# CONFIG_PACKAGE_shadow-groups is not set
+# CONFIG_PACKAGE_shadow-lastlog is not set
+# CONFIG_PACKAGE_shadow-login is not set
+# CONFIG_PACKAGE_shadow-newgidmap is not set
+# CONFIG_PACKAGE_shadow-newgrp is not set
+# CONFIG_PACKAGE_shadow-newuidmap is not set
+# CONFIG_PACKAGE_shadow-nologin is not set
+# CONFIG_PACKAGE_shadow-passwd is not set
+# CONFIG_PACKAGE_shadow-su is not set
+CONFIG_PACKAGE_shadow-useradd=y
+# CONFIG_PACKAGE_shadow-userdel is not set
+CONFIG_PACKAGE_shadow-usermod=y
+CONFIG_PACKAGE_shadow-utils=y
+
+#
+# Select shadow utilities
+#
+# CONFIG_shadow-all is not set
+
+#
+# Utilities
+#
+# CONFIG_PACKAGE_shadow-vipw is not set
 CONFIG_PACKAGE_shellsync=y
 # CONFIG_PACKAGE_sispmctl is not set
 # CONFIG_PACKAGE_slide-switch is not set
