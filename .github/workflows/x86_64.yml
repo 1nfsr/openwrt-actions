@@ -1,9 +1,5 @@
 #=================================================
-# https://github.com/P3TERX/Actions-OpenWrt
-# Description: Build OpenWrt using GitHub Actions
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
+# Openwrt CI
 #=================================================
 
 name: OpenWrt(X86_64) - CI
@@ -119,4 +115,4 @@ jobs:
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
-        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+        echo: "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"

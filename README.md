@@ -1,9 +1,9 @@
-OpenWrt Continuous Integration
+Openwrt CI
 ==============================
 
 [Source]()
 
 ```bash
-echo "OpenWrt"
+echo "OpenWrt x86_64"
 
 ```
