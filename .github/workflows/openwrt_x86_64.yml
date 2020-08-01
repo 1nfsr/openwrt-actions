@@ -4,11 +4,11 @@ on:
   repository_dispatch:
 #  release:
 #    types: published
-#  push:
-#    branches:
-#      - master
-#    paths:
-#      - 'config.openwrt_x86_64'
+  push:
+    branches:
+      - master
+    paths:
+      - 'config.openwrt_x86_64'
   schedule:
     - cron: 0 8 */5 * *
 #  watch:
