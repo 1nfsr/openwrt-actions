@@ -162,7 +162,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-	  	name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+	  	  name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         tag_name: ${{ env.RELEASE_TAG }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
