@@ -3,8 +3,8 @@ name: x86_64
 on:
   repository_dispatch:
     types: [github.repository]
-  release:
-    types: published                    
+#  release:
+#    types: published                    
   push:                                     
    branches:                                
      - master                               
