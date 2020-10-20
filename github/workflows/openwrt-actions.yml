@@ -16,13 +16,12 @@ on:
     types: started
 
 env:
-  REPO_URL: 
-  REPO_BRANCH:
-  CONFIG_FILE:
-  DEVICE:
+  REPO_URL: https://github.com/1nfsr/openwrt
+  REPO_BRANCH: main
+  CONFIG_FILE: config/x86_64-target.config
+  DEVICE: openwrt-x86-64-generic
   SCRIPTS: scripts/extra.sh
   IPV6MOD_IN_FIRMWARE: true
-  KMODS_IN_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
   UPLOAD_WETRANSFER: true
   TZ: Asia/Shanghai
@@ -42,7 +41,7 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-1804) tree
+        sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf wget swig tree
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
@@ -78,10 +77,6 @@ jobs:
       id: package
       run: |
         cd $OPENWRTROOT
-        if "$KMODS_IN_FIRMWARE" = 'true'
-        then
-            echo "CONFIG_ALL_KMODS=y" >> .config
-        fi
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
@@ -115,21 +110,6 @@ jobs:
       id: generate
       run: |
         cd $OPENWRTROOT
-        mkdir -p files/etc/opkg
-        if "$KMODS_IN_FIRMWARE" = 'true'
-        then
-            mkdir -p files/www/snapshots/targets
-            cp -r bin/targets/$TARGET files/www/snapshots/targets
-            cp ../config/opkg/distfeeds-18.06-local.conf files/etc/opkg/distfeeds.conf
-            sed -i "s/subtarget/$SUBTARGET/g" files/etc/opkg/distfeeds.conf
-            sed -i "s/target\//$TARGET\//g" files/etc/opkg/distfeeds.conf
-            sed -i "s/platform/$PLATFORM/g" files/etc/opkg/distfeeds.conf
-        else
-            cp ../config/opkg/distfeeds-18.06-remote.conf files/etc/opkg/distfeeds.conf
-            sed -i "s/subtarget/$SUBTARGET/g" files/etc/opkg/distfeeds.conf
-            sed -i "s/target\//$TARGET\//g" files/etc/opkg/distfeeds.conf
-            sed -i "s/platform/$PLATFORM/g" files/etc/opkg/distfeeds.conf
-        fi
         if "$IPV6MOD_IN_FIRMWARE" = 'true'
         then
             mkdir -p files/www/ipv6-modules
@@ -143,52 +123,6 @@ jobs:
         make target/install -j$(nproc) || make target/install -j1 V=s
         make checksum
         echo "::set-output name=status::success"
-        
-    - name: Deploy Packages-Server
-      if: steps.generate.outputs.status == 'success'
-      run: |
-        mkdir -p server/web/snapshots/targets/$TARGET/$SUBTARGET
-        cp -r $OPENWRTROOT/bin/packages server/web/snapshots
-        cp -r $OPENWRTROOT/bin/targets/$TARGET/$SUBTARGET/packages server/web/snapshots/targets/$TARGET/$SUBTARGET
-        mkdir -p $OPENWRTROOT/bin/targets/$TARGET/$SUBTARGET/pre-packages-server
-        cp -r server $OPENWRTROOT/bin/targets/$TARGET/$SUBTARGET/pre-packages-server
-        cd $OPENWRTROOT/bin/targets/$TARGET/$SUBTARGET
-        zip -q -r packages-server.zip pre-packages-server/server
-        
-    - name: Upload Config
-      uses: actions/upload-artifact@main
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: config.buildinfo
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/config.buildinfo
-        
-    - name: Upload Packages-Server
-      uses: actions/upload-artifact@main
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: packages-server
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/pre-packages-server
-        
-    - name: Upload Packages Info
-      uses: actions/upload-artifact@main
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: ${{ env.DEVICE }}.manifest
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}.manifest
-        
-    - name: Upload Kernel Packages
-      uses: actions/upload-artifact@main
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: kernel-packages
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/packages/
-        
-    - name: Upload RootFS Archive
-      uses: actions/upload-artifact@main
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: ${{ env.DEVICE }}-generic-rootfs.tar.gz
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-rootfs.tar.gz
 
     - name: Upload Combined DVD Image
       uses: actions/upload-artifact@main
@@ -196,20 +130,6 @@ jobs:
       with:
         name: ${{ env.DEVICE }}-squashfs-combined.img
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-combined.img
-        
-    - name: Upload Combined VirtualBox Image
-      uses: actions/upload-artifact@main
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: ${{ env.DEVICE }}-squashfs-combined.vdi
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-combined.vdi
-        
-    - name: Upload Combined VMware Image
-      uses: actions/upload-artifact@main
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: ${{ env.DEVICE }}-squashfs-combined.vmdk
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-combined.vmdk
 
     - name: Upload GPT DVD Image
       uses: actions/upload-artifact@main
@@ -218,20 +138,6 @@ jobs:
         name: ${{ env.DEVICE }}-squashfs-combined-efi.img
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-combined-efi.img
         
-    - name: Upload GPT VirtualBox Image
-      uses: actions/upload-artifact@main
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: ${{ env.DEVICE }}-squashfs-combined-efi.vdi
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-combined-efi.vdi
-        
-    - name: Upload GPT VMware Image
-      uses: actions/upload-artifact@main
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: ${{ env.DEVICE }}-squashfs-combined-efi.vmdk
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-combined-efi.vmdk
-
     - name: Upload Images Sha256sums
       uses: actions/upload-artifact@main
       if: steps.generate.outputs.status == 'success'
@@ -259,6 +165,7 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         df -hT $PWD
         echo "::set-output name=status::success"
+
     - name: Upload Uefi Firmwares To Cowtransfer
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true'
       run: |
@@ -273,13 +180,6 @@ jobs:
         ./transfer cow --block 2621440 -s -p 64 --no-progress ./legacy-images 2>&1 | tee cowtransfer-legacy.log
         echo "::warning file=Cowtransfer-Legacy=::$(cat cowtransfer-legacy.log | grep https)"
         
-    - name: Upload Other Files To Cowtransfer
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true'
-      run: |
-        cd $OPENWRTROOT/bin/targets/$TARGET/
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ./other-files 2>&1 | tee cowtransfer-other.log
-        echo "::warning file=Cowtransfer-OtherFiles=::$(cat cowtransfer-other.log | grep https)"
-        
     - name: Upload Uefi Firmwares To WeTransfer
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true'
       run: |
@@ -293,22 +193,3 @@ jobs:
         cd $OPENWRTROOT/bin/targets/$TARGET/
         ./transfer wet -s -p 16 --no-progress ./legacy-images 2>&1 | tee wetransfer-legacy.log
         echo "::warning file=Wetransfer-Legacy::$(cat wetransfer-legacy.log | grep https)"
-        
-    - name: Upload Other Files To WeTransfer
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true'
-      run: |
-        cd $OPENWRTROOT/bin/targets/$TARGET/
-        ./transfer wet -s -p 16 --no-progress ./other-files 2>&1 | tee wetransfer-other.log
-        echo "::warning file=Wetransfer-OtherFiles::$(cat wetransfer-other.log | grep https)"
-        
-    - name: Upload DL To CowTransfer
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
-      run: |
-        cd $OPENWRTROOT/bin/targets/$TARGET/
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ${OPENWRTROOT}/DL.zip 2>&1 | tee cowtransfer-dl.log
-        
-    - name: Upload DL To WeTransfer
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
-      run: |
-        cd $OPENWRTROOT/bin/targets/$TARGET/
-        ./transfer wet -s -p 16 --no-progress ${OPENWRTROOT}/DL.zip 2>&1 | tee wetransfer-dl.log
