@@ -24,7 +24,7 @@ env:
   CONFIG_FILE: config/x86_64-target.config
   DEVICE: openwrt-x86-64-generic
   SCRIPTS: scripts/build.sh
-  IPV6MOD_IN_FIRMWARE: true
+  IPV6MOD_IN_FIRMWARE: false
   UPLOAD_COWTRANSFER: true
   UPLOAD_WETRANSFER: true
   TZ: Asia/Shanghai
