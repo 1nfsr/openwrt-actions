@@ -146,7 +146,7 @@ jobs:
         make checksum
         echo "::set-output name=status::success"
 
-     - name: Deploy Packages-Server
+    - name: Deploy Packages-Server
       if: steps.generate.outputs.status == 'success'
       run: |
         mkdir -p server/web/snapshots/targets/$TARGET/$SUBTARGET
