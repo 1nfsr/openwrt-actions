@@ -6,7 +6,11 @@ name: Build x86_64 OpenWrt
 
 on:
   repository_dispath:
-    types:
+  	push:
+	  branches:
+	    - main
+	  paths:
+	    - 'config/x86_64-target.config'
   workflow_dispatch: 
   release:
     types: published
