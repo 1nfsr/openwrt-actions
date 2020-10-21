@@ -191,7 +191,7 @@ elif [[ $1 = "remove" ]]; then
     sed -i 's/#.*\toption ula/\toption ula/g' /etc/config/network
     
     # Disable IPV6 dns resolution
-    uci set dhcp.@dnsmasq[0].filter_aaaa=1
+    #uci set dhcp.@dnsmasq[0].filter_aaaa=1
     
     # Restore mwan3 balance strategy
     uci set mwan3.balanced.last_resort=unreachable

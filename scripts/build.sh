@@ -14,12 +14,12 @@ popd
 # Copy Lean's packages to ./package/lean.
 mkdir package/lean
 pushd package/lede/package/lean
-cp -r {adbyby,automount,baidupcs-web,coremark,ddns-scripts_aliyun,ddns-scripts_dnspod,dns2socks,frp,ipt2socks,ipv6-helper,kcptun,luci-app-adbyby-plus,luci-app-airplay2,luci-app-arpbind,luci-app-autoreboot,luci-app-baidupcs-web,luci-app-cifs-mount,luci-app-cpufreq,luci-app-familycloud,luci-app-filetransfer,luci-app-frpc,luci-app-frps,luci-app-n2n_v2,luci-app-netdata,luci-app-nfs,luci-app-nps,luci-app-ps3netsrv,luci-app-softethervpn,luci-app-usb-printer,luci-app-unblockmusic,luci-app-vsftpd,luci-app-webadmin,luci-app-xlnetacc,luci-app-zerotier,luci-lib-fs,microsocks,n2n_v2,npc,pdnsd-alt,proxychains-ng,ps3netsrv,redsocks2,shadowsocksr-libev,simple-obfs,softethervpn5,srelay,tcpping,trojan,UnblockNeteaseMusic,UnblockNeteaseMusicGo,v2ray,v2ray-plugin,vsftpd-alt} "../../../lean"
+cp -r * "../../../lean"
 popd
 
 # Default settings
 pushd package/lean
-git clone --depth=1 https://github.com/SuLingGG/default-settings
+svn co https://github.com/1nfsr/openwrt-actions/branches/main/default-settings
 
 # Add Project OpenWrt's autocore
 rm -rf autocore
@@ -44,10 +44,6 @@ pushd package/community
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 rm -rf openwrt-package/lienol/luci-app-ssr-python-pro-server
 
-# Add mentohust & luci-app-mentohust.
-git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
-git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
-
 # Add ServerChan.
 git clone --depth=1 https://github.com/tty228/luci-app-serverchan
 
@@ -61,16 +57,10 @@ git clone --depth=1 https://github.com/rufengsuixing/luci-app-onliner
 svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome
 svn co https://github.com/Lienol/openwrt/trunk/package/diy/adguardhome
 
-# Add openwrt-iptvhelper.
-git clone --depth=1 https://github.com/riverscn/openwrt-iptvhelper
-
 # Add luci-app-diskman.
 git clone --depth=1 https://github.com/lisaac/luci-app-diskman
 mkdir parted
 cp luci-app-diskman/Parted.Makefile parted/Makefile
-
-# Add luci-app-gowebdav
-git clone --depth=1 https://github.com/project-openwrt/openwrt-gowebdav
 
 # Add luci-app-jd-dailybonus
 git clone --depth=1 https://github.com/jerrykuku/luci-app-jd-dailybonus
@@ -79,31 +69,15 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-jd-dailybonus
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 
-# Add smartdns
-svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
-svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/luci-app-smartdns ../luci-app-smartdns
-
-# Add udptools
-git clone --depth=1 https://github.com/bao3/openwrt-udp2raw
-git clone --depth=1 https://github.com/bao3/openwrt-udpspeeder
-git clone --depth=1 https://github.com/bao3/luci-udptools
-
 # luci-app-dockerman
 git clone --depth=1 https://github.com/lisaac/luci-app-dockerman
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker
-
-# Add tmate
-git clone --depth=1 https://github.com/project-openwrt/openwrt-tmate
-
-# Add subconverter
-git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter
 
 popd
 
 # Mod zzz-default-settings
 pushd package/lean/default-settings/files
 sed -i "/commit luci/i\uci set luci.main.mediaurlbase='/luci-static/argon'" zzz-default-settings
-sed -i '/http/d' zzz-default-settings
 sed -i '/exit/i\chmod +x /bin/ipv6-helper' zzz-default-settings
 popd
 
@@ -135,7 +109,7 @@ sed -i '/mt7662u_rom_patch.bin/a\\techo mt76-usb disable_usb_sg=1 > $\(1\)\/etc\
 popd
 
 # Change default shell to zsh
-sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+#sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 # Use Lean's golang to fix latest v2ray compile errors
 pushd feeds/packages/lang
@@ -152,3 +126,13 @@ chmod +x ./convert-translation.sh
 cp ../scripts/remove-upx.sh .
 chmod +x ./remove-upx.sh
 ./remove-upx.sh || true
+
+# Add kernel build user
+[ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
+    echo 'CONFIG_KERNEL_BUILD_USER="Infsr"' >>.config ||
+    sed -i 's@\(CONFIG_KERNEL_BUILD_USER=\).*@\1$"Infsr"@' .config
+
+# Add kernel build domain
+[ -z $(grep "CONFIG_KERNEL_BUILD_DOMAIN=" .config) ] &&
+    echo 'CONFIG_KERNEL_BUILD_DOMAIN="GitHub Actions"' >>.config ||
+    sed -i 's@\(CONFIG_KERNEL_BUILD_DOMAIN=\).*@\1$"GitHub Actions"@' .config

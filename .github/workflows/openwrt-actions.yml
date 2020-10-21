@@ -20,7 +20,7 @@ env:
   REPO_BRANCH: main
   CONFIG_FILE: config/x86_64-target.config
   DEVICE: openwrt-x86-64-generic
-  SCRIPTS: scripts/extra.sh
+  SCRIPTS: scripts/build.sh
   IPV6MOD_IN_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
   UPLOAD_WETRANSFER: true
@@ -51,27 +51,23 @@ jobs:
         df -hT $PWD
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: Update Feeds
+    - name: Update Feeds & Install Feeds
       run: |
         cd openwrt
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
         ./scripts/feeds update -a
-
-    - name: Install Feeds
-      run: |
-        cd $OPENWRTROOT
         ./scripts/feeds install -a
 
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
-        cat config/lean/x86/x86-lean-extra.config >> $OPENWRTROOT/.config
+        cat config/x86_64-extra.config >> $OPENWRTROOT/.config
+        cat config/applications.config >> $OPENWRTROOT/.config
         chmod +x scripts/*.sh
         cd $OPENWRTROOT
-        ../$DIY_SH
+        ../$SCRIPTS
         ../scripts/preset-clash-core.sh amd64
-        ../scripts/preset-terminal-tools.sh
         
     - name: Download Package
       id: package
@@ -90,7 +86,7 @@ jobs:
         make tools/compile -j$(nproc) || make tools/compile -j1 V=s
         make toolchain/compile -j$(nproc) || make toolchain/compile -j1 V=s
         make target/compile -j$(nproc) || make target/compile -j1 V=s IGNORE_ERRORS=1
-        make diffconfig
+        make buildinfo
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j1 V=s IGNORE_ERRORS=1
         make package/index
         cd $OPENWRTROOT/bin/packages/*
