@@ -5,18 +5,16 @@
 name: Build x86_64 OpenWrt
 
 on:
-  repository_dispath:
-#    types:
+  repository_dispatch:
+#  release:
+#    types: published
   push:
     branches:
       - main
     paths:
       - 'config/x86_64-target.config'
-  workflow_dispatch: 
-  release:
-    types: published
   schedule:
-    - cron: 0 20 * * *
+    - cron: 0 8 */5 * *
   watch:
     types: started
 
