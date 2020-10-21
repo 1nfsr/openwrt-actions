@@ -18,10 +18,11 @@ cp -r * "../../../lean"
 popd
 
 # Default settings
-pushd package/lean
-svn co https://github.com/1nfsr/openwrt-actions/branches/main/default-settings
+cp -r ../default-settings package/lean/
 
 # Add Project OpenWrt's autocore
+pushd package/lean
+
 rm -rf autocore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore
 
