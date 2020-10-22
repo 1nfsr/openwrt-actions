@@ -6,3 +6,5 @@ sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext
 sudo -E apt-get -qq autoremove --purge
 sudo -E apt-get -qq clean
 sudo timedatectl set-timezone "Asia/Shanghai"
+
+exit 0
