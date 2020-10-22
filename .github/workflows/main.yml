@@ -43,7 +43,8 @@ jobs:
 
       - name: Load custom configuration
         run: |
-          mv $CONFIG_FILE openwrt/.config
+          [ -e files ] && mv files openwrt/files
+          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
 
       - name: Download package
         id: package
