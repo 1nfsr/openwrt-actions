@@ -43,14 +43,12 @@ jobs:
       - name: Update&Install feeds
         working-directory: /workdir/openwrt
         run: |
-          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
       - name: Load custom configuration
         run: |
-          [-e files ] && mv files $OPENWRTROOT/files
-          [-e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
+          mv $CONFIG_FILE openwrt/.config
 
       - name: Download package
         id: package
