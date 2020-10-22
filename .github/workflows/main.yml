@@ -60,7 +60,7 @@ jobs:
           [ -e files ] && mv files openwrt/files
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
           cd openwrt
-          ../$BEFORE_INSTALL
+          $GITHUB_WORKSPACE/$BEFORE_INSTALL
 
 
       - name: Download package
