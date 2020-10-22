@@ -30,8 +30,8 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          chmod +x ./scripts/*.sh
-          ./$BEFORE_SCRIPT
+          echo "hello"
+          mkdir /workdir
 
       - name: Clone Source
         working-directory: /workdir
@@ -39,12 +39,6 @@ jobs:
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-
-      - name: Update&Install feeds
-        working-directory: /workdir/openwrt
-        run: |
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
 
       - name: Load custom configuration
         run: |
