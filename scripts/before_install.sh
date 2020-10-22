@@ -5,7 +5,7 @@ sed -i 's/192.168.1.1/192.168.77.1/g' package/base-files/files/bin/config_genera
 
 # Lean's
 mkdir package/lean
-cp -r ../default-settings package/lean/
+cp -r $GITHUB_WORKSPACE/default-settings package/lean/
 
 # Add kernel build user
 [ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
