@@ -30,8 +30,7 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          chmod +x ./scripts/*.sh
-          ./$BEFORE_SCRIPT
+          echo "hello"
 
       - name: Clone Source
         working-directory: /workdir
