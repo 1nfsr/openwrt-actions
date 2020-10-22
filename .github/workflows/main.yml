@@ -30,7 +30,8 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          echo "hello"
+          chmod +x ./scripts/*.sh
+          ./$BEFORE_SCRIPT
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
 
@@ -40,6 +41,13 @@ jobs:
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+      - name: Update&Install feeds
+        working-directory: /workdir/openwrt
+        run: |
+          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
 
       - name: Load custom configuration
         run: |
