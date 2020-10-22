@@ -31,7 +31,8 @@ jobs:
           DEBIAN_FRONTEND: noninteractive
         run: |
           echo "hello"
-          mkdir /workdir
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
 
       - name: Clone Source
         working-directory: /workdir
