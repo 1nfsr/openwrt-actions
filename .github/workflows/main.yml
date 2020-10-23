@@ -14,9 +14,9 @@ on:
     types: [started]
 
 env:
-  REPO_URL: https://github.com/1nfsr/openwrt.git
-  REPO_BRANCH: main
-  CONFIG_FILE: config.seed
+  REPO_URL: https://github.com/coolsnowwolf/lede.git
+  REPO_BRANCH: master
+  CONFIG_FILE: config.openwrt_x86_64
   BEFORE_SCRIPT: scripts/before_script.sh
   BEFORE_INSTALL: scripts/before_install.sh
   AFTER_INSTALL:
@@ -59,8 +59,8 @@ jobs:
         run: |
           [ -e files ] && mv files openwrt/files
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-          cd openwrt
-          $GITHUB_WORKSPACE/$BEFORE_INSTALL
+#          cd openwrt
+#          $GITHUB_WORKSPACE/$BEFORE_INSTALL
 
 
       - name: Download package
