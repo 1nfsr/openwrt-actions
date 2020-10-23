@@ -18,7 +18,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: config.openwrt_x86_64
   BEFORE_SCRIPT: scripts/before_script.sh
-  BEFORE_INSTALL: scripts/before_install.sh
+  BEFORE_INSTALL: scripts/before_install1.sh
   AFTER_INSTALL:
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -59,9 +59,8 @@ jobs:
         run: |
           [ -e files ] && mv files openwrt/files
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-#          cd openwrt
-#          $GITHUB_WORKSPACE/$BEFORE_INSTALL
-
+          cd openwrt
+          $GITHUB_WORKSPACE/$BEFORE_INSTALL
 
       - name: Download package
         id: package
