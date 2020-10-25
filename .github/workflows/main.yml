@@ -3,15 +3,8 @@ name: OpenWrt actions
 on:
   repository_dispatch:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    patchs:
-      - 'config.seed'
   schedule:
-    - cron: 0 8 * * 5
-  watch:
-    types: [started]
+    - cron: 0 8 * * *
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede.git
