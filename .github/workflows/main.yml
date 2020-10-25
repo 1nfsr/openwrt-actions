@@ -5,11 +5,13 @@ on:
   workflow_dispatch:
   schedule:
     - cron: 0 8 * * *
+  watch:
+    types: started
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede.git
   REPO_BRANCH: master
-  CONFIG_FILE: config.openwrt_x86_64
+  CONFIG_FILE: config.openwrt
   BEFORE_SCRIPT: scripts/before_script.sh
   BEFORE_INSTALL: scripts/before_install1.sh
   AFTER_INSTALL:
