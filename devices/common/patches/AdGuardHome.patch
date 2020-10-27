@@ -1,0 +1,24 @@
+--- a/package/feeds/custom/luci-app-adguardhome/root/etc/init.d/AdGuardHome
++++ b/package/feeds/custom/luci-app-adguardhome/root/etc/init.d/AdGuardHome
+@@ -28,7 +28,7 @@ set_forward_dnsmasq()
+ 		if [ "$server" = "$addr" ]; then
+ 			continue
+ 		fi
+-		uci add_list dhcp.@dnsmasq[0].server=$server
++		# uci add_list dhcp.@dnsmasq[0].server=$server
+ 	done
+ 	uci delete dhcp.@dnsmasq[0].resolvfile 2>/dev/null
+ 	uci set dhcp.@dnsmasq[0].noresolv=1
+@@ -490,6 +485,12 @@ start_service() {
+ 	echo "AdGuardHome service enabled"
+ 	echo "luci enable switch=$enabled"
+ 	(sleep 10 && [ -z "$(pgrep $binpath)" ] && logger "AdGuardHome" "no process in 10s cancel redirect" && _do_redirect 0 )&
++	[ "$(uci get shadowsocksr.@global[0].pdnsd_enable)" == 0 ] || {
++		uci set shadowsocksr.@global[0].pdnsd_enable='0'
++		uci del shadowsocksr.@global[0].tunnel_forward
++		uci commit shadowsocksr
++		service shadowsocksr reload
++	}
+ }
+ reload_service()
+ {
