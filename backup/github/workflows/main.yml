@@ -28,7 +28,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
   
-    - name: set GITHUB_ENV
+    - name: set ENV
       run: |
         echo "REPO_URL=${REPO_URL}" >> $GITHUB_ENV
         echo "REPO_BRANCH=${REPO_BRANCH}" >> $GITHUB_ENV
@@ -43,7 +43,24 @@ jobs:
       run: |
         chmod +x $BEFORE_SCRIPT
         ./$BEFORE_SCRIPT
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
 
     - name: Clone source code
+      working-directory: /workdir
       run: |
         git clone $REPO_URL -b $REPO_BRANCH --single-branch openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+    - name: Update&Install feeds
+      working-directory: /workdir/openwrt
+      run: |
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+
+    - name: Load custom configuration
+        run: |
+          [ -e files ] && mv files openwrt/files
+          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+          cd openwrt
+          $GITHUB_WORKSPACE/$BEFORE_INSTALL
