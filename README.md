@@ -1,9 +1,5 @@
-Openwrt CI
-==============================
+OpenWrt Actions
+==========
 
-[Source]()
 
-```bash
-echo "OpenWrt x86_64"
-
-```
+x86_64
