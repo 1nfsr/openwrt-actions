@@ -54,7 +54,6 @@ jobs:
     - name: Grant permissions
       run: |
         chmod +x ${GITHUB_WORKSPACE}/scripts/*.sh
-        ${GITHUB_WORKSPACE}/scripts/hello.sh
 
     - name: Initialization environment
       env:
