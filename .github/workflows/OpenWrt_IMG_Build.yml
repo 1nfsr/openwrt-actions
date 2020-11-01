@@ -12,14 +12,12 @@ on:
   # push: 
   #   branches:
   #     - master
-  schedule:
-    - cron: 30 13 * * 6
+  #schedule:
+  #  - cron: 30 13 * * 6
   workflow_dispatch:
 
 env:
   REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-  PPPOE_USERNAME: ${{ secrets.PPPOE_USERNAME }}
-  PPPOE_PASSWD: ${{ secrets.PPPOE_PASSWD }}
   SCKEY: ${{ secrets.SCKEY }}
   TZ: Asia/Shanghai
 
@@ -140,13 +138,6 @@ jobs:
         )
         fi
         make defconfig
-        
-    - name: Default PPPOE Setting
-      if: env.PPPOE_USERNAME && env.PPPOE_PASSWD
-      run: |
-        sed -i '$i uci set network.wan.username=${{ env.PPPOE_USERNAME }}' openwrt/package/*/*/default-settings/files/zzz-default-settings
-        sed -i '$i uci set network.wan.password=${{ env.PPPOE_PASSWD }}' openwrt/package/*/*/default-settings/files/zzz-default-settings
-        sed -i '$i uci commit network' openwrt/package/*/*/default-settings/files/zzz-default-settings
 
     - name: Download package
       id: package
