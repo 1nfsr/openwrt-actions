@@ -52,7 +52,7 @@ dns:
   - id.server
   - hostname.bind
   cache_size: 4194304
-  cache_ttl_min: 1800
+  cache_ttl_min: 3600
   cache_ttl_max: 86400
   bogus_nxdomain: []
   aaaa_disabled: false
@@ -114,7 +114,7 @@ filters:
   url: https://www.malwaredomainlist.com/hostslist/hosts.txt
   name: MalwareDomainList.com Hosts List
   id: 4
-- enabled: true
+- enabled: false
   url: https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/hosts
   name: googlehosts
   id: 1573404421
