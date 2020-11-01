@@ -85,3 +85,6 @@ date=`date +%m.%d.%Y`
 sed -i "s/DISTRIB_DESCRIPTION.*/DISTRIB_DESCRIPTION='%D %V %C by Infsr'/g" package/base-files/files/etc/openwrt_release
 sed -i "s/# REVISION:=x/REVISION:= $date/g" include/version.mk
 sed -i '$a cgi-timeout = 300' package/feeds/packages/uwsgi/files-luci-support/luci-webui.ini
+
+# 
+sed -i '/+luci-theme-bootstrap/d' package/feeds/luci/collections/luci/Makefile
