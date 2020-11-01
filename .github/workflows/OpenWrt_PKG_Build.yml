@@ -1,4 +1,4 @@
-name: Openwrt SDK Actions
+name: Openwrt PKG Actions
 
 on: 
   # push: 
