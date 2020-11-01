@@ -146,12 +146,3 @@ config server
 	option blacklist_ip '1'
 	option addition_arg ' -check-edns'
 	option port '5353'
-	
-config server
-	option enabled '1'
-	option name 'op.supes.top'
-	option ip 'https://dns.supes.top/dns-query'
-	option type 'https'
-	option blacklist_ip '0'
-	option addition_arg ' -check-edns'
-
