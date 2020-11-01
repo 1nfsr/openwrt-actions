@@ -19,29 +19,29 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-      - name: Initialization environment
-        run: sudo apt install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
+    - name: Initialization environment
+      run: sudo apt install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
 
-      - name: Download OpenWrt SDK
-        run: |
-          SDK_HOME=$(head -c -8 <<< $(basename $SDK_URL))
-          wget $SDK_URL
-          tar xf $(basename $SDK_URL) -C ~/
-          mv ~/$SDK_HOME ~/sdk
+    - name: Download OpenWrt SDK
+      run: |
+        SDK_HOME=$(head -c -8 <<< $(basename $SDK_URL))
+        wget $SDK_URL
+        tar xf $(basename $SDK_URL) -C ~/
+        mv ~/$SDK_HOME ~/sdk
 
-      - name: Download Packages
-        run: |
-          cd ~/sdk
-          # packages url git&svn
-          #./scripts/feeds update -a
-          #./scripts/feeds install -a
+    - name: Download Packages
+      run: |
+        cd ~/sdk
+        # packages url git&svn
+        #./scripts/feeds update -a
+        #./scripts/feeds install -a
 
-      - name: Compile
-        run: |
-          #cd ~/sdk
-          #make defconfig
-          #make V=s
+    - name: Compile
+      run: |
+        #cd ~/sdk
+        #make defconfig
+        #make V=s
 
-      - name: Upload
-        run: |
-          echo "hello world"
+    - name: Upload
+      run: |
+        echo "hello world"
