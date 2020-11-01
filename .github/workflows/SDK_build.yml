@@ -1,0 +1,51 @@
+name: Openwrt SDK Actions
+
+on: 
+  # push: 
+  #   branches:
+  #     - master
+  schedule:
+    - cron: 30 13 * * 6
+  workflow_dispatch:
+
+jobs:
+  buildpkg:
+    name: Build Openwrt Package
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        SDK_URL:
+          - https://downloads.openwrt.org/releases/19.07.4/targets/x86/64/openwrt-sdk-19.07.4-x86-64_gcc-7.5.0_musl.Linux-x86_64.tar.xz
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Env for OpenWrt SDK
+        run: sudo apt install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
+
+      - name: Download OpenWrt SDK
+        env:
+          SDK_URL: ${{ matrix.SDK_URL }}
+        run: |
+          SDK_HOME=$(head -c -8 <<< $(basename $SDK_URL))
+          wget $SDK_URL
+          tar xf $(basename $SDK_URL) -C ~/
+          mv ~/$SDK_HOME ~/sdk
+
+      - name: Download Packages
+        run: |
+          cd ~/sdk
+          # packages url git&svn
+          #./scripts/feeds update -a
+          #./scripts/feeds install -a
+
+      - name: Compile
+        run: |
+          #cd ~/sdk
+          #make defconfig
+          #make V=s
+
+      - name: Upload
+        run: |
+          echo "hello world"
