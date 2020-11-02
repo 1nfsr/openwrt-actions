@@ -35,16 +35,16 @@ jobs:
         mv ~/$SDK_HOME ~/sdk
 
     - name: Download Packages
-      working-directory: ~/sdk
       run: |
+        cd ~/sdk
         ${GITHUB_WORKSPACE}/scripts/get_pkg.sh
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         ${GITHUB_WORKSPACE}/scripts/edit_config.sh
 
     - name: Compile
-      working-directory: ~/sdk
       run: |
+        cd ~/sdk
         ${GITHUB_WORKSPACE}/scripts/compile_pkg.sh
 
     - name: Upload firmware for artifact
