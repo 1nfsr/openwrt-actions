@@ -1,5 +1,9 @@
-OpenWrt Actions
-==========
+### 官方OpenWrt源码编译
 
 
-x86_64
+
+192.168.77.1
+
+username: root
+
+password: password
