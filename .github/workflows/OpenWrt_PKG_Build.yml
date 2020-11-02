@@ -19,8 +19,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
+    - name: Grant permissions
+      run: |
+        chmod +x ${GITHUB_WORKSPACE}/scripts/*.sh
+
     - name: Initialization environment
-      run: sudo apt install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
+      run: |
+        ${GITHUB_WORKSPACE}/scripts/init_env.sh
 
     - name: Download OpenWrt SDK
       run: |
@@ -30,18 +35,19 @@ jobs:
         mv ~/$SDK_HOME ~/sdk
 
     - name: Download Packages
+      working-directory: ~/sdk
       run: |
-        cd ~/sdk
-        # packages url git&svn
-        #./scripts/feeds update -a
-        #./scripts/feeds install -a
+        ${GITHUB_WORKSPACE}/scripts/get_pkg.sh
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        ${GITHUB_WORKSPACE}/scripts/edit_config.sh
 
     - name: Compile
+      working-directory: ~/sdk
       run: |
-        #cd ~/sdk
-        #make defconfig
-        #make V=s
+        ${GITHUB_WORKSPACE}/scripts/compile_pkg.sh
 
-    - name: Upload
-      run: |
-        echo "hello world"
+    - name: Upload firmware for artifact
+      uses: actions/upload-artifact@main
+      with:
+        path: ~/sdk/bin/packages
