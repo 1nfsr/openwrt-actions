@@ -137,6 +137,9 @@ jobs:
           find "devices/${{matrix.target}}/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 --forward"
         )
         fi
+
+        ${GITHUB_WORKSPACE}/scripts/get_clash_core.sh amd64
+        
         make defconfig
 
     - name: Download package
