@@ -42,7 +42,8 @@ sed -i '$a /etc/sysupgrade.conf' package/base-files/files/lib/upgrade/keep.d/bas
 sed -i '$a /etc/smartdns' package/base-files/files/lib/upgrade/keep.d/base-files-essential
 sed -i '$a /etc/amule' package/base-files/files/lib/upgrade/keep.d/base-files-essential
 sed -i '$a /etc/acme' package/base-files/files/lib/upgrade/keep.d/base-files-essential
-sed -i '$a /etc/php7/custom.ini' package/base-files/files/lib/upgrade/keep.d/base-files-essential
+sed -i '$a /etc/bench.log' package/base-files/files/lib/upgrade/keep.d/base-files-essential
+sed -i '$a /etc/acme' package/base-files/files/lib/upgrade/keep.d/base-files-essential
 sed -i '/\/etc/profile/d' package/base-files/files/lib/upgrade/keep.d/base-files-essential
 # find target/linux/x86 -name "config*" -exec bash -c 'cat kernel.conf >> "{}"' \;
 sed -i 's/return json_object_new_int(nd);/return json_object_new_int64(nd);/g' package/feeds/luci/luci-lib-jsonc/src/jsonc.c
@@ -83,6 +84,6 @@ sed -i 's/+python\( \|$\)/+python3/g' package/*/*/*/Makefile
 find package target -name inittab | xargs -i sed -i "s/askfirst/respawn/g" {}
 sed -i "/mediaurlbase/d" package/*/*/luci-theme*/root/etc/uci-defaults/*
 date=`date +%m.%d.%Y`
-sed -i "s/DISTRIB_DESCRIPTION.*/DISTRIB_DESCRIPTION='%D %V %C by Infsr'/g" package/base-files/files/etc/openwrt_release
+sed -i "s/DISTRIB_DESCRIPTION.*/DISTRIB_DESCRIPTION='%D %V %C by GaryPang'/g" package/base-files/files/etc/openwrt_release
 sed -i "s/# REVISION:=x/REVISION:= $date/g" include/version.mk
 sed -i '$a cgi-timeout = 300' package/feeds/packages/uwsgi/files-luci-support/luci-webui.ini
