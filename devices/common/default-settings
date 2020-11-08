@@ -16,32 +16,24 @@ sed -i 's/\[ -e "$FILE" \] && . "$FILE"/[ -e "$FILE" ] \&\& env -i bash "$FILE"/
 
 rm -rf /tmp/luci-*
 
-[ -f /etc/init.d/https-dns-proxy ] && /etc/init.d/https-dns-proxy disable
-
 sed -i '/S99opkg/d' /etc/crontabs/root
 echo "0 0 */3 * * sh /etc/rc.d/S99opkg >/dev/null 2>&1" >> /etc/crontabs/root
 
 grep -q adblock /etc/crontabs/root ||
-  echo "00 00 * * * /etc/init.d/adblock reload" >> /etc/crontabs/root
+	echo "00 00 * * * /etc/init.d/adblock reload" >> /etc/crontabs/root
 
 uci set system.@rngd[0].enabled="1"
 uci commit system
 
-sed -i '/REDIRECT --to-ports 53/d' /etc/firewall.user
-echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
-echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
-echo "ip6tables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
-echo "ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
-
 if [ ! -f /etc/config/placeholder ]; then
 
-  if [ $(uci get network.wan.ipv6) == 0 ]; then
-      uci set dhcp.@dnsmasq[0].filter_aaaa='1'
-      uci commit dhcp
-  else
-    uci set dhcp.@dnsmasq[0].filter_aaaa='0'
-    uci commit dhcp
-  fi
+	if [ $(uci get network.wan.ipv6) == 0 ]; then
+			uci set dhcp.@dnsmasq[0].filter_aaaa='1'
+			uci commit dhcp
+	else
+		uci set dhcp.@dnsmasq[0].filter_aaaa='0'
+		uci commit dhcp
+	fi
 
   uci set luci.main.lang=auto
   uci set luci.main.mediaurlbase=/luci-static/edge
@@ -80,8 +72,11 @@ if [ ! -f /etc/config/placeholder ]; then
 
   uci set network.@globals[0].packet_steering=1
   uci commit network
-
+  
   uci set dhcp.@dnsmasq[0].dns_redirect='1'
+  uci set dhcp.dnsmasq[0].allservers='1'
+  uci set dhcp.lan.force='1'
+  uci set dhcp.dnsmasq[0].cachesize='10000'
   uci commit dhcp
 
 fi
@@ -93,7 +88,7 @@ chmod +x /www/luci
 sed -i "s/git-.*-\(.*\)/git-\1/g" /usr/lib/lua/luci/version.lua
 
 grep -q reboot /etc/shinit ||
-  sed -i '$a alias reboot="(/sbin/reboot &);sleep 3;/sbin/reboot -f"\nalias /sbin/reboot="(/sbin/reboot &);sleep 3;/sbin/reboot -f"' /etc/shinit
+	sed -i '$a alias reboot="(/sbin/reboot &);sleep 3;/sbin/reboot -f"\nalias /sbin/reboot="(/sbin/reboot &);sleep 3;/sbin/reboot -f"' /etc/shinit
 
 sed -i '/opkginstall/d' /etc/profile
 sed -i '/export ENV=\/etc\/shinit/a source /etc/profile.d/opkginstall.sh' /etc/profile
