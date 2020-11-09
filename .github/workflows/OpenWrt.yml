@@ -9,7 +9,7 @@ env:
   SCKEY: ${{ secrets.SCKEY }}
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
-  CONFIG_FILE: origin/config
+  CONFIG_FILE: origin/config_nginx
   UPLOAD_FIRMWARE_TO_WETRANSFER: true
   UPLOAD_FIRMWARE_TO_COWTRANSFER: true
   TZ: Asia/Shanghai
