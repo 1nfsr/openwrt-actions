@@ -49,6 +49,7 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
 
+        cd openwrt
         chmod +x $SET_IP
         $GITHUB_WORKSPACE/$SET_IP
         
