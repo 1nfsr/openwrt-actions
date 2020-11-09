@@ -10,6 +10,7 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
   CONFIG_FILE: origin/config_nginx
+  SET_IP: scripts/set_ip.sh
   UPLOAD_FIRMWARE_TO_WETRANSFER: true
   UPLOAD_FIRMWARE_TO_COWTRANSFER: true
   TZ: Asia/Shanghai
@@ -47,6 +48,9 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+
+        chmod +x $SET_IP
+        $GITHUB_WORKSPACE/$SET_IP
         
     - name: Download package
       id: package
