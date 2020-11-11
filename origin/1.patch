@@ -1,4 +1,0 @@
-4303c4303
-< # CONFIG_PACKAGE_luci-nginx is not set
----
-> CONFIG_PACKAGE_luci-nginx=y
