@@ -211,9 +211,13 @@ jobs:
         body_path: release.txt
         
     - name: WeChat notification
-      if: env.SCKEY
-      run: |
-        ${GITHUB_WORKSPACE}/scripts/serverchan.sh
+      uses: emon100/Action-Serverchan@v2
+      if: steps.compile.outputs.status == 'success' && env.SERVERCHAN_SCKEY == 'true'
+      with:
+        SCKEY: ${{ secrets.SCKEY }}
+        text: 固件编译成功!
+        desp: ${{matrix.target}}固件于${{ env.date }}编译完成了！
+
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@master
