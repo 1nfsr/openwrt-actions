@@ -19,6 +19,7 @@ on:
 env:
   REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
   SCKEY: ${{ secrets.SCKEY }}
+  SERVERCHAN_SCKEY: true
   TZ: Asia/Shanghai
 
 jobs:
