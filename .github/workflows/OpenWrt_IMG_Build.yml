@@ -62,7 +62,7 @@ jobs:
       run: |
         cd openwrt
         echo "Apply files..."
-        mv devices/common/$CONFIG_FILE .config
+        mv ${GITHUB_WORKSPACE}/devices/common/$CONFIG_FILE .config
         ${GITHUB_WORKSPACE}/devices/common/$DIY_SH
         make defconfig
 
