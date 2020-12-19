@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Openwrt IMG Actions
+name: Openwrt Images Actions
 
 on: 
   # push: 
@@ -26,25 +26,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    name: Build ${{matrix.target}}
+    name: Build Image
     strategy:
       fail-fast: false
-      matrix:
-        target: [x86_64]
         
     steps:
     - name: Checkout
       uses: actions/checkout@main
   
-    - name: Load Settings.ini
+    - name: Load Settings
       run: |
         source "${GITHUB_WORKSPACE}/devices/common/settings.ini"
         echo "REPO_URL=${REPO_URL}" >> $GITHUB_ENV
         echo "REPO_BRANCH=${REPO_BRANCH}" >> $GITHUB_ENV
         echo "CONFIG_FILE=${CONFIG_FILE}" >> $GITHUB_ENV
         echo "DIY_SH=${DIY_SH}" >> $GITHUB_ENV
-        echo "FREE_UP_DISK=${FREE_UP_DISK}" >> $GITHUB_ENV
-        echo "UPLOAD_FIRMWARE_FOR_RELEASE=${UPLOAD_FIRMWARE_FOR_RELEASE}" >> $GITHUB_ENV
         echo "UPLOAD_FIRMWARE_TO_COWTRANSFER=${UPLOAD_FIRMWARE_TO_COWTRANSFER}" >> $GITHUB_ENV
         echo "UPLOAD_FIRMWARE_TO_WETRANSFER=${UPLOAD_FIRMWARE_TO_WETRANSFER}" >> $GITHUB_ENV
 
@@ -57,69 +53,17 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         ${GITHUB_WORKSPACE}/scripts/init_env.sh
-    
-    - name: Get current date
-      id: date
-      run: |
-        echo "date=$(date +'%m/%d_%Y_%H/%M')" >> $GITHUB_ENV
-        echo "date2=$(date +'%m/%d %Y')" >> $GITHUB_ENV
-        echo "date3=$(date +'%m.%d')" >> $GITHUB_ENV
-        echo "date4=$(date +'%m.%d.%Y')" >> $GITHUB_ENV
 
     - name: Clone source code
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        if [ -f "devices/common/feeds.conf" ]; then
-          mv devices/common/feeds.conf openwrt/
-        fi
-        if [ -f "devices/${{matrix.target}}/feeds.conf" ]; then
-          mv devices/${{matrix.target}}/feeds.conf openwrt/
-        fi
 
     - name: Load custom configuration
       run: |
-        cp -Rf `find ./ -maxdepth 1 -type d ! -path './openwrt' ! -path './'` openwrt
         cd openwrt
         echo "Apply files..."
-        if [ -n "$(ls -A "devices/common/files" 2>/dev/null)" ]; then
-          cp -rf devices/common/files files
-        fi
-        if [ -n "$(ls -A "devices/${{matrix.target}}/files" 2>/dev/null)" ]; then
-          cp -rf devices/${{matrix.target}}/files/* files/
-        fi
-        if [ -f "devices/common/$DIY_SH" ]; then
-          chmod +x devices/common/$DIY_SH
-          /bin/bash "devices/common/$DIY_SH"
-        fi
-        if [ -f "devices/${{matrix.target}}/$DIY_SH" ]; then
-          chmod +x devices/${{matrix.target}}/$DIY_SH
-          /bin/bash "devices/${{matrix.target}}/$DIY_SH"
-          mv devices/common/$CONFIG_FILE .config
-          echo >> .config
-          cat devices/${{matrix.target}}/$CONFIG_FILE >> .config
-        fi
-        if [ -f "devices/common/default-settings" ]; then
-          cp -f devices/common/default-settings package/*/*/default-settings/root/etc/uci-defaults/99-default-settings
-        fi
-        if [ -f "devices/${{matrix.target}}/default-settings" ]; then
-          echo >> package/*/*/default-settings/root/etc/uci-defaults/99-default-settings
-          cat devices/${{matrix.target}}/default-settings >> package/*/*/default-settings/root/etc/uci-defaults/99-default-settings
-        fi
-        if [ -n "$(ls -A "devices/common/diy" 2>/dev/null)" ]; then
-          cp -Rf devices/common/diy/* ./
-        fi
-        if [ -n "$(ls -A "devices/${{matrix.target}}/diy" 2>/dev/null)" ]; then
-          cp -Rf devices/${{matrix.target}}/diy/* ./
-        fi
-        if [ -n "$(ls -A "devices/common/patches" 2>/dev/null)" ]; then
-          find "devices/common/patches" -type f ! -path 'devices/common/patches/china_mirrors.patch' -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 --forward --no-backup-if-mismatch"
-        fi
-        if [ -n "$(ls -A "devices/${{matrix.target}}/patches" 2>/dev/null)" ]; then
-          find "devices/${{matrix.target}}/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 --forward --no-backup-if-mismatch"
-        fi
-
-        ${GITHUB_WORKSPACE}/scripts/get_clash_core.sh amd64
-        
+        mv devices/common/$CONFIG_FILE .config
+        ${GITHUB_WORKSPACE}/devices/common/$DIY_SH
         make defconfig
 
     - name: Download package
@@ -147,18 +91,9 @@ jobs:
         -or -name "*armvirt-64-default-rootfs*" \
         -or -name "sha256sums" \
         | xargs -i mv -f {} ./firmware/
-        cp openwrt/.config  ./firmware/${{matrix.target}}.config
+        cp openwrt/.config  ./firmware/config
         cd firmware
-        echo ${{ env.date4 }} > version.txt
-        mv sha256sums ${{matrix.target}}_sha256sums
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
-        RANDOM=$$$(date +%s)
-        rand=$[$RANDOM % ${#Emoji[@]}]
-        echo "EMOJI=${Emoji[$rand]}" >> $GITHUB_ENV
-        if [ ${{matrix.target}} == "x86_64" ]; then
-        echo "NOTICE=请分配不少于800M的存储容量" >> $GITHUB_ENV
-        fi
  
     - name: Upload firmware to cowtransfer
       if: env.UPLOAD_FIRMWARE_TO_COWTRANSFER == 'true'
@@ -179,44 +114,3 @@ jobs:
         wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
         echo "WETRANS=$wetrans" >> $GITHUB_ENV
         echo "Download Link: ${{ env.EMOJI }} $wetrans ${{ env.EMOJI }} 🚀"
-
-    - name: Create release
-      id: create_release
-      continue-on-error: true
-      if: env.REPO_TOKEN && env.UPLOAD_FIRMWARE_FOR_RELEASE == 'true'
-      run: |
-        echo -e "墙内加速下载 🚀:\n" >> release.txt
-        [ ${{ env.WETRANS }} ] && echo -e "[WeTransfer] (${{ env.WETRANS }} 🗽)\n" >> release.txt
-        [ ${{ env.COWURL }} ] && echo -e "[奶牛上传] (${{ env.COWURL }} 🐮)\n" >> release.txt
-        [ ${{ env.NOTICE }} ] && echo -e "${{ env.NOTICE }}" >> release.txt || true
-
-    - name: Upload firmware for release
-      uses: softprops/action-gh-release@v1
-      continue-on-error: true
-      if: env.REPO_TOKEN && env.UPLOAD_FIRMWARE_FOR_RELEASE == 'true'
-      env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-      with:
-        files: "${{ env.FIRMWARE }}/*"
-        name: ${{ env.date2 }} ${{matrix.target}} ${{ env.EMOJI }}
-        tag_name: ${{ env.date }}_${{matrix.target}}
-        body_path: release.txt
-        
-    - name: WeChat notification
-      uses: emon100/Action-Serverchan@v2
-      if: steps.compile.outputs.status == 'success' && env.SERVERCHAN_SCKEY == 'true'
-      with:
-        SCKEY: ${{ secrets.SCKEY }}
-        text: 固件编译成功!
-        desp: ${{matrix.target}}固件于${{ env.date }}编译完成了！
-
-
-    - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@master
-      continue-on-error: true
-      if: env.UPLOAD_FIRMWARE_FOR_RELEASE == 'true' && !cancelled()
-      with:
-        keep_latest: 20
-        delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
