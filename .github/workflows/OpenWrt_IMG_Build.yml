@@ -63,6 +63,7 @@ jobs:
         cd openwrt
         echo "Apply files..."
         mv ${GITHUB_WORKSPACE}/devices/common/$CONFIG_FILE .config
+        chmod +x ${GITHUB_WORKSPACE}/devices/common/$DIY_SH
         ${GITHUB_WORKSPACE}/devices/common/$DIY_SH
         make defconfig
 
