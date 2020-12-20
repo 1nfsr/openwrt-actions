@@ -65,6 +65,8 @@ jobs:
         mv ${GITHUB_WORKSPACE}/devices/common/$CONFIG_FILE .config
         chmod +x ${GITHUB_WORKSPACE}/devices/common/$DIY_SH
         ${GITHUB_WORKSPACE}/devices/common/$DIY_SH
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
         make defconfig
 
     - name: Download package
