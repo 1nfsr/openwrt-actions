@@ -6,5 +6,7 @@ sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext
 sudo -E apt-get -qq autoremove --purge
 sudo -E apt-get -qq clean
 sudo timedatectl set-timezone "Asia/Shanghai"
+sudo mkdir -p /workdir
+sudo chown $USER:$GROUPS /workdir
 
 exit 0
