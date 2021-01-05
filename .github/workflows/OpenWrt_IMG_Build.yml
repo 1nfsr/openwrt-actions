@@ -11,9 +11,8 @@ on:
 env:
   REPO_URL: https://github.com/1nfsr/openwrt
   REPO_BRANCH: main
-  CONFIG_FILE: .config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
+  CONFIG_FILE: config
+  EXTRA_COMMEND: extra.sh
   UPLOAD_COWTRANSFER: true
   UPLOAD_WETRANSFER: true
 
@@ -49,9 +48,9 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
+        chmod +x $EXTRA_COMMEND
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/$EXTRA_COMMEND
         make defconfig
 
     - name: Download package
