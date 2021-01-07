@@ -18,3 +18,4 @@ sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='Infsr build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt '" >> package/base-files/files/etc/openwrt_release
 
 git clone https://github.com/garypang13/openwrt-packages package/extra-packages
+git clone https://github.com/zxlhhyccc/bf-package package/extra-packages2
