@@ -11,7 +11,7 @@ on:
 env:
   REPO_URL: https://github.com/1nfsr/openwrt
   REPO_BRANCH: main
-  CONFIG_FILE: config
+  CONFIG_FILE: config.seed
   EXTRA_COMMEND: extra.sh
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
