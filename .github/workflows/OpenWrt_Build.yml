@@ -1,4 +1,4 @@
-name: Openwrt IMG Actions
+name: Openwrt Actions
 
 on: 
   # push: 
