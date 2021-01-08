@@ -1,9 +1,9 @@
-name: Openwrt Image Actions
+name: Openwrt IMG Actions
 
 on: 
   # push: 
   #   branches:
-  #     - master
+  #     - main
   #schedule:
   #  - cron: 30 13 * * 6
   workflow_dispatch:
@@ -29,8 +29,8 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        chmod +x ${GITHUB_WORKSPACE}/requirements.sh
-        ${GITHUB_WORKSPACE}/requirements.sh
+        chmod +x ${GITHUB_WORKSPACE}/scripts/*.sh
+        ${GITHUB_WORKSPACE}/scripts/requirements.sh
 
     - name: Clone Source Code
       working-directory: /workdir
@@ -42,16 +42,14 @@ jobs:
     - name: Quickstart
       run: |
         cd openwrt
-        chmod +x $GITHUB_WORKSPACE/quickstart.sh
-        $GITHUB_WORKSPACE/quickstart.sh
+        ${GITHUB_WORKSPACE}/scripts/quickstart.sh
 
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $EXTRA_COMMEND
         cd openwrt
-        $GITHUB_WORKSPACE/$EXTRA_COMMEND
+        $GITHUB_WORKSPACE/scripts/$EXTRA_COMMEND
         make defconfig
 
     - name: Download package
