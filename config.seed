@@ -70,6 +70,7 @@ CONFIG_PACKAGE_luci-app-opkg=y
 #CONFIG_PACKAGE_luci-app-turboacc=y
 #CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_flow-offload=n
 #CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
+CONFIG_PACKAGE_luci-app-dockerman=y
 
 
 # 4. Themes
