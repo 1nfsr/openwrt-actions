@@ -1,0 +1,12 @@
+# 3. Applications
+CONFIG_PACKAGE_luci-app-firewall=y
+CONFIG_PACKAGE_luci-app-opkg=y
+#CONFIG_PACKAGE_luci-app-turboacc=y
+#CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_flow-offload=n
+#CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
+CONFIG_PACKAGE_luci-app-dockerman=y
+CONFIG_PACKAGE_luci-app-openclash=y
+
+
+# 4. Themes
+CONFIG_PACKAGE_luci-theme-bootstrap=y
