@@ -20,4 +20,4 @@ sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='Infsr build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt '" >> package/base-files/files/etc/openwrt_release
 
 mkdir package/apps
-git clone git clone https://github.com/vernesong/OpenClash.git package/apps/luci-app-openclash
+git clone https://github.com/vernesong/OpenClash.git package/apps/luci-app-openclash
