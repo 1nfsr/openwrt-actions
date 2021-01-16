@@ -21,3 +21,6 @@ echo "DISTRIB_DESCRIPTION='Infsr build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt '"
 
 mkdir package/apps
 git clone https://github.com/vernesong/OpenClash.git package/apps/luci-app-openclash
+git clone https://github.com/kongfl888/luci-app-adguardhome.git package/apps/luci-app-adguardhome
+git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
+rm -rf package/openwrt-packages/luci-app-adguardhome
