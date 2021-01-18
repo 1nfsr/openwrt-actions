@@ -31,10 +31,11 @@ jobs:
     - name: GET_READY
       working-directory: /workdir
       run: |
-        ${GITHUB_WORKSPACE}/SCRIPTS/02_get_ready.sh
+        /bin/bash ${GITHUB_WORKSPACE}/SCRIPTS/02_get_ready.sh
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: PREPAR_PACKAGE
       working-directory: /workdir/openwrt
       run: |
+
         echo "hello world $PWD"
