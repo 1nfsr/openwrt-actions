@@ -12,7 +12,7 @@
 #git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
 # Prepare
 sudo timedatectl set-timezone "Asia/Shanghai"
-export WORKDIR=${PWD}
+export OPENWRTDIR=${PWD}
 
 
 exit 0
