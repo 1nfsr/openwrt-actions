@@ -14,7 +14,7 @@ env:
   UPLOAD_WETRANSFER: true
 
 jobs:
-  OpenWrt Bulid:
+  Build_OpenWrt:
     runs-on: ubuntu-20.04
         
     steps:
