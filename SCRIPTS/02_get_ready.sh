@@ -14,6 +14,7 @@ cp -f ./openwrt_master/include/version.mk ./openwrt_19/include/version.mk
 cp -f ./openwrt_master/include/kernel-version.mk ./openwrt_19/include/kernel-version.mk
 cp -f ./openwrt_master/package/base-files/image-config.in ./openwrt_19/package/base-files/image-config.in
 cp -rf ./openwrt_master/target/linux/* ./openwrt_19/target/linux/
-cp -rf ./openwrt_19/* /home/runner/work/openwrt
+mkdir -p /home/runner/work/openwrt-actions/openwrt-actions/openwrt
+cp -rf ./openwrt_19/* /home/runner/work/openwrt-actions/openwrt-actions/openwrt
 
 exit 0

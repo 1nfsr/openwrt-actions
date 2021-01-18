@@ -10,12 +10,7 @@
 #sudo -E apt-get -qq autoremove --purge
 #sudo -E apt-get -qq clean
 #git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
-
-
 # Prepare
 sudo timedatectl set-timezone "Asia/Shanghai"
-
-mkdir -p /home/runner/work/openwrt
-export OPENWRTDIR="/home/runner/work/openwrt"
 
 exit 0
