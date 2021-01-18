@@ -1,8 +1,6 @@
 #!/bin/bash
 
 
-export OPENWRTDIR = ${PWD}
-
 git clone -b main --depth 1 https://github.com/1nfsr/openwrt.git openwrt_master
 rm -f ./openwrt_master/feeds.conf.default
 wget -P openwrt_master/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default

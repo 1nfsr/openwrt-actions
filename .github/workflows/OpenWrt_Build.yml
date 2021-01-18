@@ -27,12 +27,4 @@ jobs:
       run: |
         chmod +x ${GITHUB_WORKSPACE}/SCRIPTS/*.sh
         ${GITHUB_WORKSPACE}/SCRIPTS/01_init_env.sh
-
-    - name: GET_READY
-      run: |
-        ${GITHUB_WORKSPACE}/SCRIPTS/02_get_ready.sh
-
-    - name: PREPAR_PACKAGE
-      run: |
-        cd ${OPENWRTDIR}/openwrt
-        ${GITHUB_WORKSPACE}/SCRIPTS/03_prepare_package.sh 
+        ls $OPENWRTDIR
