@@ -8,11 +8,6 @@ on:
   #  - cron: 30 13 * * 6
   workflow_dispatch:
 
-env:
-  UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: true
-  UPLOAD_WETRANSFER: true
-
 jobs:
   Build_OpenWrt:
     runs-on: ubuntu-20.04
@@ -28,3 +23,10 @@ jobs:
         chmod +x ${GITHUB_WORKSPACE}/SCRIPTS/*.sh
         ${GITHUB_WORKSPACE}/SCRIPTS/01_init_env.sh
         ls $OPENWRTDIR
+
+    - name: get ready
+      working-directory: ${WORKDIR}
+      run: |
+        ${GITHUB_WORKSPACE}/SCRIPTS/02_init_env.sh
+        cd openwrt
+        ${GITHUB_WORKSPACE}/SCRIPTS/03_prepare_package.sh
