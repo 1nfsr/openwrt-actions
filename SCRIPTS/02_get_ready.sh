@@ -16,6 +16,3 @@ cp -f ./openwrt_master/package/base-files/image-config.in ./openwrt_19/package/b
 cp -rf ./openwrt_master/target/linux/* ./openwrt_19/target/linux/
 mkdir -p ${WORKDIR}/openwrt
 cp -rf ./openwrt_19/* ${WORKDIR}/openwrt
-
-
-exit 0

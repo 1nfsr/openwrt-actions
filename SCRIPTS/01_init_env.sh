@@ -13,6 +13,3 @@
 # Prepare
 sudo timedatectl set-timezone "Asia/Shanghai"
 export WORKDIR=${PWD}
-
-
-exit 0
