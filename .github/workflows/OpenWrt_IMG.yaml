@@ -1,4 +1,4 @@
-name: OpenWrt IMG Build
+name: Build Openwrt IMG
 
 on: 
   # push: 
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Build_OpenWrt:
+  Build:
     runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
         
