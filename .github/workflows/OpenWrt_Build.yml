@@ -25,8 +25,7 @@ jobs:
         ls $OPENWRTDIR
 
     - name: get ready
-      working-directory: ${WORKDIR}
       run: |
+        cd ${WORKDIR}/openwrt
         ${GITHUB_WORKSPACE}/SCRIPTS/02_init_env.sh
-        cd openwrt
         ${GITHUB_WORKSPACE}/SCRIPTS/03_prepare_package.sh

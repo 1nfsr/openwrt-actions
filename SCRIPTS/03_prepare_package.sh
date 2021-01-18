@@ -16,3 +16,6 @@ sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
 patch -p1 < ../PATCH/001_luci_network-add-packet-steering.patch
 #jsonc
 patch -p1 < ../PATCH/002_use_json_object_new_int64.patch
+
+
+exit 0
