@@ -26,6 +26,12 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         echo "hello $PWD"
+        echo "0"
+        ls $PWD
+        echo "1"
+        ls /home/runner/work/openwrt-actions
+        echo "2"
+        ls /home/runner/work
         chmod +x ${GITHUB_WORKSPACE}/SCRIPTS/*.sh
         ${GITHUB_WORKSPACE}/SCRIPTS/01_init_env.sh
 
