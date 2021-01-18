@@ -22,9 +22,9 @@ jobs:
       run: |
         chmod +x ${GITHUB_WORKSPACE}/SCRIPTS/*.sh
         ${GITHUB_WORKSPACE}/SCRIPTS/01_init_env.sh
+        ${GITHUB_WORKSPACE}/SCRIPTS/02_get_ready.sh
 
     - name: get ready
+      working-directory: openwrt
       run: |
-        cd openwrt
-        ${GITHUB_WORKSPACE}/SCRIPTS/02_init_env.sh
         ${GITHUB_WORKSPACE}/SCRIPTS/03_prepare_package.sh
