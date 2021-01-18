@@ -13,6 +13,6 @@ sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
 
 # 必要的patch
 #luci network
-patch -p1 < ./PATCH/001_luci_network-add-packet-steering.patch
+patch -p1 < ../PATCH/001_luci_network-add-packet-steering.patch
 #jsonc
-patch -p1 < ./PATCH/002_use_json_object_new_int64.patch
+patch -p1 < ../PATCH/002_use_json_object_new_int64.patch

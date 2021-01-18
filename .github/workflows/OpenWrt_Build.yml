@@ -41,7 +41,8 @@ jobs:
         ln -sf /home/runner/work/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: PREPAR_PACKAGE
-      working-directory: $GITHUB_WORKSPACE/openwrt
       run: |
+        echo "$PWD"
+        echo "${GITHUB_WORKSPACE}"
+        echo "${GITHUB_WORKSPACE}/PATCH"
         ${GITHUB_WORKSPACE}/SCRIPTS/03_prepare_package.sh
-        echo "hello world $PWD"
