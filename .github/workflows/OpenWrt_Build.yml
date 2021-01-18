@@ -36,13 +36,13 @@ jobs:
         ${GITHUB_WORKSPACE}/SCRIPTS/01_init_env.sh
 
     - name: GET_READY
-      working-directory: /workdir
+      working-directory: OPENWRTDIR
       run: |
         ${GITHUB_WORKSPACE}/SCRIPTS/02_get_ready.sh
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: PREPAR_PACKAGE
-      working-directory: /workdir/openwrt
+      working-directory: OPENWRTDIR
       run: |
         ${GITHUB_WORKSPACE}/SCRIPTS/03_prepare_package.sh
         echo "hello world $PWD"

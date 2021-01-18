@@ -12,9 +12,10 @@
 #git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
 
 
-# Prepare OpenWrt
+# Prepare
 sudo timedatectl set-timezone "Asia/Shanghai"
-sudo mkdir -p /workdir/openwrt
-sudo chown $USER:$GROUPS /workdir/openwrt
+
+mkdir -p /home/runner/work/openwrt
+export OPENWRTDIR="/home/runner/work/openwrt"
 
 exit 0
