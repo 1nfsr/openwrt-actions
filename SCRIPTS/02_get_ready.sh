@@ -1,6 +1,8 @@
 #!/bin/bash
 
 
+export OPENWRTDIR = ${PWD}
+
 git clone -b main --depth 1 https://github.com/1nfsr/openwrt.git openwrt_master
 rm -f ./openwrt_master/feeds.conf.default
 wget -P openwrt_master/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default
@@ -16,5 +18,6 @@ cp -f ./openwrt_master/package/base-files/image-config.in ./openwrt_19/package/b
 cp -rf ./openwrt_master/target/linux/* ./openwrt_19/target/linux/
 mkdir -p /home/runner/work/openwrt-actions/openwrt-actions/openwrt
 cp -rf ./openwrt_19/* /home/runner/work/openwrt-actions/openwrt-actions/openwrt
+
 
 exit 0

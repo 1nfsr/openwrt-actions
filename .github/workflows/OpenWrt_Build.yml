@@ -34,5 +34,5 @@ jobs:
 
     - name: PREPAR_PACKAGE
       run: |
-        cd /home/runner/work/openwrt-actions/openwrt-actions/openwrt
-        ${GITHUB_WORKSPACE}/SCRIPTS/03_prepare_package.sh
+        cd ${OPENWRTDIR}/openwrt
+        ${GITHUB_WORKSPACE}/SCRIPTS/03_prepare_package.sh 
