@@ -19,3 +19,6 @@ git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/ap
 
 # 添加 openclash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
+
+# 添加 r8168驱动
+git clone https://github.com/BROBIRD/openwrt-r8168 package/apps/openwrt-r8168
