@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# 修改默认IP
-sed -i 's/192.168.1.1/192.168.77.1/g' package/base-files/files/bin/config_generate
-
-# 添加密码 password
-sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
-
 # 添加证书
 mkdir -p package/base-files/files/etc/nginx
 cp -rf ${GITHUB_WORKSPACE}/etc/nginx/conf.d package/base-files/files/etc/nginx/
