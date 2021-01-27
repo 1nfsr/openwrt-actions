@@ -8,10 +8,10 @@ sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999
 
 # 添加证书
 mkdir -p package/base-files/files/etc/nginx
-cp -rf ../etc/nginx/conf.d package/base-files/files/etc/nginx/
+cp -rf ${GITHUB_WORKSPACE}/etc/nginx/conf.d package/base-files/files/etc/nginx/
 
 # 添加 Adguardhome配置文件
-cp -rf ../etc/AdGuardHome.yaml package/base-files/files/etc/
+cp -rf ${GITHUB_WORKSPACE}/etc/AdGuardHome.yaml package/base-files/files/etc/
 
 # 添加 AdguardHome
 mkdir -p package/apps
