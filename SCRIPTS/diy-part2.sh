@@ -16,3 +16,6 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/a
 
 # 添加 r8168驱动
 #git clone https://github.com/BROBIRD/openwrt-r8168 package/apps/openwrt-r8168
+
+# Docker
+sed -i 's/+docker/+docker +dockerd/g' feeds/luci/applications/luci-app-dockerman/Makefile
