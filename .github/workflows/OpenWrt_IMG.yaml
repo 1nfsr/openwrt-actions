@@ -1,4 +1,4 @@
-name: Build Openwrt IMG
+name: Build OpenWrt IMG
 
 on: 
   # push: 

@@ -1,4 +1,4 @@
-name: Build Openwrt PKG
+name: Build OpenWrt PKG
 
 on: 
   # push: 
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  SDK_URL: https://downloads.openwrt.org/releases/19.07.4/targets/x86/64/openwrt-sdk-19.07.4-x86-64_gcc-7.5.0_musl.Linux-x86_64.tar.xz
+  SDK_URL: https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-sdk-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz
   UPLOAD_COWTRANSFER: true
   UPLOAD_WETRANSFER: true
 
@@ -50,12 +50,11 @@ jobs:
       run: |
         SDK_HOME=$(head -c -8 <<< $(basename $SDK_URL))
         wget $SDK_URL
-        tar xf $(basename $SDK_URL) -C ~/
-        mv ~/$SDK_HOME ~/sdk
+        tar xf $(basename $SDK_URL) -C /workdir
 
     - name: Download Packages
+      working-directory: /workdir
       run: |
-        cd ~/sdk
         ${GITHUB_WORKSPACE}/scripts/get_pkg.sh
         ./scripts/feeds update -a
         ./scripts/feeds install -a
@@ -66,10 +65,13 @@ jobs:
         cd ~/sdk
         ${GITHUB_WORKSPACE}/scripts/compile_pkg.sh
 
-    - name: Upload firmware for artifact
-      uses: actions/upload-artifact@main
-      with:
-        path: ~/sdk/bin/packages
+    - name: Organize files
+      id: organize
+      run: |
+        cd openwrt/bin/targets/*/*
+        rm -rf packages
+        echo "PKG=$PWD" >> $GITHUB_ENV
+        echo "::set-output name=status::success"
 
     - name: Upload firmware to cowtransfer
       id: cowtransfer
