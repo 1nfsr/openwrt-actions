@@ -4,6 +4,10 @@
 mkdir -p package/base-files/files/etc/nginx
 cp -rf ${GITHUB_WORKSPACE}/etc/nginx/conf.d package/base-files/files/etc/nginx/
 
+# 添加公钥
+mkdir -p package/base-files/files/root
+cp -rf ${GITHUB_WORKSPACE}/root/* package/base-files/files/root
+
 # 添加 Adguardhome配置文件
 cp -rf ${GITHUB_WORKSPACE}/etc/AdGuardHome.yaml package/base-files/files/etc/
 
