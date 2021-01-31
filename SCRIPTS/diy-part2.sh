@@ -27,3 +27,6 @@ git clone https://github.com/BROBIRD/openwrt-r8168 package/apps/openwrt-r8168
 
 # Docker
 sed -i 's/+docker/+docker +dockerd/g' feeds/luci/applications/luci-app-dockerman/Makefile
+
+# 移除首页Model
+sed '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
