@@ -10,8 +10,14 @@ sed -i 's/ %V,//g' package/base-files/files/etc/banner
 sed -i 's/Os/O2/g' include/target.mk
 sed -i 's/O2/O2/g' ./rules.mk
 
-#修改默认IP
+#修改IP
 sed -i 's/192.168.1.1/192.168.77.1/g' package/base-files/files/bin/config_generate
+
+#修改机器名称
+sed -i "s/OpenWrt/x86/g" package/base-files/files/bin/config_generate
+
+#修改时区
+sed -i "s/'UTC'/'CST-8'\n   set system.@system[-1].zonename='Asia\/Shanghai'/g" package/base-files/files/bin/config_generate
 
 #添加密码 password
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
