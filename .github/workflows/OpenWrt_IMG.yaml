@@ -10,7 +10,7 @@ on:
 
 env:
   REPO_URL: https://github.com/1nfsr/openwrt.git
-  REPO_BRANCH: master
+  REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: CONFIG/.config
   DIY_P1_SH: SCRIPTS/diy-part1.sh
