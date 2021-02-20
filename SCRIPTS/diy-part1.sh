@@ -19,11 +19,16 @@ sed -i "s/OpenWrt/x86/g" package/base-files/files/bin/config_generate
 #修改时区
 sed -i "s/'UTC'/'CST-8'\n   set system.@system[-1].zonename='Asia\/Shanghai'/g" package/base-files/files/bin/config_generate
 
+#修改shell
+sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+
 #添加密码 password
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
 
-#修改shell
-sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+#AFP相关用户 用户名infsr 密码password
+echo "infsr:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:18678:0:99999:7:::" >> package/base-files/files/etc/shadow
+echo "infsr:x:1000:1000::/home/infsr:" >> package/base-files/files/etc/passwd
+sed -i 's/100:/100:infsr/g' package/base-files/files/etc/group
 
 #修改最大连接数
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
