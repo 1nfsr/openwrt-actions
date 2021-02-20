@@ -1,7 +1,0 @@
-[submodule "etc/oh-my-zsh"]
-	path = etc/oh-my-zsh
-	url = git@github.com:ohmyzsh/ohmyzsh.git
-
-[submodule "etc/oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
-	path = etc/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
