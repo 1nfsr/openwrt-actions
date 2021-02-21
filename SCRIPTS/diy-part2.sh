@@ -22,6 +22,26 @@ git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/ap
 # 添加 openclash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
 
+# 添加 clash ui面板
+mkdir -p package/base-files/files/www
+cp -rf ${GITHUB_WORKSPACE}/www/clash-ui package/base-files/files/www/
+
+# 添加 ohmyzsh
+mkdir -p package/base-files/files/etc/ohmyzsh
+mkdir -p package/base-files/files/etc/home/infsr
+cp -rf ${GITHUB_WORKSPACE}/etc/ohmyzsh package/base-files/files/etc/
+cp -rf ${GITHUB_WORKSPACE}/home/infsr/.zshrc package/base-files/files/home/infsr/
+cp -rf ${GITHUB_WORKSPACE}/root/.zshrc package/base-files/files/root/
+
+# 开启tcp fastopen
+cp -rf ${GITHUB_WORKSPACE}/etc/sysctl.d/60_tcp_fastopen.conf package/base-files/files/etc/sysctl.d/
+
+# afp
+mkdir -p package/base-files/files/etc/avahi/services
+cp -rf ${GITHUB_WORKSPACE}/etc/avahi/* package/base-files/files/etc/avahi/
+cp -rf ${GITHUB_WORKSPACE}/etc/afp.conf package/base-files/files/etc/
+cp -rf ${GITHUB_WORKSPACE}/etc/extmap.conf package/base-files/files/etc/
+
 # 添加 r8168驱动
 git clone https://github.com/BROBIRD/openwrt-r8168 package/apps/openwrt-r8168
 
