@@ -28,7 +28,7 @@ cp -rf ${GITHUB_WORKSPACE}/www/clash-ui package/base-files/files/www/
 
 # 添加 ohmyzsh
 mkdir -p package/base-files/files/etc/ohmyzsh
-mkdir -p package/base-files/files/etc/home/infsr
+mkdir -p package/base-files/files/home/infsr
 cp -rf ${GITHUB_WORKSPACE}/etc/ohmyzsh package/base-files/files/etc/
 cp -rf ${GITHUB_WORKSPACE}/home/infsr/.zshrc package/base-files/files/home/infsr/
 cp -rf ${GITHUB_WORKSPACE}/root/.zshrc package/base-files/files/root/
