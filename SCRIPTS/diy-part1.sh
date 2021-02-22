@@ -26,7 +26,8 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
 
 #AFP相关用户 用户名infsr 密码password
-echo "infsr:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::" >> package/base-files/files/etc/shadow
+echo "infsr::0:0:99999:7:::" >> package/base-files/files/etc/shadow
+sed -i 's/infsr::0:0:99999:7:::/infsr:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
 echo "infsr:x:1000:1000::/home/infsr:/usr/bin/zsh" >> package/base-files/files/etc/passwd
 sed -i 's/100:/100:infsr/g' package/base-files/files/etc/group
 
