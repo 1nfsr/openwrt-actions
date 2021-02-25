@@ -7,3 +7,4 @@ OpenWrt on Nginx ssl 基础固件
 
 1. AdguardHome
 2. OpenClash
+3. upnp
