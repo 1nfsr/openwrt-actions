@@ -84,6 +84,9 @@ jobs:
         chmod +x $GITHUB_WORKSPACE/SCRIPTS/get_*.sh
         $GITHUB_WORKSPACE/SCRIPTS/get_adguardhome_core.sh amd64
         $GITHUB_WORKSPACE/SCRIPTS/get_clash_core.sh amd64
+        cp $GITHUB_WORKSPACE/PATCH/*.patch ./
+        git am --signoff < *.patch
+
 
     - name: Download package
       id: package
