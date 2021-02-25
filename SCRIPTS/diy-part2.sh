@@ -54,6 +54,9 @@ sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/vie
 # 添加 fullconenat
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat package/apps/fullconenat
 
+# 添加 SFE
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/apps/shortcut-fe
+
 
 
 echo '
