@@ -51,6 +51,10 @@ sed -i 's/+docker/+docker +dockerd/g' feeds/luci/applications/luci-app-dockerman
 # 移除首页Model
 sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
+# 添加 fullconenat
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat package/apps/fullconenat
+
+
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
