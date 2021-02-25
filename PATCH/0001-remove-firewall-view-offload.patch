@@ -1,0 +1,32 @@
+From f9e3ef5a0ebbf8d69e41e098f7ed90f7a21e07f0 Mon Sep 17 00:00:00 2001
+From: Infsr <i@infsr.me>
+Date: Thu, 25 Feb 2021 21:54:14 +0800
+Subject: [PATCH 2/2] edit
+
+---
+ .../htdocs/luci-static/resources/view/firewall/zones.js         | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js b/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+index 53612e0..aa9a8f3 100644
+--- a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
++++ b/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+@@ -70,6 +70,7 @@ return view.extend({
+ 		}
+ 
+ 		/* Netfilter flow offload support */
++/*
+ 
+ 		if (L.hasSystemFeature('offloading')) {
+ 			s = m.section(form.TypedSection, 'defaults', _('Routing/NAT Offloading'),
+@@ -89,6 +90,7 @@ return view.extend({
+ 			o.optional = true;
+ 			o.depends('flow_offloading', '1');
+ 		}
++*/
+ 
+ 
+ 		s = m.section(form.GridSection, 'zone', _('Zones'));
+-- 
+2.17.1
+
