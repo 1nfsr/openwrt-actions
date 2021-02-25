@@ -57,7 +57,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconen
 # 添加 SFE
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/apps/shortcut-fe
 
-
+mv ${GITHUB_WORKSPACE}/apps/* package/apps/
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
