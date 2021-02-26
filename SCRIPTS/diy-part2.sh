@@ -52,12 +52,21 @@ sed -i 's/+docker/+docker +dockerd/g' feeds/luci/applications/luci-app-dockerman
 sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
 # 添加 fullconenat
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat package/apps/fullconenat
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat package/apps/fullconenat
+
+# patch firewall support fullconenat
+mkdir package/network/config/firewall/patches
+wget -O package/network/config/firewall/patches/fullconenat.patch https://github.com/coolsnowwolf/lede/raw/master/package/network/config/firewall/patches/fullconenat.patch
+
+mv $GITHUB_WORKSPACE/PATCH/remove_firewall_view_offload.patch ./
+patch -p1 < remove_firewall_view_offload.patch
+
 
 # 添加 SFE
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/apps/shortcut-fe
 
 mv ${GITHUB_WORKSPACE}/apps/* package/apps/
+
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
