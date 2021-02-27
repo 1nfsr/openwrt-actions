@@ -75,6 +75,7 @@ patch -p1 < luci-add-filter-aaaa-option.patch
 cp -f 910-mini-ttl.patch package/network/services/dnsmasq/patches/
 cp -f 911-dnsmasq-filter-aaaa.patch package/network/services/dnsmasq/patches/
 
+cp -rf hack-5.4/* target/linux/generic/hack-5.4/
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
