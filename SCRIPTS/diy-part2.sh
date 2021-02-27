@@ -62,8 +62,7 @@ mv $GITHUB_WORKSPACE/PATCH/remove_firewall_view_offload.patch ./
 patch -p1 < remove_firewall_view_offload.patch
 
 
-# 添加 SFE
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/apps/shortcut-fe
+# 添加 local apps
 
 mv ${GITHUB_WORKSPACE}/apps/* package/apps/
 
