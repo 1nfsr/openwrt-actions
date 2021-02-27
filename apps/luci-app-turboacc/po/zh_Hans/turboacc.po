@@ -1,4 +1,4 @@
-msgid "Turbo ACC Center"
+msgid "Turbo ACC"
 msgstr "Turbo ACC 网络加速"
 
 msgid "Turbo ACC Acceleration Settings"
