@@ -66,6 +66,15 @@ patch -p1 < remove_firewall_view_offload.patch
 
 mv ${GITHUB_WORKSPACE}/apps/* package/apps/
 
+# patch
+mv $GITHUB_WORKSPACE/PATCH/* ./
+
+patch -p1 < use_json_object_new_int64.patch
+patch -p1 < dnsmasq-add-filter-aaaa-option.patch
+patch -p1 < luci-add-filter-aaaa-option.patch
+cp -f 910-mini-ttl.patch package/network/services/dnsmasq/patches/
+cp -f 911-dnsmasq-filter-aaaa.patch package/network/services/dnsmasq/patches/
+
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
