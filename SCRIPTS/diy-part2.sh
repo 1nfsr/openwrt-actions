@@ -26,6 +26,12 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/a
 mkdir -p package/base-files/files/www
 cp -rf ${GITHUB_WORKSPACE}/www/clash-ui package/base-files/files/www/
 
+# custom clash
+rm package/apps/luci-app-openclash/root/etc/config/openclash
+cp ${GITHUB_WORKSPACE}custom/openclash/root/etc/config/openclash package/apps/luci-app-openclash/root/etc/config/
+rm package/apps/luci-app-openclash/root/etc/openclash/custom/openclash_custom_rules_2.list
+cp ${GITHUB_WORKSPACE}custom/openclash/root/etc/openclash/custom/openclash_custom_rules_2.list package/apps/luci-app-openclash/root/etc/openclash/custom/
+
 # 添加 ohmyzsh
 mkdir -p package/base-files/files/etc/ohmyzsh
 mkdir -p package/base-files/files/home/infsr
