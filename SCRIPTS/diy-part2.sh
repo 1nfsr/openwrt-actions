@@ -20,8 +20,8 @@ mkdir -p package/apps
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/apps/luci-app-adguardhome
 
 # 添加 openclash
-#svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
-mv ${GITHUB_WORKSPACE}/apps/luci-app-openclash package/apps/
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
+#mv ${GITHUB_WORKSPACE}/apps/luci-app-openclash package/apps/
 
 # 添加 clash ui面板
 mkdir -p package/base-files/files/www
