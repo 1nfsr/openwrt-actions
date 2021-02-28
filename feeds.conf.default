@@ -1,4 +1,4 @@
-src-git packages https://github.com/1nfsr/packages.git^b4efc14ae6ee959c2415b3e9a3aebb1fe65b4575
+src-git packages https://github.com/1nfsr/packages.git
 src-git luci https://github.com/1nfsr/luci.git
 src-git routing https://git.openwrt.org/feed/routing.git
 src-git telephony https://git.openwrt.org/feed/telephony.git
