@@ -15,13 +15,16 @@ cp -rf ${GITHUB_WORKSPACE}/root/.ssh/* package/base-files/files/root/.ssh/
 # 添加 Adguardhome配置文件
 cp -rf ${GITHUB_WORKSPACE}/etc/AdGuardHome.yaml package/base-files/files/etc/
 
+# 添加 local apps
+rm -rf ${GITHUB_WORKSPACE}/apps/luci-app-openclash
+mv ${GITHUB_WORKSPACE}/apps/* package/apps/
+
 # 添加 AdguardHome
 mkdir -p package/apps
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/apps/luci-app-adguardhome
 
 # 添加 openclash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
-#mv ${GITHUB_WORKSPACE}/apps/luci-app-openclash package/apps/
 
 # 添加 clash ui面板
 mkdir -p package/base-files/files/www
@@ -85,10 +88,6 @@ wget -O package/network/config/firewall/patches/fullconenat.patch https://github
 mv $GITHUB_WORKSPACE/PATCH/remove_firewall_view_offload.patch ./
 patch -p1 < remove_firewall_view_offload.patch
 
-
-# 添加 local apps
-
-mv ${GITHUB_WORKSPACE}/apps/* package/apps/
 
 # patch
 mv $GITHUB_WORKSPACE/PATCH/* ./
