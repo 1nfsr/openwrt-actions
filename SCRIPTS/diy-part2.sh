@@ -25,6 +25,10 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/a
 # 添加 clash ui面板
 mkdir -p package/base-files/files/www
 cp -rf ${GITHUB_WORKSPACE}/www/clash-ui package/base-files/files/www/
+sed -i 's/127.0.0.1/192.168.77.1/g' package/base-files/files/www/clash-ui/app.24854213eb3ab10a2f34.js
+sed -i 's/secret:""/secret:"123456"/g' package/base-files/files/www/clash-ui/app.24854213eb3ab10a2f34.js
+sed -i 's/127.0.0.1/192.168.77.1/g' package/base-files/files/www/clash-ui/index.html
+
 
 # custom clash
 rm package/apps/luci-app-openclash/root/etc/config/openclash
