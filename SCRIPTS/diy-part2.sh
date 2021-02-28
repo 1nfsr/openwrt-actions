@@ -31,10 +31,23 @@ sed -i 's/127.0.0.1/192.168.77.1/g' package/base-files/files/www/clash-ui/index.
 
 
 # custom clash
-rm package/apps/luci-app-openclash/root/etc/config/openclash
-cp ${GITHUB_WORKSPACE}/custom/openclash/root/etc/config/openclash package/apps/luci-app-openclash/root/etc/config/
-rm package/apps/luci-app-openclash/root/etc/openclash/custom/openclash_custom_rules_2.list
-cp ${GITHUB_WORKSPACE}/custom/openclash/root/etc/openclash/custom/openclash_custom_rules_2.list package/apps/luci-app-openclash/root/etc/openclash/custom/
+rm -rf package/apps/luci-app-openclash/root/etc/config/openclash
+mv ${GITHUB_WORKSPACE}/custom/openclash/root/etc/config/openclash package/apps/luci-app-openclash/root/etc/config/
+rm -rf package/apps/luci-app-openclash/root/etc/openclash/custom/openclash_custom_rules_2.list
+mv ${GITHUB_WORKSPACE}/custom/openclash/root/etc/openclash/custom/openclash_custom_rules_2.list package/apps/luci-app-openclash/root/etc/openclash/custom/
+
+rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/dashboard
+rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/yacd
+
+rm -rf package/apps/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua
+mv ${GITHUB_WORKSPACE}/custom/openclash/luasrc/model/cbi/openclash/settings.lua package/apps/luci-app-openclash/luasrc/model/cbi/openclash/
+rm -rf package/apps/luci-app-openclash/luasrc/view/openclash/status.htm
+mv ${GITHUB_WORKSPACE}/custom/openclash/luasrc/view/openclash/status.htm package/apps/luci-app-openclash/luasrc/view/openclash/
+rm -rf package/apps/luci-app-openclash/root/etc/init.d/openclash
+mv ${GITHUB_WORKSPACE}/custom/openclash/root/etc/init.d/openclash package/apps/luci-app-openclash/root/etc/init.d/
+rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/yml_change.sh
+mv ${GITHUB_WORKSPACE}/custom/openclash/root/usr/share/openclash/yml_change.sh package/apps/luci-app-openclash/root/usr/share/openclash/
+
 
 # 添加 ohmyzsh
 mkdir -p package/base-files/files/etc/ohmyzsh
