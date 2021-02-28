@@ -23,6 +23,12 @@ mv ${GITHUB_WORKSPACE}/apps/* package/apps/
 mkdir -p package/apps
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/apps/luci-app-adguardhome
 
+# custom AdguardHome
+rm -rf package/apps/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
+mv ${GITHUB_WORKSPACE}/custom/adguardhome/luasrc/controller/AdGuardHome.lua package/apps/luci-app-adguardhome/luasrc/controller/
+rm -rf package/apps/luci-app-adguardhome/root/etc/config/AdGuardHome
+mv ${GITHUB_WORKSPACE}/custom/adguardhome/root/etc/config/AdGuardHome package/apps/luci-app-adguardhome/root/etc/config/
+
 # 添加 openclash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
 
