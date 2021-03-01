@@ -15,6 +15,10 @@ cp -rf ${GITHUB_WORKSPACE}/root/.ssh/* package/base-files/files/root/.ssh/
 # 添加 Adguardhome配置文件
 cp -rf ${GITHUB_WORKSPACE}/etc/AdGuardHome.yaml package/base-files/files/etc/
 
+# revert upnp
+rm -Rf feeds/packages/net/miniupnpd
+mv ${GITHUB_WORKSPACE}/apps/miniupnpd feeds/packages/net/
+
 # 添加 local apps
 mkdir -p package/apps
 rm -rf ${GITHUB_WORKSPACE}/apps/luci-app-openclash
