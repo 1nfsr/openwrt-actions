@@ -87,6 +87,10 @@ sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/vie
 # 添加 fullconenat
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat package/apps/fullconenat
 
+# Turboacc
+rm -rf package/apps/luci-app-turboacc/root/etc/init.d/turboacc
+mv $GITHUB_WORKSPACE/custom/turboacc/root/etc/init.d/turboacc package/apps/luci-app-turboacc/root/etc/init.d/
+
 # patch firewall support fullconenat
 mkdir package/network/config/firewall/patches
 wget -O package/network/config/firewall/patches/fullconenat.patch https://github.com/coolsnowwolf/lede/raw/master/package/network/config/firewall/patches/fullconenat.patch
