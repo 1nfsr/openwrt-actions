@@ -6,7 +6,6 @@ function index()
 entry({"admin", "services", "AdGuardHome"},alias("admin", "services", "AdGuardHome", "base"),_("AdGuard Home"), 10).dependent = true
 entry({"admin","services","AdGuardHome","base"},cbi("AdGuardHome/base"),_("Base Setting"),1).leaf = true
 entry({"admin","services","AdGuardHome","log"},form("AdGuardHome/log"),_("Log"),2).leaf = true
-entry({"admin","services","AdGuardHome","manual"},cbi("AdGuardHome/manual"),_("Manual Config"),3).leaf = false
 entry({"admin","services","AdGuardHome","status"},call("act_status")).leaf=true
 entry({"admin", "services", "AdGuardHome", "check"}, call("check_update"))
 entry({"admin", "services", "AdGuardHome", "doupdate"}, call("do_update"))
