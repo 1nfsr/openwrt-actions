@@ -16,11 +16,11 @@ cp -rf ${GITHUB_WORKSPACE}/root/.ssh/* package/base-files/files/root/.ssh/
 cp -rf ${GITHUB_WORKSPACE}/etc/AdGuardHome.yaml package/base-files/files/etc/
 
 # 添加 local apps
+mkdir -p package/apps
 rm -rf ${GITHUB_WORKSPACE}/apps/luci-app-openclash
 mv ${GITHUB_WORKSPACE}/apps/* package/apps/
 
 # 添加 AdguardHome
-mkdir -p package/apps
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/apps/luci-app-adguardhome
 
 # custom AdguardHome
