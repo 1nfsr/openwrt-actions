@@ -90,7 +90,12 @@
                 <b><%:Please ensure that all items are displayed normally before running. If you need to update, please go to the global settings page%></b>
             </p>
         </td></tr>
-        <tr><td width="25%"><%:Mainland IP Update%></td><td width="25%" align="left" id="_chnroute"><%:Collecting data...%></td><td width="25%"><%:GEOIP（By MaxMind）Data Update%></td><td width="25%" align="left" id="_ipdb"><%:Collecting data...%></td></tr>
+        <tr>
+            <td width="25%"><%:Mainland IP Update%></td>
+            <td width="25%" align="left" id="_chnroute"><%:Collecting data...%></td>
+            <td width="25%"><%:GEOIP...By MaxMind...Data Update%></td>
+            <td width="25%" align="left" id="_ipdb"><%:Collecting data...%></td>
+        </tr>
     </table>
 </fieldset>
 <script type="text/javascript">//<![CDATA[
@@ -112,9 +117,6 @@
 	var update_other_rules = document.getElementById('_update_other_rules');
 	var update_geoip = document.getElementById('_update_geoip');
 	var ipdb = document.getElementById('_ipdb');
-	var lhie1 = document.getElementById('_lhie1');
-	var ConnersHua = document.getElementById('_ConnersHua');
-	var ConnersHua_return = document.getElementById('_ConnersHua_return');
 	var chnroute = document.getElementById('_chnroute');
 	var historychecktime = document.getElementById('_historychecktime');
 	var hid_1 = document.getElementById("hid_1");
@@ -155,9 +157,6 @@
 	XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "state")%>', null, function(x, status) {
 		if ( x && x.status == 200 ) {
 			ipdb.innerHTML = status.ipdb ? "<b><font color=green>"+status.ipdb+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
-			lhie1.innerHTML = status.lhie1 ? "<b><font color=green>"+status.lhie1+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
-			ConnersHua.innerHTML = status.ConnersHua ? "<b><font color=green>"+status.ConnersHua+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
-			ConnersHua_return.innerHTML = status.ConnersHua_return ? "<b><font color=green>"+status.ConnersHua_return+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
 			chnroute.innerHTML = status.chnroute ? "<b><font color=green>"+status.chnroute+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
 			if ( status.historychecktime != "0" ) {
 			   historychecktime.innerHTML = "<b><font color=green>"+status.historychecktime+"</font></b>";
@@ -228,9 +227,6 @@
 	XHR.poll(5, '<%=luci.dispatcher.build_url("admin", "services", "openclash", "state")%>', null, function(x, status) {
 		if ( x && x.status == 200 ) {
 			ipdb.innerHTML = status.ipdb ? "<b><font color=green>"+status.ipdb+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
-			lhie1.innerHTML = status.lhie1 ? "<b><font color=green>"+status.lhie1+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
-			ConnersHua.innerHTML = status.ConnersHua ? "<b><font color=green>"+status.ConnersHua+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
-			ConnersHua_return.innerHTML = status.ConnersHua_return ? "<b><font color=green>"+status.ConnersHua_return+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
 			chnroute.innerHTML = status.chnroute ? "<b><font color=green>"+status.chnroute+"</font></b>" : "<b><font color=red>"+"<%:File Not Exist%>"+"</font></b>";
 			if ( status.historychecktime != "0" ) {
 			   historychecktime.innerHTML = "<b><font color=green>"+status.historychecktime+"</font></b>";
