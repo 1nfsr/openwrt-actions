@@ -1,10 +1,10 @@
-Selector`select`[]Automatically`[]GlobalDirect`.*
-Automatically`url-test`.*`http://www.gstatic.com/generate_204`300
-GlobalMedia`select`[]Selector`[]Automatically`[]GlobalDirect`.*
-Telegram`select`[]Selector`[]GlobalDirect`.*
-Microsoft`select`[]GlobalDirect`[]Selector`.*
-Apple`select`[]Selector`[]GlobalDirect`.*
-GlobalDirect`select`[]DIRECT
-GlobalEject`select`[]REJECT`[]DIRECT
-AppEject`select`[]REJECT`[]DIRECT
-Other`select`[]Selector`[]GlobalDirect`[]Automatically`.*
+🚀 节点选择`select`[]♻️ 自动选择`[]🎯 全球直连`.*
+♻️ 自动选择`url-test`.*`http://www.gstatic.com/generate_204`300
+🌍 国外媒体`select`[]🚀 节点选择`[]♻️ 自动选择`[]🎯 全球直连`.*
+📲 电报信息`select`[]🚀 节点选择`[]🎯 全球直连`.*
+Ⓜ️ 微软服务`select`[]🎯 全球直连`[]🚀 节点选择`.*
+🍎 苹果服务`select`[]🚀 节点选择`[]🎯 全球直连`.*
+🎯 全球直连`select`[]DIRECT
+🛑 全球拦截`select`[]REJECT`[]DIRECT
+⛔ 应用拦截`select`[]REJECT`[]DIRECT
+🐟 漏网之鱼`select`[]🚀 节点选择`[]🎯 全球直连`[]♻️ 自动选择`.*

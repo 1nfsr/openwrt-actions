@@ -63,6 +63,9 @@ mv ${GITHUB_WORKSPACE}/custom/openclash/root/etc/init.d/openclash package/apps/l
 rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/yml_change.sh
 mv ${GITHUB_WORKSPACE}/custom/openclash/root/usr/share/openclash/yml_change.sh package/apps/luci-app-openclash/root/usr/share/openclash/
 
+rm -rf package/apps/luci-app-openclash/luasrc/controller/openclash.lua
+mv ${GITHUB_WORKSPACE}/custom/openclash/luasrc/controller/openclash.lua package/apps/luci-app-openclash/luasrc/controller/
+rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/res/{ConnersHua_return.yaml,ConnersHua.yaml,lhie1.yaml}
 
 # 添加 ohmyzsh
 mkdir -p package/base-files/files/etc/ohmyzsh
