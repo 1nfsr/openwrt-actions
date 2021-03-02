@@ -1,0 +1,10 @@
+Selector`select`[]Automatically`[]GlobalDirect`.*
+Automatically`url-test`.*`http://www.gstatic.com/generate_204`300
+GlobalMedia`select`[]Selector`[]Automatically`[]GlobalDirect`.*
+Telegram`select`[]Selector`[]GlobalDirect`.*
+Microsoft`select`[]GlobalDirect`[]Selector`.*
+Apple`select`[]Selector`[]GlobalDirect`.*
+GlobalDirect`select`[]DIRECT
+GlobalEject`select`[]REJECT`[]DIRECT
+AppEject`select`[]REJECT`[]DIRECT
+Other`select`[]Selector`[]GlobalDirect`[]Automatically`.*
