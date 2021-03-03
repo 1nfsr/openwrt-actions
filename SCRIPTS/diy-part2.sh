@@ -45,9 +45,18 @@ sed -i 's/127.0.0.1/192.168.77.1/g' package/base-files/files/www/clash-ui/index.
 
 echo "address=/openclash.pro/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
 
-# 添加 clash subconverter
+
+# 添加 subconverter web template
 mv ${GITHUB_WORKSPACE}/www/subconverter package/base-files/files/www/
 echo "address=/openclash.su/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+
+# 添加 subconverter server
+mv ${GITHUB_WORKSPACE}/etc/init.d/subconverter package/base-files/files/etc/init.d/
+mv ${GITHUB_WORKSPACE}/etc/subconverter package/base-files/files/etc/
+echo "address=/openclash.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+
+rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/openclash.sh
+mv ${GITHUB_WORKSPACE}/custom/openclash/root/usr/share/openclash/openclash.sh package/apps/luci-app-openclash/root/usr/share/openclash/
 
 
 # custom clash

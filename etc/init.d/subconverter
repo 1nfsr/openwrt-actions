@@ -1,0 +1,17 @@
+#!/bin/sh /etc/rc.common
+START=99
+STOP=12
+
+BIN_PATH="/etc/subconverter/subconverter"
+start(){
+	$BIN_PATH >/dev/null 2>&1 &
+}
+
+stop(){
+	pid=$(ps -w | grep 'subconverter' | grep -v grep | awk '{print $1}')
+    kill -9 $pid
+}
+restart(){
+	stop
+	start
+}
