@@ -32,3 +32,16 @@ sed -i 's/100:/100:infsr/g' package/base-files/files/etc/group
 mkdir -p package/base-files/files/etc/avahi
 mv ${GITHUB_WORKSPACE}/base-files/etc/avahi/* package/base-files/files/etc/avahi/
 mv ${GITHUB_WORKSPACE}/base-files/etc/{afp.conf,extmap.conf} package/base-files/files/etc/
+
+# OpenWrt with Nginx
+# reference: https://openwrt.org/docs/guide-user/services/webserver/nginx
+# add certificate
+mkdir -p package/base-files/files/etc/nginx
+mv ${GITHUB_WORKSPACE}/base-files/etc/nginx/conf.d package/base-files/files/etc/nginx/
+
+# SSH (root) Public key authentication
+mkdir -p package/base-files/files/etc/ssh
+mv ${GITHUB_WORKSPACE}/base-files/etc/ssh/sshd_config package/base-files/files/etc/ssh/
+# add ssh-keygen
+mkdir -p package/base-files/files/root/.ssh
+mv ${GITHUB_WORKSPACE}/base-files/root/.ssh/* package/base-files/files/root/.ssh/
