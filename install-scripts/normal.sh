@@ -24,3 +24,11 @@ sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999
 
 # Modify the maximum number of Active Connections
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
+# Crypto algorithm support kernel-5.4
+# reference 1: https://en.wikipedia.org/wiki/Salsa20
+# reference 2: https://tools.ietf.org/html/rfc7539
+echo '
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+' >> ./target/linux/x86/64/config-5.4
