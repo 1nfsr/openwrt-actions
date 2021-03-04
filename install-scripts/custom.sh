@@ -9,6 +9,13 @@ mv ${GITHUB_WORKSPACE}/base-files/etc/sysctl.d/60_tcp_fastopen.conf package/base
 # Modify default Shell
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
+# oh-my-zsh
+mkdir -p package/base-files/files/etc/ohmyzsh
+mkdir -p package/base-files/files/home/infsr
+mv ${GITHUB_WORKSPACE}/base-files/etc/ohmyzsh package/base-files/files/etc/
+mv ${GITHUB_WORKSPACE}/base-files/root/.zshrc package/base-files/files/root/
+mv ${GITHUB_WORKSPACE}/base-files/home/infsr/.zshrc package/base-files/files/home/infsr/
+
 # custom compile information
 sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
 sed -i "$ a\DISTRIB_DESCRIPTION='Built by Infsr($(date +%Y.%m.%d))@%D %V %C'" package/base-files/files/etc/openwrt_release
