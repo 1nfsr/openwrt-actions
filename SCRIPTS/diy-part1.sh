@@ -34,10 +34,6 @@ sed -i 's/100:/100:infsr/g' package/base-files/files/etc/group
 #修改最大连接数
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
-#开启tcp fastopen
-cp -r ${GITHUB_WORKSPACE}/etc/sysctl.d/* package/base-files/files/etc/sysctl.d/
-
-
 
 #自定义编译信息
 sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
