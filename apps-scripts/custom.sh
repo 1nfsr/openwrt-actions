@@ -35,6 +35,8 @@ rm -rf package/apps/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/controller/AdGuardHome.lua package/apps/luci-app-adguardhome/luasrc/controller/
 rm -rf package/apps/luci-app-adguardhome/root/etc/config/AdGuardHome
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/root/etc/config/AdGuardHome package/apps/luci-app-adguardhome/root/etc/config/
+# Nginx Reverse Proxy (http://adguardhome.gg)
+echo "address=/adguardhome.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
 
 
 ## OpenClash
