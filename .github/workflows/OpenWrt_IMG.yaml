@@ -80,8 +80,8 @@ jobs:
         cd openwrt
         chmod +x $GITHUB_WORKSPACE/apps-scripts/*.sh
         $GITHUB_WORKSPACE/apps-scripts/custom.sh
-        $GITHUB_WORKSPACE/SCRIPTS/get_adguardhome_core.sh amd64
-        $GITHUB_WORKSPACE/SCRIPTS/get_clash_core.sh amd64
+        $GITHUB_WORKSPACE/apps-scripts/get_adguardhome_core.sh amd64
+        $GITHUB_WORKSPACE/apps-scripts/get_clash_core.sh amd64
 
     - name: Download package
       id: package
