@@ -45,3 +45,7 @@ mv ${GITHUB_WORKSPACE}/base-files/etc/ssh/sshd_config package/base-files/files/e
 # add ssh-keygen !!!Notice: replace with your own key
 mkdir -p package/base-files/files/root/.ssh
 mv ${GITHUB_WORKSPACE}/base-files/root/.ssh/* package/base-files/files/root/.ssh/
+
+# Realtek RTL8168 Driver for Openwrt
+# sources: https://github.com/BROBIRD/openwrt-r8168
+git clone --depth=1 https://github.com/BROBIRD/openwrt-r8168.git  package/apps/openwrt-r8168
