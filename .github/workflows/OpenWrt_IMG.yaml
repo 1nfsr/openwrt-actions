@@ -13,9 +13,7 @@ env:
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: CONFIG/.config
-  DIY_P1_SH: SCRIPTS/diy-part1.sh
-  DIY_P2_SH: SCRIPTS/diy-part2.sh
-  UPLOAD_COWTRANSFER: true
+  UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: true
   TZ: Asia/Shanghai
 
@@ -64,27 +62,26 @@ jobs:
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P1_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        chmod +x $GITHUB_WORKSPACE/install-scripts/*.sh
+        $GITHUB_WORKSPACE/install-scripts/normal.sh
+        $GITHUB_WORKSPACE/install-scripts/custom.sh
 
-    - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
-
-    - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
+    - name: Update&&Install feeds
+      run: |
+      cd openwrt 
+      ./scripts/feeds update -a
+      ./scripts/feeds install -a
 
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
-        chmod +x $GITHUB_WORKSPACE/SCRIPTS/get_*.sh
+        chmod +x $GITHUB_WORKSPACE/apps-scripts/*.sh
+        $GITHUB_WORKSPACE/apps-scripts/custom.sh
         $GITHUB_WORKSPACE/SCRIPTS/get_adguardhome_core.sh amd64
         $GITHUB_WORKSPACE/SCRIPTS/get_clash_core.sh amd64
-
 
     - name: Download package
       id: package
