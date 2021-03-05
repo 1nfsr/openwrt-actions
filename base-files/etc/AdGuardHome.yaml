@@ -33,7 +33,7 @@ dns:
   - 119.29.29.29
   - 1.1.1.1
   - 8.8.8.8
-  - https://dns10.quad9.net/dns-query
+  - https://dns-unfiltered.adguard.com/dns-query
   upstream_dns_file: ""
   bootstrap_dns:
   - 1.1.1.1
