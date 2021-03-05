@@ -49,3 +49,6 @@ mv ${GITHUB_WORKSPACE}/base-files/root/.ssh/* package/base-files/files/root/.ssh
 # Realtek RTL8168 Driver for Openwrt
 # sources: https://github.com/BROBIRD/openwrt-r8168
 git clone --depth=1 https://github.com/BROBIRD/openwrt-r8168.git  package/apps/openwrt-r8168
+
+# Remove status show model
+sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
