@@ -13,6 +13,7 @@ sed -i 's/+docker/+docker +dockerd/g' feeds/luci/applications/luci-app-dockerman
 
 ## Turboacc
 mv ${GITHUB_WORKSPACE}/apps/luci-app-turboacc package/apps/
+mv ${GITHUB_WORKSPACE}/apps/turboacc-ext/* package/apps/
 # Fix DNS port
 rm -rf package/apps/luci-app-turboacc/root/etc/init.d/turboacc
 mv $GITHUB_WORKSPACE/apps-custom-files/turboacc/root/etc/init.d/turboacc package/apps/luci-app-turboacc/root/etc/init.d/
