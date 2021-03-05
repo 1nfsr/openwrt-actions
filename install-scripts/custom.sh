@@ -42,6 +42,6 @@ mv ${GITHUB_WORKSPACE}/base-files/etc/nginx/conf.d package/base-files/files/etc/
 # SSH (root) Public key authentication
 mkdir -p package/base-files/files/etc/ssh
 mv ${GITHUB_WORKSPACE}/base-files/etc/ssh/sshd_config package/base-files/files/etc/ssh/
-# add ssh-keygen
+# add ssh-keygen !!!Notice: replace with your own key
 mkdir -p package/base-files/files/root/.ssh
 mv ${GITHUB_WORKSPACE}/base-files/root/.ssh/* package/base-files/files/root/.ssh/
