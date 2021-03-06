@@ -60,4 +60,4 @@ git clone --depth=1 https://github.com/BROBIRD/openwrt-r8168.git  package/apps/o
 
 
 ## Remove status show model
-#sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
+sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
