@@ -73,3 +73,5 @@ echo "address=/openclash.gg/192.168.77.1" >> package/network/services/dnsmasq/fi
 # subconverter template ini (http://openclash.su)
 mv ${GITHUB_WORKSPACE}/base-files/www/subconverter package/base-files/files/www/
 echo "address=/openclash.su/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+# modify Github-Free subscription
+mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
