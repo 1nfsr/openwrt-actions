@@ -29,18 +29,17 @@ dns:
   refuse_any: true
   upstream_dns:
   - 202.96.128.86
-  - 223.6.6.6
+  - 223.5.5.5
   - 119.29.29.29
-  - 1.1.1.1
-  - 8.8.8.8
-  - https://dns-unfiltered.adguard.com/dns-query
+  - 101.101.101.101
+  - 208.67.222.123
+  - https://dns.google/dns-query
   upstream_dns_file: ""
   bootstrap_dns:
-  - 1.1.1.1
-  - 8.8.4.4
-  - 114.114.114.114
+  - 8.8.8.8:53
+  - 1.1.1.1:53
   all_servers: false
-  fastest_addr: false
+  fastest_addr: true
   allowed_clients: []
   disallowed_clients: []
   blocked_hosts:
@@ -67,6 +66,7 @@ dns:
   cache_time: 30
   rewrites: []
   blocked_services: []
+  customresolver: null
 tls:
   enabled: false
   server_name: ""
@@ -82,41 +82,93 @@ tls:
   private_key_path: ""
 filters:
 - enabled: true
-  url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-  name: AdGuard DNS filter
-  id: 1
+  url: https://easylist-downloads.adblockplus.org/easylist.txt
+  name: EasyList
+  id: 1615017153
 - enabled: true
-  url: https://adaway.org/hosts.txt
-  name: AdAway Default Blocklist
-  id: 2
-- enabled: false
-  url: https://www.malwaredomainlist.com/hostslist/hosts.txt
-  name: MalwareDomainList.com Hosts List
-  id: 4
-- enabled: true
-  url: https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt
-  name: 乘风 视频
-  id: 1610650007
-- enabled: true
-  url: https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt
-  name: 乘风 广告
-  id: 1610650008
-- enabled: true
-  url: https://gitee.com/halflife/list/raw/master/ad.txt
-  name: My AdFilters
-  id: 1610650009
-- enabled: true
-  url: https://gitee.com/cjx82630/cjxlist/raw/master/cjx-ublock.txt
-  name: CJX's uBlock list
-  id: 1610650010
+  url: https://easylist-downloads.adblockplus.org/easylistchina.txt
+  name: EasyList China
+  id: 1615017154
 - enabled: true
   url: https://easylist-downloads.adblockplus.org/easyprivacy.txt
   name: EasyPrivacy
-  id: 1610650011
+  id: 1615017155
+- enabled: true
+  url: https://raw.githubusercontent.com/easylist/easylist/master/easylist_cookie/easylist_cookie_general_hide.txt
+  name: EasyList Cookie List
+  id: 1615017160
+- enabled: true
+  url: https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt
+  name: 乘风广告规则
+  id: 1615017161
+- enabled: true
+  url: https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt
+  name: 乘风视频规则
+  id: 1615017162
+- enabled: true
+  url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-easylist.txt
+  name: Anti-AD
+  id: 1615017163
+- enabled: true
+  url: https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/lazy.txt
+  name: Adbyby广告规则
+  id: 1615017165
+- enabled: true
+  url: https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/video.txt
+  name: Adbyby视频规则
+  id: 1615017166
+- enabled: true
+  url: https://gitee.com/cjx82630/cjxlist/raw/master/cjx-annoyance.txt
+  name: CJX’s Annoyance List (去自推列表)
+  id: 1615017167
+- enabled: true
+  url: https://gitee.com/cjx82630/cjxlist/raw/master/cjx-ublock.txt
+  name: CJX’s uBlock list (uBlock 规则)
+  id: 1615017168
 - enabled: true
   url: https://www.i-dont-care-about-cookies.eu/abp/
   name: I don't care about cookies
-  id: 1610650012
+  id: 1615017169
+- enabled: true
+  url: https://raw.githubusercontent.com/zsakvo/AdGuard-Custom-Rule/master/rule/zhihu-strict.txt
+  name: 知乎过滤器 严格版
+  id: 1615017170
+- enabled: true
+  url: https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts
+  name: 大圣净化 - 针对国内视频网站
+  id: 1615017172
+- enabled: true
+  url: https://raw.githubusercontent.com/Goooler/1024_hosts/master/hosts
+  name: 1024_hosts - 1024网站和澳门皇家赌场
+  id: 1615017173
+- enabled: true
+  url: https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/hosts
+  name: Google hosts - 提高网站访问速度
+  id: 1615017174
+- enabled: true
+  url: http://winhelp2002.mvps.org/hosts.txt
+  name: Mvps - 屏蔽美欧地区英文网站相关的广告
+  id: 1615017177
+- enabled: true
+  url: https://raw.githubusercontent.com/yous/YousList/master/hosts.txt
+  name: YousList - 屏蔽韩国网站广告
+  id: 1615020331
+- enabled: true
+  url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+  name: StevenBlack - 屏蔽国外网站广告-国外维护
+  id: 1615020332
+- enabled: true
+  url: https://raw.githubusercontent.com/vokins/yhosts/master/hosts
+  name: yhosts - 屏蔽国内网站广告-国内维护
+  id: 1615020609
+- enabled: true
+  url: https://cdn.jsdelivr.net/gh/neoFelhz/neohosts@gh-pages/full/hosts.txt
+  name: neoHosts - 国内屏蔽挖矿统计JS&360&百度&法轮功等
+  id: 1615020612
+- enabled: true
+  url: https://hblock.molinero.dev/hosts
+  name: Hblock - 综合多种源集合体屏蔽广告跟踪和恶意软件
+  id: 1615020614
 whitelist_filters: []
 user_rules:
 - '||t7z.cupid.ptqy.gitv.tv^$important'
