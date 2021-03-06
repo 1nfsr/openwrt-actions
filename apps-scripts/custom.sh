@@ -21,9 +21,13 @@ mv $GITHUB_WORKSPACE/apps-custom-files/turboacc/root/etc/init.d/turboacc package
 mkdir package/network/config/firewall/patches
 wget -O package/network/config/firewall/patches/fullconenat.patch https://github.com/coolsnowwolf/lede/raw/master/package/network/config/firewall/patches/fullconenat.patch
 # Patch remove firewall view offload
-mv $GITHUB_WORKSPACE/PATCH/remove_firewall_view_offload.patch ./
-patch -p1 < remove_firewall_view_offload.patch
-rm -rf remove_firewall_view_offload.patch
+mv $GITHUB_WORKSPACE/apps-patch/001-remove_firewall_view_offload.patch ./
+patch -p1 < 001-remove_firewall_view_offload.patch
+rm -rf 001-remove_firewall_view_offload.patch
+# Patch remove DNS Acceleration&DNS Caching
+mv $GITHUB_WORKSPACE/apps-patch/002-remove_turboacc_dns_acc.patch ./
+patch -p1 < 002-remove_turboacc_dns_acc.patch
+rm -rf 002-remove_turboacc_dns_acc.patch
 
 
 ## AdguardHome
