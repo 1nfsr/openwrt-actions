@@ -1,10 +1,10 @@
+
 config openclash 'config'
 	option proxy_port '7892'
 	option mixed_port '7893'
 	option socks_port '7891'
 	option http_port '7890'
 	option dns_port '7874'
-	option enable '1'
 	option update '0'
 	option operation_mode 'redir-host'
 	option auto_update '1'
@@ -53,9 +53,9 @@ config openclash 'config'
 	option auto_restart_day_time '0'
 	option restricted_mode '0'
 	option config_path '/etc/openclash/config/github_share.yaml'
+	option enable '1'
 	option config_reload '1'
 
-	
 config dns_servers
 	option enabled '1'
 	option group 'nameserver'
@@ -70,9 +70,9 @@ config dns_servers
 	option ip '127.0.0.1'
 	option port '5533'
 
-
 config config_subscribe
 	option enabled '1'
 	option name 'github_share'
 	option sub_convert '0'
 	option address 'https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yml'
+
