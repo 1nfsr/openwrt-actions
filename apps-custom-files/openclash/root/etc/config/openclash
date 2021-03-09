@@ -59,13 +59,6 @@ config openclash 'config'
 config dns_servers
 	option enabled '1'
 	option group 'nameserver'
-	option ip '127.0.0.1'
-	option port '5533'
-	option type 'tcp'
-
-config dns_servers
-	option enabled '1'
-	option group 'nameserver'
 	option type 'udp'
 	option ip '127.0.0.1'
 	option port '5533'
