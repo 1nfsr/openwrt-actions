@@ -10,7 +10,7 @@ debug_pprof: false
 web_session_ttl: 720
 dns:
   bind_host: 0.0.0.0
-  port: 5533
+  port: 10053
   statistics_interval: 30
   querylog_enabled: true
   querylog_file_enabled: true
@@ -28,8 +28,11 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
-  - 127.0.0.1:6662
-  - 127.0.0.1:6663
+  - 202.96.128.86
+  - 223.5.5.5
+  - 119.29.29.29
+  - 101.101.101.101
+  - 208.67.222.123
   upstream_dns_file: ""
   bootstrap_dns:
   - 8.8.8.8:53

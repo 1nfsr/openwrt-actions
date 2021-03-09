@@ -1,6 +1,5 @@
 
 config smartdns
-	option enabled '1'
 	option server_name 'smartdns'
 	option tcp_server '1'
 	option ipv6_server '0'
@@ -20,12 +19,12 @@ config smartdns
 	option seconddns_no_cache '0'
 	option force_aaaa_soa '0'
 	option coredump '0'
-	option seconddns_enabled '1'
-	option port '10052'
-	option seconddns_port '10053'
 	option prefetch_domain '1'
+	option enabled '1'
+	option seconddns_port '11053'
+	option port '10054'
 	list old_redirect 'none'
-	list old_port '10052'
+	list old_port '10054'
 	list old_enabled '1'
 
 config server

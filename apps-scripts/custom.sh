@@ -33,7 +33,7 @@ rm -rf 002-remove_turboacc_dns_acc.patch
 ## AdguardHome
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome.git package/apps/luci-app-adguardhome
 # AdguardHome config
-mv ${GITHUB_WORKSPACE}/base-files/etc/AdGuardHome.yaml package/base-files/files/etc/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/AdGuardHome.yaml package/base-files/files/etc/
 # custom AdguardHome
 rm -rf package/apps/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/controller/AdGuardHome.lua package/apps/luci-app-adguardhome/luasrc/controller/
@@ -41,6 +41,8 @@ rm -rf package/apps/luci-app-adguardhome/root/etc/config/AdGuardHome
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/root/etc/config/AdGuardHome package/apps/luci-app-adguardhome/root/etc/config/
 # Nginx Reverse Proxy (http://adguardhome.gg)
 echo "address=/adguardhome.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+# dnsmasq forwarder
+#sed -e '17s/#list/list/' -e '17s/\/mycompany.local\/1.2.3.4/127.0.0.1#10053/' package/network/services/dnsmasq/files/dhcp.conf
 
 
 ## OpenClash
