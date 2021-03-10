@@ -17,5 +17,5 @@ config 'mount'
 	option	target	'/opt/docker'
 	option	device	'/dev/sdb2'
 	option	fstype	ext4
-    option  options rw,sync
-    option  enabled 1
+	option	options	rw,sync
+	option	enabled	1
