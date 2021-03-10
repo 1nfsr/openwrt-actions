@@ -12,7 +12,7 @@ env:
   REPO_URL: https://github.com/1nfsr/openwrt.git
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: CONFIG/.config
+  CONFIG_FILE: .config
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: true
   TZ: Asia/Shanghai
