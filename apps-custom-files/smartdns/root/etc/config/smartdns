@@ -5,7 +5,6 @@ config smartdns
 	option ipv6_server '0'
 	option dualstack_ip_selection '0'
 	option serve_expired '0'
-	option redirect 'none'
 	option cache_size '5000'
 	option rr_ttl_min '300'
 	option rr_ttl_max '3600'
@@ -21,9 +20,10 @@ config smartdns
 	option coredump '0'
 	option prefetch_domain '1'
 	option enabled '1'
-	option seconddns_port '11053'
+	option seconddns_port '10055'
 	option port '10054'
-	list old_redirect 'none'
+	option redirect 'redirect'
+	list old_redirect 'redirect'
 	list old_port '10054'
 	list old_enabled '1'
 
@@ -54,8 +54,8 @@ config server
 config server
 	option enabled '1'
 	option name 'Google DNS'
-	option ip 'https://dns.google/dns-query'
-	option type 'https'
+	option ip '8.8.8.8'
+	option type 'udp'
 	option server_group 'foreign'
 	option blacklist_ip '0'
 
