@@ -1,5 +1,6 @@
 bind_host: 0.0.0.0
 bind_port: 3000
+beta_bind_port: 0
 users:
 - name: root
   password: $2a$10$xe9aPiBT0ly37.m.B.xPIe6wxoHW7JpeWmR.sWpWQd2IyeltyXp.O
@@ -28,17 +29,13 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
-  - 202.96.128.86
-  - 223.5.5.5
-  - 119.29.29.29
-  - 101.101.101.101
-  - 208.67.222.123
+  - 127.0.0.1:10054
   upstream_dns_file: ""
   bootstrap_dns:
   - 8.8.8.8:53
   - 1.1.1.1:53
   all_servers: false
-  fastest_addr: true
+  fastest_addr: false
   allowed_clients: []
   disallowed_clients: []
   blocked_hosts:
@@ -73,6 +70,8 @@ tls:
   port_https: 443
   port_dns_over_tls: 853
   port_dns_over_quic: 784
+  port_dnscrypt: 0
+  dnscrypt_config_file: ""
   allow_unencrypted_doh: false
   strict_sni_check: false
   certificate_chain: ""
