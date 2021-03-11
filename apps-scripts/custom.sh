@@ -16,16 +16,16 @@ mv ${GITHUB_WORKSPACE}/apps/luci-app-turboacc package/apps/
 mv ${GITHUB_WORKSPACE}/apps/turboacc-ext/* package/apps/
 # Fix DNS port
 rm -rf package/apps/luci-app-turboacc/root/etc/init.d/turboacc
-mv $GITHUB_WORKSPACE/apps-custom-files/turboacc/root/etc/init.d/turboacc package/apps/luci-app-turboacc/root/etc/init.d/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/turboacc/root/etc/init.d/turboacc package/apps/luci-app-turboacc/root/etc/init.d/
 # Patch firewall support fullconenat
 mkdir package/network/config/firewall/patches
 wget -O package/network/config/firewall/patches/fullconenat.patch https://github.com/coolsnowwolf/lede/raw/master/package/network/config/firewall/patches/fullconenat.patch
 # Patch remove firewall view offload
-mv $GITHUB_WORKSPACE/apps-patch/001-remove_firewall_view_offload.patch ./
+mv ${GITHUB_WORKSPACE}/apps-patch/001-remove_firewall_view_offload.patch ./
 patch -p1 < 001-remove_firewall_view_offload.patch
 rm -rf 001-remove_firewall_view_offload.patch
 # Patch remove DNS Acceleration&DNS Caching
-mv $GITHUB_WORKSPACE/apps-patch/002-remove_turboacc_dns_acc.patch ./
+mv ${GITHUB_WORKSPACE}/apps-patch/002-remove_turboacc_dns_acc.patch ./
 patch -p1 < 002-remove_turboacc_dns_acc.patch
 rm -rf 002-remove_turboacc_dns_acc.patch
 
@@ -33,7 +33,9 @@ rm -rf 002-remove_turboacc_dns_acc.patch
 ## AdguardHome
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome.git package/apps/luci-app-adguardhome
 # AdguardHome config
-mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/AdGuardHome.yaml package/base-files/files/etc/
+rm package/apps/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/base.lua
+mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/model/cbi/AdguardHome/base.lua package/apps/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/root/etc/config/AdGuardHome.yaml package/base-files/files/etc/config/
 # custom AdguardHome
 rm -rf package/apps/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/controller/AdGuardHome.lua package/apps/luci-app-adguardhome/luasrc/controller/
