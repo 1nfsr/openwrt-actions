@@ -82,3 +82,7 @@ echo "address=/openclash.su/192.168.77.1" >> package/network/services/dnsmasq/fi
 # modify Github-Free subscription
 mkdir -p package/apps/luci-app-openclash/root/etc/openclash/config/
 wget -O package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yml
+
+
+## SmartDNS
+mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/config/smartdns package/base-files/files/etc/config/
