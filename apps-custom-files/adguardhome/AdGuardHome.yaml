@@ -190,7 +190,35 @@ dhcp:
     lease_duration: 86400
     ra_slaac_only: false
     ra_allow_slaac: false
-clients: []
+clients:
+- name: Router
+  tags:
+  - device_other
+  - os_linux
+  ids:
+  - 127.0.0.1
+  use_global_settings: true
+  filtering_enabled: false
+  parental_enabled: false
+  safesearch_enabled: false
+  safebrowsing_enabled: false
+  use_global_blocked_services: true
+  blocked_services: []
+  upstreams: []
+- name: Wireless Access Point
+  tags:
+  - device_other
+  - os_other
+  ids:
+  - 192.168.77.2
+  use_global_settings: true
+  filtering_enabled: false
+  parental_enabled: false
+  safesearch_enabled: false
+  safebrowsing_enabled: false
+  use_global_blocked_services: true
+  blocked_services: []
+  upstreams: []
 log_compress: false
 log_localtime: false
 log_max_backups: 0
