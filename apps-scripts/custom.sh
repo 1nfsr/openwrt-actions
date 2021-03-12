@@ -36,6 +36,8 @@ git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome.git packag
 rm package/apps/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/base.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/model/cbi/AdGuardHome/base.lua package/apps/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/AdGuardHome.yaml package/base-files/files/etc/config/
+rm package/apps/luci-app-adguardhome/root/etc/init.d/AdGuardHome
+mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/root/etc/init.d/AdGuardHome package/apps/luci-app-adguardhome/root/etc/init.d/
 # custom AdguardHome
 rm -rf package/apps/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/controller/AdGuardHome.lua package/apps/luci-app-adguardhome/luasrc/controller/
