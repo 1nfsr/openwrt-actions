@@ -45,6 +45,22 @@ config server
 
 config server
 	option enabled '1'
+	option name 'Ali Pubilc DNS(DoT)'
+	option ip 'tls://dns.alidns.com'
+	option type 'tls'
+	option server_group 'china'
+	option blacklist_ip '0'
+
+config server
+	option enabled '1'
+	option name 'Ali Pubilc DNS(DoH)'
+	option ip 'https://dns.alidns.com/dns-query'
+	option type 'https'
+	option server_group 'china'
+	option blacklist_ip '0'
+
+config server
+	option enabled '1'
 	option name 'Tencent Pubile DNS'
 	option ip '119.29.29.29'
 	option type 'udp'
@@ -61,9 +77,40 @@ config server
 
 config server
 	option enabled '1'
+	option name 'Google DNS(DoH)'
+	option ip 'https://dns.google/dns-query'
+	option type 'https'
+	option server_group 'foreign'
+	option blacklist_ip '0'
+
+config server
+	option enabled '1'
+	option name 'Google DNS(DoT)'
+	option ip 'tls://dns.google'
+	option type 'tls'
+	option server_group 'foreign'
+	option blacklist_ip '0'
+
+config server
+	option enabled '1'
 	option name 'Cloudflare DNS'
 	option ip '1.1.1.1'
 	option type 'udp'
 	option server_group 'foreign'
 	option blacklist_ip '0'
 
+config server
+	option enabled '1'
+	option name 'Cloudflare DNS(DoH)'
+	option ip 'https://dns.cloudflare.com/dns-query'
+	option type 'https'
+	option server_group 'foreign'
+	option blacklist_ip '0'
+
+config server
+	option enabled '1'
+	option name 'Cloudflare DNS(DoT)'
+	option ip 'tls://1.1.1.1'
+	option type 'tls'
+	option server_group 'foreign'
+	option blacklist_ip '0'

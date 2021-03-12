@@ -9,5 +9,6 @@ Applications list:
 2. OpenClash
 3. upnp
 4. Turbo acc
+5. SmartDNS
 
 Integrated Time Capsule
