@@ -7,7 +7,6 @@ config smartdns
 	option dualstack_ip_selection '0'
 	option prefetch_domain '1'
 	option serve_expired '0'
-	option redirect 'none'
 	option cache_size '5000'
 	option rr_ttl_min '300'
 	option rr_ttl_max '3600'
@@ -23,7 +22,8 @@ config smartdns
 	option force_aaaa_soa '0'
 	option coredump '0'
 	option enabled '1'
-	list old_redirect 'none'
+	option redirect 'redirect'
+	list old_redirect 'redirect'
 	list old_port '10054'
 	list old_enabled '1'
 

@@ -69,3 +69,14 @@ config config_subscribe
 	option sub_convert '0'
 	option address 'https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yml'
 
+config config_subscribe
+        option enabled '1'
+        option name 'github_share2'
+        option address 'https://raw.githubusercontent.com/freefq/free/master/v2'
+        option sub_convert '1'
+        option template 'Default'
+        option emoji 'false'
+        option udp 'true'
+        option skip_cert_verify 'true'
+        option sort 'true'
+        option node_type 'false'
