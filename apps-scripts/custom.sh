@@ -34,8 +34,8 @@ rm -rf 002-remove_turboacc_dns_acc.patch
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome.git package/apps/luci-app-adguardhome
 # AdguardHome config
 rm package/apps/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/base.lua
-mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/model/cbi/AdguardHome/base.lua package/apps/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/
-mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/root/etc/config/AdGuardHome.yaml package/base-files/files/etc/config/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/model/cbi/AdGuardHome/base.lua package/apps/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/AdGuardHome.yaml package/base-files/files/etc/config/
 # custom AdguardHome
 rm -rf package/apps/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/controller/AdGuardHome.lua package/apps/luci-app-adguardhome/luasrc/controller/
