@@ -28,6 +28,8 @@ rm -rf 001-remove_firewall_view_offload.patch
 mv ${GITHUB_WORKSPACE}/apps-patch/002-remove_turboacc_dns_acc.patch ./
 patch -p1 < 002-remove_turboacc_dns_acc.patch
 rm -rf 002-remove_turboacc_dns_acc.patch
+# Fix conntrack events patch netfilter
+mv ${GITHUB_WORKSPACE}/kernel-patch/952-net-conntrack-events-support-multiple-registrant target/linux/generic/hack-5.4/
 
 
 ## AdguardHome
