@@ -39,7 +39,7 @@ kill_watchdog() {
 config_download()
 {
 if [ -n "$subscribe_url_param" ]; then
-   curl -sL --connect-timeout 10 --retry 2 http://openclash.gg/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
+   curl -sL --connect-timeout 10 --retry 2 https://openclash.gg/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
    if [ "$?" -ne 0 ]; then
       curl -sL --connect-timeout 10 --retry 2 http://127.0.0.1:25500/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
    fi
