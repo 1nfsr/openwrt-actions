@@ -52,6 +52,8 @@ mv ${GITHUB_WORKSPACE}/base-files/etc/{afp.conf,extmap.conf} package/base-files/
 # add certificate
 mkdir -p package/base-files/files/etc/nginx
 mv ${GITHUB_WORKSPACE}/base-files/etc/nginx/conf.d package/base-files/files/etc/nginx/
+mkdir -p package/base-files/files/etc/uwsgi/vassals
+mv ${GITHUB_WORKSPACE}/base-files/etc/uwsgi/vassals/mysite.ini package/base-files/files/etc/uwsgi/vassals/
 
 
 ## Realtek RTL8168 Driver for Openwrt
