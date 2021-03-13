@@ -48,8 +48,8 @@ echo "address=/adguardhome.gg/192.168.77.1" >> package/network/services/dnsmasq/
 # dnsmasq forwarder
 #sed -e '17s/#list/list/' -e '17s/\/mycompany.local\/1.2.3.4/127.0.0.1#10053/' package/network/services/dnsmasq/files/dhcp.conf
 # Firewall Rules
-echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 10053" >> package/network/config/firewall/files/firewall.user
-echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 10053" >> package/network/config/firewall/files/firewall.user
+echo "iptables -t nat -A PREROUTING -p udp --dport 10054 -j REDIRECT --to-ports 53" >> package/network/config/firewall/files/firewall.user
+echo "iptables -t nat -A PREROUTING -p tcp --dport 10054 -j REDIRECT --to-ports 53" >> package/network/config/firewall/files/firewall.user
 
 
 ## OpenClash

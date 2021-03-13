@@ -1,0 +1,9 @@
+location /ex/am/ple {
+	access_log off; # default: not logging accesses.
+	# access_log /proc/self/fd/1 openwrt; # use logd (init forwards stdout).
+	# error_log stderr; # default: logging to logd (init forwards stderr).
+	error_log /dev/null; # disable error logging after config file is read.
+	# (state path of a file for access_log/error_log to the file instead.)
+	index index.html;
+}
+# location /eg/static { … }
