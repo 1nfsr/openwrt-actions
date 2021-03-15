@@ -55,7 +55,8 @@ mv ${GITHUB_WORKSPACE}/base-files/etc/nginx/conf.d package/base-files/files/etc/
 mkdir -p package/base-files/files/etc/uwsgi/vassals
 mv ${GITHUB_WORKSPACE}/base-files/etc/uwsgi/vassals/mysite.ini package/base-files/files/etc/uwsgi/vassals/
 # custom config
-#sed -i 's/true/false/g' feeds/packages/net/nginx-util/files/nginx.config
+sed -i 's/true/false/g' feeds/packages/net/nginx-util/files/nginx.config
+mv ${GITHUB_WORKSPACE}/base-files/etc/nginx/nginx.conf package/base-files/files/etc/nginx/
 
 
 ## Realtek RTL8168 Driver for Openwrt
