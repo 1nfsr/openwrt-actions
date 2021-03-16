@@ -22,8 +22,8 @@ config smartdns
 	option force_aaaa_soa '0'
 	option coredump '0'
 	option enabled '1'
-	option redirect 'redirect'
-	list old_redirect 'redirect'
+	option redirect 'none'
+	list old_redirect 'none'
 	list old_port '10054'
 	list old_enabled '1'
 
