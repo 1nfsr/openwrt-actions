@@ -95,7 +95,7 @@ mkdir -p package/apps/luci-app-openclash/root/etc/openclash/backup
 cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/backup
 cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/github_share2.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
-
+mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/proxypoolss_tk_v2.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
 
 ## SmartDNS
 mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/config/smartdns package/base-files/files/etc/config/

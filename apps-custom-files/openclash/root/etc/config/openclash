@@ -86,3 +86,15 @@ config config_subscribe
 	option skip_cert_verify 'true'
 	option sort 'true'
 	option node_type 'false'
+
+config config_subscribe
+	option enabled '1'
+	option name 'proxypoolss_tk_v2'
+	option address 'https://proxypoolss.tk/vmess/sub'
+	option sub_convert '1'
+	option template 'Default'
+	option emoji 'false'
+	option udp 'true'
+	option skip_cert_verify 'true'
+	option sort 'true'
+	option node_type 'false'
