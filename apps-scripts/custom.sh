@@ -88,7 +88,7 @@ echo "address=/openclash.gg/192.168.77.1" >> package/network/services/dnsmasq/fi
 # subconverter template ini (http://openclash.su)
 mv ${GITHUB_WORKSPACE}/base-files/www/subconverter package/base-files/files/www/
 echo "address=/openclash.su/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
-# modify Github-Free subscription
+# modify Free subscription
 mkdir -p package/apps/luci-app-openclash/root/etc/openclash/config/
 wget -O package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yml
 mkdir -p package/apps/luci-app-openclash/root/etc/openclash/backup
@@ -96,6 +96,7 @@ cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.ya
 cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/github_share2.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/proxypoolss_tk_v2.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
+
 
 ## SmartDNS
 mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/config/smartdns package/base-files/files/etc/config/
