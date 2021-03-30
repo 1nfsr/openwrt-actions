@@ -10,7 +10,7 @@ on:
 
 env:
   SDK_URL: https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-sdk-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz
-  UPLOAD_COWTRANSFER: true
+  UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: true
 
 jobs:
@@ -55,15 +55,15 @@ jobs:
     - name: Download Packages
       working-directory: /workdir
       run: |
-        ${GITHUB_WORKSPACE}/scripts/get_pkg.sh
+        ${GITHUB_WORKSPACE}/packages-build/get_pkg.sh
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        ${GITHUB_WORKSPACE}/scripts/edit_config.sh
+        ${GITHUB_WORKSPACE}/packages-build/edit_config.sh
 
     - name: Compile
       run: |
         cd ~/sdk
-        ${GITHUB_WORKSPACE}/scripts/compile_pkg.sh
+        ${GITHUB_WORKSPACE}/packages-build/compile_pkg.sh
 
     - name: Organize files
       id: organize
