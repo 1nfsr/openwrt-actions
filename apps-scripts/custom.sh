@@ -8,7 +8,7 @@ mv ${GITHUB_WORKSPACE}/apps/miniupnpd feeds/packages/net/
 
 
 ## Docker
-sed -i 's/+docker/+docker +dockerd/g' feeds/luci/applications/luci-app-dockerman/Makefile
+sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
 
 
 ## Turboacc
