@@ -62,7 +62,10 @@ mv ${GITHUB_WORKSPACE}/base-files/etc/nginx/nginx.conf package/base-files/files/
 ## Realtek RTL8168 Driver for Openwrt
 # sources: https://github.com/BROBIRD/openwrt-r8168
 git clone --depth=1 https://github.com/BROBIRD/openwrt-r8168.git  package/apps/openwrt-r8168
-
+echo "R8168=$GITHUB_WORKSPACE/openwrt/package/apps/openwrt-r8168" >> $GITHUB_ENV
+if [! -d "$R8168"]; then
+	mv ${GITHUB_WORKSPACE}/apps/openwrt-r8168 package/apps/
+fi
 
 ## Remove status show model
 sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
