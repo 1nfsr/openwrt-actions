@@ -1,0 +1,15 @@
+# 新建 DOCKER-MAN 自定义链
+iptables -N DOCKER-MAN
+# 挟持 DOCKER-USER 转到 DOCKER-MAN 自定义链
+iptables -I DOCKER-USER -j DOCKER-MAN
+
+# 若流量来自 br-lan 放行，目的是 `LAN` 口可以访问容暴露的端口
+iptables -A DOCKER-MAN -i br-lan -o docker0 -j RETURN
+# 阻止所有新建以及无效的连接。
+iptables -A DOCKER-MAN -m conntrack --ctstate NEW,INVALID -o docker0 -j DROP
+# 接受容器主动访问的流量，目的是容器能够联网。
+iptables -A DOCKER-MAN -m conntrack --ctstate ESTABLISHED,RELATED -o docker0 -j RETURN
+iptables -A DOCKER-MAN -j RETURN
+
+# 在 DOCKER-MAN 自定义链接加入对 172.17.0.9 (需要放行的容器ip) 的放行
+iptables -I DOCKER-MAN -d 172.17.0.9 -o docker0 -j RETURN
