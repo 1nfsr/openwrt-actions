@@ -9,6 +9,11 @@ mv ${GITHUB_WORKSPACE}/apps/miniupnpd feeds/packages/net/
 
 ## Docker
 sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
+# Revert Docker version(20.10.4)
+rm -rf feeds/packages/utils/docker/Makefile
+mv ${GITHUB_WORKSPACE}/apps/docker/docker-Makefile feeds/packages/utils/docker/Makefile
+rm -rf feeds/packages/utils/dockerd/Makefile
+mv ${GITHUB_WORKSPACE}/apps/docker/dockerd-Makefile feeds/packages/utils/dockerd/Makefile
 
 
 ## Turboacc
