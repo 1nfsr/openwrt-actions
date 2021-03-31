@@ -2,6 +2,7 @@ Certificate made by [mkcert](https://github.com/FiloSottile/mkcert)
 
 List:
  - "openclash.pro"
+ - "wss.openclash.pro"
  - "openclash.su"
  - "openclash.gg"
  - "adguardhome.gg"
