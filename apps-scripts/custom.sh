@@ -43,8 +43,7 @@ echo "iptables -t nat -A PREROUTING -i eth1 -j FULLCONENAT" >> package/network/c
 
 ## AdguardHome
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome.git package/apps/luci-app-adguardhome
-echo "ADGUARDHOME=$GITHUB_WORKSPACE/openwrt/package/apps/luci-app-adguardhome" >> $GITHUB_ENV
-if [! -d "$ADGUARDHOME"]; then
+if [! -d "./package/apps/luci-app-adguardhome"]; then
 	mv ${GITHUB_WORKSPACE}/apps/luci-app-adguardhome package/apps/
 fi
 # AdguardHome config
@@ -69,8 +68,7 @@ echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53"
 
 ## OpenClash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
-echo "OPENCLASH=$GITHUB_WORKSPACE/openwrt/package/apps/luci-app-openclash" >> $GITHUB_ENV
-if [! -d "$OPENCLASH"]; then
+if [! -d "./package/apps/luci-app-openclash"]; then
 	mv ${GITHUB_WORKSPACE}/apps/luci-app-openclash package/apps/
 fi
 # custom clash
