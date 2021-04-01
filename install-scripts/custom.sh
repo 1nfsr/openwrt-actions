@@ -77,3 +77,8 @@ sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/vie
 ## Mounts hard drive
 mkdir -p package/base-files/files/etc/config
 mv ${GITHUB_WORKSPACE}/base-files/etc/config/fstab package/base-files/files/etc/config/
+
+
+## Kernel 5.10.x Graphics support
+rm -rf target/linux/x86/config-5.10
+mv ${GITHUB_WORKSPACE}/kernel-config/target/linux/x86/config-5.10 target/linux/x86/
