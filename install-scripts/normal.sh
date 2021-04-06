@@ -33,6 +33,11 @@ sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 
+## Kernel 5.10.x Graphics support
+#rm -rf target/linux/x86/config-5.10
+#mv ${GITHUB_WORKSPACE}/kernel-config/target/linux/x86/config-5.10 target/linux/x86/
+
+
 ## Crypto algorithm support kernel
 # reference 1: https://en.wikipedia.org/wiki/Salsa20
 # reference 2: https://tools.ietf.org/html/rfc7539
