@@ -8,11 +8,11 @@ mv ${GITHUB_WORKSPACE}/apps/miniupnpd feeds/packages/net/
 
 
 ## Docker
-#sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
-#rm -Rf feeds/packages/utils/dockerd/files/etc/config/dockerd
-#mv ${GITHUB_WORKSPACE}/apps/docker/etc/config/dockerd feeds/packages/utils/dockerd/files/etc/config/
-sed -i 's/+docker/+docker-ce +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
-mv ${GITHUB_WORKSPACE}/apps/docker-ce package/apps/
+sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
+rm -Rf feeds/packages/utils/dockerd/files/etc/config/dockerd
+mv ${GITHUB_WORKSPACE}/apps/docker/etc/config/dockerd feeds/packages/utils/dockerd/files/etc/config/
+#sed -i 's/+docker/+docker-ce +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
+#mv ${GITHUB_WORKSPACE}/apps/docker-ce package/apps/
 
 
 ## Turboacc
@@ -116,7 +116,7 @@ mkdir -p package/apps/luci-app-openclash/root/etc/openclash/backup
 cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/backup
 cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/github_share2.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
-mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/proxypoolss_tk_v2.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/proxypoolss_tk-clash.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
 
 
 ## SmartDNS
@@ -126,3 +126,7 @@ mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/smartdns/address.conf
 # disable Rebind protection&&RBL checking and similar services
 sed -i "s/option rebind_protection 1/option rebind_protection 0/g" package/network/services/dnsmasq/files/dhcp.conf
 sed -i "s/option rebind_localhost 1/option rebind_localhost 0/g" package/network/services/dnsmasq/files/dhcp.conf
+
+
+## Opentomato Theme
+git clone --depth=1 https://github.com/solidus1983/luci-theme-opentomato package/apps/luci-theme-opentomato
