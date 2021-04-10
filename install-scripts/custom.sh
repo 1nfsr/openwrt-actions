@@ -77,3 +77,7 @@ sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/vie
 ## Mounts hard drive
 mkdir -p package/base-files/files/etc/config
 mv ${GITHUB_WORKSPACE}/base-files/etc/config/fstab package/base-files/files/etc/config/
+
+
+## Uci defaults
+mv ${GITHUB_WORKSPACE}/base-files/etc/uci-defaults/* package/base-files/files/etc/uci-defaults/
