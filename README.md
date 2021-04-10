@@ -11,4 +11,6 @@ Applications list:
 4. Turbo acc
 5. SmartDNS
 
+OpenClash linkage AdguardHome and SmartDNS
+
 Integrated Time Capsule
