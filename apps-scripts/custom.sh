@@ -69,7 +69,7 @@ echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53"
 
 
 ## OpenClash
-#svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
 echo "OPENCLASH=$PWD/package/apps/luci-app-openclash" >> $GITHUB_ENV
 if [ ! -d "$OPENCLASH"]; then
 	mv ${GITHUB_WORKSPACE}/apps/luci-app-openclash package/apps/
@@ -86,12 +86,14 @@ rm -rf package/apps/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/model/cbi/openclash/settings.lua package/apps/luci-app-openclash/luasrc/model/cbi/openclash/
 rm -rf package/apps/luci-app-openclash/luasrc/model/cbi/openclash/client.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/model/cbi/openclash/client.lua package/apps/luci-app-openclash/luasrc/model/cbi/openclash/
+rm -rf package/apps/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua
+mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua package/apps/luci-app-openclash/luasrc/model/cbi/openclash/
 rm -rf package/apps/luci-app-openclash/luasrc/view/openclash/status.htm
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/view/openclash/status.htm package/apps/luci-app-openclash/luasrc/view/openclash/
 rm -rf package/apps/luci-app-openclash/root/etc/init.d/openclash
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/init.d/openclash package/apps/luci-app-openclash/root/etc/init.d/
-rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/{yml_change.sh,openclash.sh}
-mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/usr/share/openclash/{yml_change.sh,openclash.sh} package/apps/luci-app-openclash/root/usr/share/openclash/
+rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/{yml_change.sh,yml_groups_set.sh,yml_proxys_set.sh,openclash.sh}
+mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/usr/share/openclash/{yml_change.sh,yml_groups_set.sh,yml_proxys_set.sh,openclash.sh} package/apps/luci-app-openclash/root/usr/share/openclash/
 rm -rf package/apps/luci-app-openclash/luasrc/controller/openclash.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/controller/openclash.lua package/apps/luci-app-openclash/luasrc/controller/
 rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/res/{ConnersHua_return.yaml,ConnersHua.yaml,lhie1.yaml,sub_ini.list}

@@ -758,6 +758,31 @@ elif [ ! -f "$CONFIG_FILE" ] || [ ! -s "$CONFIG_FILE" ]; then
    sleep 3
    start_fail
 fi
+
+#检查field名称（不兼容旧写法）
+ruby -ryaml -E UTF-8 -e "
+   Value = YAML.load_file('$CONFIG_FILE');
+   if Value.key?('Proxy') or Value.key?('Proxy Group') or Value.key?('Rule') or Value.key?('rule-provider') then
+      if Value.key?('Proxy') then
+         Value['proxies'] = Value['Proxy']
+         Value.delete('Proxy')
+         puts '${LOGTIME} Warning: Proxy is no longer used. Auto replaced by proxies.'
+      elsif Value.key?('Proxy Group') then
+         Value['proxy-groups'] = Value['Proxy Group']
+         Value.delete('Proxy Group')
+         puts '${LOGTIME} Warning: Proxy Group is no longer used. Auto replaced by proxy-groups.'
+      elsif Value.key?('Rule') then
+         Value['rules'] = Value['Rule']
+         Value.delete('Rule')
+         puts '${LOGTIME} Warning: Rule is no longer used. Auto replaced by rules.'
+      elsif Value.key?('rule-provider') then
+         Value['rule-providers'] = Value['rule-provider']
+         Value.delete('rule-provider')
+         puts '${LOGTIME} Warning: rule-provider is no longer used. Auto replaced by rule-providers.'
+      end;
+      File.open('$CONFIG_FILE','w') {|f| YAML.dump(Value, f)};
+   end;
+   " 2>/dev/null >> $LOG_FILE
 }
 
 yml_other_rules_get()
@@ -1327,6 +1352,10 @@ if [ -z "$en_mode_tun" ] || [ "$en_mode_tun" -eq 3 ]; then
             iptables -t mangle -A openclash -m set ! --match-set common_ports dst -j RETURN >/dev/null 2>&1
             iptables -t mangle -A openclash -m set --match-set china_ip_route dst -j RETURN >/dev/null 2>&1
          fi
+      #quic
+         if [ "$disable_udp_quic" -eq 1 ]; then
+            iptables -I INPUT -p udp --dport 443 -j REJECT
+         fi
          iptables -t mangle -A openclash -p udp --dport 53 -j RETURN >/dev/null 2>&1
          iptables -t mangle -A openclash -p udp -j TPROXY --on-port "$proxy_port" --tproxy-mark "$PROXY_FWMARK"
          iptables -t mangle -A PREROUTING -p udp -j openclash
@@ -1462,6 +1491,10 @@ if [ -n "$en_mode_tun" ]; then
       iptables -t nat -A openclash_post -m owner ! --uid-owner 65534 -i lo -d 127.0.0.1 -j SNAT --to-source "$lan_ip"
       iptables -t nat -A POSTROUTING -j openclash_post
    fi
+   #quic
+   if [ "$disable_udp_quic" -eq 1 ]; then
+      iptables -I FORWARD -p udp --dport 443 -j REJECT 
+   fi
 fi
 
 #端口转发
@@ -1480,6 +1513,9 @@ revert_firewall()
    ip route del local 0.0.0.0/0 dev lo table "$PROXY_ROUTE_TABLE" >/dev/null 2>&1
 
    iptables -t nat -D PREROUTING -p tcp --dport 53 -j ACCEPT >/dev/null 2>&1
+
+   iptables -D FORWARD -p udp --dport 443 -j REJECT >/dev/null 2>&1
+   iptables -D INPUT -p udp --dport 443 -j REJECT >/dev/null 2>&1
 
    out_lines=$(iptables -nvL OUTPUT -t nat |sed 1,2d |sed -n '/openclash/=' 2>/dev/null |sort -rn)
    for out_line in $out_lines; do
@@ -1583,6 +1619,7 @@ get_config()
    log_level=$(uci get openclash.config.log_level 2>/dev/null)
    intranet_allowed=$(uci get openclash.config.intranet_allowed 2>/dev/null)
    enable_udp_proxy=$(uci get openclash.config.enable_udp_proxy 2>/dev/null)
+   disable_udp_quic=$(uci -q get openclash.config.disable_udp_quic)
    operation_mode=$(uci get openclash.config.operation_mode 2>/dev/null)
    lan_ac_mode=$(uci get openclash.config.lan_ac_mode 2>/dev/null)
    enable_rule_proxy=$(uci get openclash.config.enable_rule_proxy 2>/dev/null)
