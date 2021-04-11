@@ -1352,7 +1352,7 @@ if [ -z "$en_mode_tun" ] || [ "$en_mode_tun" -eq 3 ]; then
             iptables -t mangle -A openclash -m set ! --match-set common_ports dst -j RETURN >/dev/null 2>&1
             iptables -t mangle -A openclash -m set --match-set china_ip_route dst -j RETURN >/dev/null 2>&1
          fi
-      #quic
+         #quic
          if [ "$disable_udp_quic" -eq 1 ]; then
             iptables -I INPUT -p udp --dport 443 -j REJECT
          fi
