@@ -84,6 +84,8 @@ mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/custom/ope
 rm -rf package/apps/luci-app-openclash/root/usr/share/openclash/{dashboard,yacd}
 rm -rf package/apps/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/model/cbi/openclash/settings.lua package/apps/luci-app-openclash/luasrc/model/cbi/openclash/
+rm -rf package/apps/luci-app-openclash/luasrc/model/cbi/openclash/client.lua
+mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/model/cbi/openclash/client.lua package/apps/luci-app-openclash/luasrc/model/cbi/openclash/
 rm -rf package/apps/luci-app-openclash/luasrc/view/openclash/status.htm
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/view/openclash/status.htm package/apps/luci-app-openclash/luasrc/view/openclash/
 rm -rf package/apps/luci-app-openclash/root/etc/init.d/openclash
