@@ -9,8 +9,10 @@ mv ${GITHUB_WORKSPACE}/apps/miniupnpd feeds/packages/net/
 
 ## Docker
 sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
-#rm -Rf feeds/packages/utils/dockerd/files/etc/config/dockerd
-#mv ${GITHUB_WORKSPACE}/apps/docker/etc/config/dockerd feeds/packages/utils/dockerd/files/etc/config/
+rm -Rf feeds/packages/utils/dockerd/files/etc/config/dockerd
+mv ${GITHUB_WORKSPACE}/apps/docker/etc/config/dockerd feeds/packages/utils/dockerd/files/etc/config/
+mkdir -p package/base-files/files/etc/docker/
+mv ${GITHUB_WORKSPACE}/apps/docker/daemon.json package/base-files/files/etc/docker/
 
 
 ## Turboacc
