@@ -69,7 +69,7 @@ echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53"
 
 
 ## OpenClash
-svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
+#svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/apps/luci-app-openclash
 echo "OPENCLASH=$PWD/package/apps/luci-app-openclash" >> $GITHUB_ENV
 if [ ! -d "$OPENCLASH"]; then
 	mv ${GITHUB_WORKSPACE}/apps/luci-app-openclash package/apps/
