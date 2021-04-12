@@ -128,7 +128,7 @@ mkdir -p feeds/packages/net/smartdns/files
 mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/config/smartdns feeds/packages/net/smartdns/files/
 mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/smartdns/address.conf feeds/packages/net/smartdns/files/
 rm -Rf feeds/packages/net/smartdns/Makefile
-mv ${GITHUB_WORKSPACE}/smartdns/Makefile feeds/packages/net/smartdns/
+mv ${GITHUB_WORKSPACE}/apps/smartdns/Makefile feeds/packages/net/smartdns/
 # disable Rebind protection&&RBL checking and similar services
 sed -i "s/option rebind_protection 1/option rebind_protection 0/g" package/network/services/dnsmasq/files/dhcp.conf
 sed -i "s/option rebind_localhost 1/option rebind_localhost 0/g" package/network/services/dnsmasq/files/dhcp.conf
