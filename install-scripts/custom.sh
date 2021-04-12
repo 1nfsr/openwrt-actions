@@ -43,15 +43,16 @@ echo "infsr:x:1000:1000::/home/infsr:/usr/bin/zsh" >> package/base-files/files/e
 sed -i 's/100:/100:infsr/g' package/base-files/files/etc/group
 # Modify services
 mkdir -p package/base-files/files/etc/avahi
-rm -Rf feeds/packages/libs/avahi/files/avahi-daemon.conf
-mv ${GITHUB_WORKSPACE}/base-files/etc/avahi/avahi-daemon.conf feeds/packages/libs/avahi/files/
-mv ${GITHUB_WORKSPACE}/base-files/etc/avahi/services package/base-files/files/etc/avahi/
+sed -i 's/#host-name=foo/host-name=Time Capsule/g' feeds/packages/libs/avahi/files/avahi-daemon.conf
 rm -Rf feeds/packages/net/netatalk/Makefile
 mv ${GITHUB_WORKSPACE}/apps/netatalk/Makefile feeds/packages/net/netatalk/
 mv ${GITHUB_WORKSPACE}/base-files/etc/afp.conf feeds/packages/net/netatalk/files/
+rm -Rf feeds/packages/libs/avahi/Makefile
+mv ${GITHUB_WORKSPACE}/apps/avahi/Makefile feeds/packages/libs/avahi/
+mv ${GITHUB_WORKSPACE}/apps/avahi/files/service-afp feeds/packages/libs/avahi/files/
 # Generate a version UUID
 uuidv4=$(wget https://www.uuidgenerator.net/api/version4 -q -O -)
-sed -i "s/uuid/${uuidv4}/g" package/base-files/files/etc/avahi/services/afp.service
+sed -i "s/uuid/${uuidv4}/g" feeds/packages/libs/avahi/files/service-afp
 
 
 ## OpenWrt with Nginx
@@ -81,9 +82,8 @@ fi
 sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
 
-## Mounts hard drive
+##
 mkdir -p package/base-files/files/etc/config
-mv ${GITHUB_WORKSPACE}/base-files/etc/config/fstab package/base-files/files/etc/config/
 
 
 ## Uci defaults
