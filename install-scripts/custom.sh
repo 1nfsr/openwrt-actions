@@ -43,8 +43,15 @@ echo "infsr:x:1000:1000::/home/infsr:/usr/bin/zsh" >> package/base-files/files/e
 sed -i 's/100:/100:infsr/g' package/base-files/files/etc/group
 # Modify services
 mkdir -p package/base-files/files/etc/avahi
-mv ${GITHUB_WORKSPACE}/base-files/etc/avahi/* package/base-files/files/etc/avahi/
-mv ${GITHUB_WORKSPACE}/base-files/etc/{afp.conf,extmap.conf} package/base-files/files/etc/
+rm -Rf feeds/packages/libs/avahi/files/avahi-daemon.conf
+mv ${GITHUB_WORKSPACE}/base-files/etc/avahi/avahi-daemon.conf feeds/packages/libs/avahi/files/
+mv ${GITHUB_WORKSPACE}/base-files/etc/avahi/services package/base-files/files/etc/avahi/
+rm -Rf feeds/packages/net/netatalk/Makefile
+mv ${GITHUB_WORKSPACE}/apps/netatalk/Makefile feeds/packages/net/netatalk/
+mv ${GITHUB_WORKSPACE}/base-files/etc/afp.conf feeds/packages/net/netatalk/files/
+# Generate a version UUID
+uuidv4=$(wget https://www.uuidgenerator.net/api/version4 -q -O -)
+sed -i "s/uuid/${uuidv4}/g" package/base-files/files/etc/avahi/services/afp.service
 
 
 ## OpenWrt with Nginx

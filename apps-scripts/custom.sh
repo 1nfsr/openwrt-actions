@@ -124,9 +124,9 @@ mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/pro
 
 
 ## SmartDNS
-mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/config/smartdns package/base-files/files/etc/config/
-mkdir -p package/base-files/files/etc/smartdns
-mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/smartdns/address.conf package/base-files/files/etc/smartdns/
+mkdir -p feeds/packages/net/smartdns/files
+mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/config/smartdns feeds/packages/net/smartdns/files/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/root/etc/smartdns/address.conf feeds/packages/net/smartdns/files/
 # disable Rebind protection&&RBL checking and similar services
 sed -i "s/option rebind_protection 1/option rebind_protection 0/g" package/network/services/dnsmasq/files/dhcp.conf
 sed -i "s/option rebind_localhost 1/option rebind_localhost 0/g" package/network/services/dnsmasq/files/dhcp.conf
