@@ -59,8 +59,6 @@ rm -rf package/apps/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/controller/AdGuardHome.lua package/apps/luci-app-adguardhome/luasrc/controller/
 rm -rf package/apps/luci-app-adguardhome/root/etc/config/AdGuardHome
 mv ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/root/etc/config/AdGuardHome package/apps/luci-app-adguardhome/root/etc/config/
-# Nginx Reverse Proxy (http://adguardhome.gg)
-echo "address=/adguardhome.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
 # dnsmasq forwarder
 #sed -e '17s/#list/list/' -e '17s/\/mycompany.local\/1.2.3.4/127.0.0.1#10053/' package/network/services/dnsmasq/files/dhcp.conf
 # Firewall Rules
@@ -104,15 +102,11 @@ mv ${GITHUB_WORKSPACE}/base-files/www/clash-ui package/base-files/files/www/
 sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.openclash.pro/g' package/base-files/files/www/clash-ui/app.6706b8885424994ac6fe.js
 sed -i 's/secret:""/secret:"123456"/g' package/base-files/files/www/clash-ui/app.6706b8885424994ac6fe.js
 sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.openclash.pro/g' package/base-files/files/www/clash-ui/index.html
-echo "address=/openclash.pro/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
-echo "address=/wss.openclash.pro/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
 # subconverter server (http://openclash.gg)
 mv ${GITHUB_WORKSPACE}/base-files/etc/init.d/subconverter package/base-files/files/etc/init.d/
 mv ${GITHUB_WORKSPACE}/base-files/etc/subconverter package/base-files/files/etc/
-echo "address=/openclash.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
 # subconverter template ini (http://openclash.su)
 mv ${GITHUB_WORKSPACE}/base-files/www/subconverter package/base-files/files/www/
-echo "address=/openclash.su/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
 # modify Free subscription
 mkdir -p package/apps/luci-app-openclash/root/etc/openclash/config/
 wget -O package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yml
