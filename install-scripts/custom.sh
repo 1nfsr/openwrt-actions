@@ -44,9 +44,10 @@ sed -i 's/100:/100:infsr/g' package/base-files/files/etc/group
 # Modify services
 mkdir -p package/base-files/files/etc/avahi
 sed -i 's/#host-name=foo/host-name=Time Capsule/g' feeds/packages/libs/avahi/files/avahi-daemon.conf
+sed -i '/#domain-name/a\enable-dbus=no' feeds/packages/libs/avahi/files/avahi-daemon.conf
 rm -Rf feeds/packages/net/netatalk/Makefile
 mv ${GITHUB_WORKSPACE}/apps/netatalk/Makefile feeds/packages/net/netatalk/
-mv ${GITHUB_WORKSPACE}/base-files/etc/afp.conf feeds/packages/net/netatalk/files/
+mv ${GITHUB_WORKSPACE}/apps/netatalk/files/afp.conf feeds/packages/net/netatalk/files/
 rm -Rf feeds/packages/libs/avahi/Makefile
 mv ${GITHUB_WORKSPACE}/apps/avahi/Makefile feeds/packages/libs/avahi/
 mv ${GITHUB_WORKSPACE}/apps/avahi/files/service-afp feeds/packages/libs/avahi/files/
