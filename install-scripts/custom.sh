@@ -83,8 +83,9 @@ fi
 sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
 
-##
+## Mounts hard drive
 mkdir -p package/base-files/files/etc/config
+mv ${GITHUB_WORKSPACE}/base-files/etc/config/fstab package/base-files/files/etc/config/
 
 
 ## Uci defaults
