@@ -10,6 +10,7 @@ Applications list:
 3. upnp
 4. Turbo acc
 5. SmartDNS
+6. Docker
 
 OpenClash linkage AdguardHome and SmartDNS
 
