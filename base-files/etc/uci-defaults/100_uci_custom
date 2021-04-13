@@ -1,4 +1,5 @@
 uci set network.lan.dns="127.0.0.1 8.8.8.8"
+uci set network.lan.delegate="0"
 uci set network.wan.peerdns="0"
 uci set network.wan.dns="127.0.0.1 8.8.8.8"
 uci set network.wan6.peerdns="0"
