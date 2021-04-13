@@ -45,12 +45,10 @@ sed -i 's/100:/100:infsr/g' package/base-files/files/etc/group
 mkdir -p package/base-files/files/etc/avahi
 sed -i 's/#host-name=foo/host-name=Time Capsule/g' feeds/packages/libs/avahi/files/avahi-daemon.conf
 sed -i '/#domain-name/a\enable-dbus=no' feeds/packages/libs/avahi/files/avahi-daemon.conf
-rm -Rf feeds/packages/net/netatalk/Makefile
-mv ${GITHUB_WORKSPACE}/apps/netatalk/Makefile feeds/packages/net/netatalk/
-mv ${GITHUB_WORKSPACE}/apps/netatalk/files/afp.conf feeds/packages/net/netatalk/files/
-rm -Rf feeds/packages/libs/avahi/Makefile
-mv ${GITHUB_WORKSPACE}/apps/avahi/Makefile feeds/packages/libs/avahi/
-mv ${GITHUB_WORKSPACE}/apps/avahi/files/service-afp feeds/packages/libs/avahi/files/
+mv -f ${GITHUB_WORKSPACE}/apps-custom-files/netatalk/Makefile feeds/packages/net/netatalk/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/netatalk/files/afp.conf feeds/packages/net/netatalk/files/
+mv -f ${GITHUB_WORKSPACE}/apps-custom-files/avahi/Makefile feeds/packages/libs/avahi/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/avahi/files/service-afp feeds/packages/libs/avahi/files/
 # Generate a version UUID
 uuidv4=$(wget https://www.uuidgenerator.net/api/version4 -q -O -)
 sed -i "s/uuid/${uuidv4}/g" feeds/packages/libs/avahi/files/service-afp
