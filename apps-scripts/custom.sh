@@ -86,6 +86,11 @@ rm -rf package/apps/luci-app-openclash/luasrc/model/cbi/openclash/client.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/model/cbi/openclash/client.lua package/apps/luci-app-openclash/luasrc/model/cbi/openclash/
 rm -rf package/apps/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua package/apps/luci-app-openclash/luasrc/model/cbi/openclash/
+rm -Rf package/apps/luci-app-openclash/luasrc/model/cbi/openclash/config.lua
+mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/model/cbi/openclash/config.lua package/apps/luci-app-openclash/luasrc/model/cbi/openclash/
+rm -Rf package/apps/luci-app-openclash/luasrc/view/config_editor.htm
+rm -Rf package/apps/luci-app-openclash/root/www
+rm -Rf package/apps/luci-app-openclash/root/usr/share/openclash/res/default.yaml
 rm -rf package/apps/luci-app-openclash/luasrc/view/openclash/status.htm
 mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/luasrc/view/openclash/status.htm package/apps/luci-app-openclash/luasrc/view/openclash/
 rm -rf package/apps/luci-app-openclash/root/etc/init.d/openclash
