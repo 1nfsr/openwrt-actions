@@ -1,30 +1,22 @@
-#
-# Copyright (C) 2016-2017 GitHub 
-#
-# This is free software, licensed under the GNU General Public License v3.
-# See /LICENSE for more information.
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=default-settings
-PKG_VERSION:=2
-PKG_RELEASE:=10
-PKG_LICENSE:=GPLv3
-PKG_LICENSE_FILES:=LICENSE
+PKG_VERSION:=0.1
+PKG_RELEASE:=beta
 
-PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/default-settings
+define Package/$(PKG_NAME)
   SECTION:=luci
   CATEGORY:=LuCI
   TITLE:=Default Settings
   PKGARCH:=all
-  DEPENDS:=
+  DEPENDS:=+luci-compat
 endef
 
-define Package/default-settings/description
+define Package/$(PKG_NAME)/description
 	Language Support Packages.
 endef
 
@@ -34,9 +26,9 @@ endef
 define Build/Compile
 endef
 
-define Package/default-settings/install
+define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/default-settings $(1)/etc/uci-defaults/99-default-settings
 endef
 
-$(eval $(call BuildPackage,default-settings))
+$(eval $(call BuildPackage,$(PKG_NAME)))
