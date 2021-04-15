@@ -13,7 +13,7 @@ define Package/$(PKG_NAME)
   CATEGORY:=LuCI
   TITLE:=Default Settings
   PKGARCH:=all
-  DEPENDS:=+luci-compat
+  DEPENDS:=
 endef
 
 define Package/$(PKG_NAME)/description
