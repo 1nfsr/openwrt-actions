@@ -21,10 +21,6 @@ sed -i 's/192.168.1.1/192.168.77.1/g' package/base-files/files/bin/config_genera
 sed -i "s/OpenWrt/x86/g" package/base-files/files/bin/config_generate
 
 
-## Modify Time zone
-sed -i "s/'UTC'/'CST-8'\n   set system.@system[-1].zonename='Asia\/Shanghai'/g" package/base-files/files/bin/config_generate
-
-
 ## Modify default password (password)
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
 
