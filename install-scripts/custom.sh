@@ -13,8 +13,9 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 
 ## SSH (root) Public key authentication
-mkdir -p package/base-files/files/etc/ssh
-mv ${GITHUB_WORKSPACE}/base-files/etc/ssh/sshd_config package/base-files/files/etc/ssh/
+#mkdir -p package/base-files/files/etc/ssh
+#mv ${GITHUB_WORKSPACE}/base-files/etc/ssh/sshd_config package/base-files/files/etc/ssh/
+mv -f ${GITHUB_WORKSPACE}/apps-custom-files/sshd/Makefile feeds/packages/net/openssh/
 # add ssh-keygen !!!Notice: replace with your own key
 mkdir -p package/base-files/files/root/.ssh
 mv ${GITHUB_WORKSPACE}/base-files/root/.ssh/* package/base-files/files/root/.ssh/
