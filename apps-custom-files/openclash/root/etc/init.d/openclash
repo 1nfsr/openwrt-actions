@@ -354,7 +354,7 @@ yml_dns_custom()
             ruby_merge "$CONFIG_FILE" "['dns']" "/tmp/yaml_config.falldns.yaml"
          else
             ruby_edit "$CONFIG_FILE" "['dns']['nameserver'].clear"
-             ruby_edit "$CONFIG_FILE" "['dns']['fallback'].clear"
+            ruby_edit "$CONFIG_FILE" "['dns']['fallback'].clear"
             ruby_merge "$CONFIG_FILE" "['dns']" "/tmp/yaml_config.namedns.yaml"
             ruby_merge "$CONFIG_FILE" "['dns']" "/tmp/yaml_config.falldns.yaml"
          fi
