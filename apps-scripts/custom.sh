@@ -98,12 +98,10 @@ mv ${GITHUB_WORKSPACE}/base-files/etc/subconverter package/base-files/files/etc/
 mv ${GITHUB_WORKSPACE}/base-files/www/subconverter package/base-files/files/www/
 # modify Free subscription
 mkdir -p package/apps/luci-app-openclash/root/etc/openclash/config/
-wget -O package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yml
-mkdir -p package/apps/luci-app-openclash/root/etc/openclash/backup
-cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/backup
-cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/
-mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/github_share2.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
-mv ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/etc/openclash/config/proxypoolss_tk-clash.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
+mkdir -p package/apps/luci-app-openclash/root/etc/openclash/backup/
+wget -O package/apps/luci-app-openclash/root/etc/openclash/github_share.yaml https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yml
+cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
+cp -rf package/apps/luci-app-openclash/root/etc/openclash/config/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/backup/
 
 
 ## SmartDNS

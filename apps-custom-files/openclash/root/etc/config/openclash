@@ -90,8 +90,8 @@ config config_subscribe
 
 config config_subscribe
 	option enabled '1'
-	option name 'proxypoolss_tk-clash'
-	option address 'https://proxypoolss.tk/clash/proxies'
+	option name 'proxypool-clash'
+	option address 'https://proxypool.ednovas.xyz/clash/proxies?type=vmess,trojan'
 	option sub_convert '1'
 	option template 'Default'
 	option emoji 'false'
