@@ -354,7 +354,7 @@ yml_dns_custom()
             ruby_merge "$CONFIG_FILE" "['dns']" "/tmp/yaml_config.falldns.yaml"
          else
             ruby_edit "$CONFIG_FILE" "['dns']['nameserver'].clear"
-      	    ruby_edit "$CONFIG_FILE" "['dns']['fallback'].clear"
+             ruby_edit "$CONFIG_FILE" "['dns']['fallback'].clear"
             ruby_merge "$CONFIG_FILE" "['dns']" "/tmp/yaml_config.namedns.yaml"
             ruby_merge "$CONFIG_FILE" "['dns']" "/tmp/yaml_config.falldns.yaml"
          fi
@@ -1066,7 +1066,7 @@ raw_config_start()
          uci set openclash.config.en_mode=redir-host
       esac
    elif [ "$en_mode" = "fake-ip" ]; then
-   	  case $en_mode_tun in
+        case $en_mode_tun in
       "1")
          uci set openclash.config.en_mode=fake-ip-tun
       ;;
@@ -1218,12 +1218,12 @@ firewall_redirect_exclude()
    fi
 
    if [ -z "$en_mode_tun" ] || [ "$en_mode_tun" -eq 3 ]; then
-   	  iptables -t nat -I openclash_output -p tcp --sport "$src_dport" -j RETURN >/dev/null 2>&1
-   	  iptables -t mangle -I openclash_output -p udp --sport "$src_dport" -j RETURN >/dev/null 2>&1
+        iptables -t nat -I openclash_output -p tcp --sport "$src_dport" -j RETURN >/dev/null 2>&1
+        iptables -t mangle -I openclash_output -p udp --sport "$src_dport" -j RETURN >/dev/null 2>&1
       iptables -t mangle -I openclash -p udp --dport "$src_dport" -j RETURN >/dev/null 2>&1
    elif [ "$en_mode_tun" -ne 3 ]; then
-   	  iptables -t mangle -I openclash_output -p tcp --sport "$src_dport" -j RETURN >/dev/null 2>&1
-   	  iptables -t mangle -I openclash_output -p udp --sport "$src_dport" -j RETURN >/dev/null 2>&1
+        iptables -t mangle -I openclash_output -p tcp --sport "$src_dport" -j RETURN >/dev/null 2>&1
+        iptables -t mangle -I openclash_output -p udp --sport "$src_dport" -j RETURN >/dev/null 2>&1
       iptables -t mangle -I openclash -p tcp --dport "$src_dport" -j RETURN >/dev/null 2>&1
       iptables -t mangle -I openclash -p udp --dport "$src_dport" -j RETURN >/dev/null 2>&1
       if $e_tcp ; then
@@ -1404,6 +1404,7 @@ if [ -z "$en_mode_tun" ] || [ "$en_mode_tun" -eq 3 ]; then
       if [ "$en_mode" = "redir-host" ]; then
          iptables -t nat -A openclash_output -m set --match-set china_ip_route dst -j RETURN >/dev/null 2>&1
       fi
+
       if [ "$intranet_allowed" -eq 1 ]; then
          iptables -t nat -A openclash_output -m owner ! --uid-owner 65534 -p tcp -j DNAT --to-destination "$lan_ip:$proxy_port"
       else
@@ -1472,6 +1473,7 @@ if [ -n "$en_mode_tun" ]; then
       iptables -t mangle -N openclash_output
       iptables -t mangle -F openclash_output
       iptables -t mangle -A openclash_output -m set --match-set localnetwork dst -j RETURN
+      if [ "$en_mode_tun" -ne 3 ]; then
          if [ -z "$_koolshare" ]; then
             iptables -t mangle -A openclash_output -m owner ! --uid-owner 65534 -d 198.18.0.0/16 -j MARK --set-mark "$PROXY_FWMARK"
             iptables -t mangle -A openclash_output -m owner ! --uid-owner 65534 -m set ! --match-set common_ports dst -j RETURN >/dev/null 2>&1
@@ -1651,38 +1653,38 @@ revert_firewall()
 
 get_config()
 {
-   rule_source=$(uci get openclash.config.rule_source 2>/dev/null)
-   enable_custom_dns=$(uci get openclash.config.enable_custom_dns 2>/dev/null)
-   enable_custom_clash_rules=$(uci get openclash.config.enable_custom_clash_rules 2>/dev/null) 
-   da_password=$(uci get openclash.config.dashboard_password 2>/dev/null)
-   cn_port=$(uci get openclash.config.cn_port 2>/dev/null)
-   proxy_port=$(uci get openclash.config.proxy_port 2>/dev/null)
-   proxy_mode=$(uci get openclash.config.proxy_mode 2>/dev/null)
-   ipv6_enable=$(uci get openclash.config.ipv6_enable 2>/dev/null)
-   http_port=$(uci get openclash.config.http_port 2>/dev/null)
-   socks_port=$(uci get openclash.config.socks_port 2>/dev/null)
-   enable_redirect_dns=$(uci get openclash.config.enable_redirect_dns 2>/dev/null)
-   lan_ip=$(uci get network.lan.ipaddr 2>/dev/null |awk -F '/' '{print $1}' 2>/dev/null)
+   rule_source=$(uci -q get openclash.config.rule_source)
+   enable_custom_dns=$(uci -q get openclash.config.enable_custom_dns)
+   enable_custom_clash_rules=$(uci -q get openclash.config.enable_custom_clash_rules) 
+   da_password=$(uci -q get openclash.config.dashboard_password)
+   cn_port=$(uci -q get openclash.config.cn_port)
+   proxy_port=$(uci -q get openclash.config.proxy_port)
+   proxy_mode=$(uci -q get openclash.config.proxy_mode)
+   ipv6_enable=$(uci -q get openclash.config.ipv6_enable)
+   http_port=$(uci -q get openclash.config.http_port)
+   socks_port=$(uci -q get openclash.config.socks_port)
+   enable_redirect_dns=$(uci -q get openclash.config.enable_redirect_dns)
+   lan_ip=$(uci -q get network.lan.ipaddr |awk -F '/' '{print $1}' 2>/dev/null)
    wan_ip4=$(ifconfig | grep 'inet addr' | awk '{print $2}' | cut -d: -f2 2>/dev/null)
    lan_ip6=$(ifconfig | grep 'inet6 addr' | awk '{print $3}' 2>/dev/null)
-   disable_masq_cache=$(uci get openclash.config.disable_masq_cache 2>/dev/null)
-   log_level=$(uci get openclash.config.log_level 2>/dev/null)
-   intranet_allowed=$(uci get openclash.config.intranet_allowed 2>/dev/null)
-   enable_udp_proxy=$(uci get openclash.config.enable_udp_proxy 2>/dev/null)
+   disable_masq_cache=$(uci -q get openclash.config.disable_masq_cache)
+   log_level=$(uci -q get openclash.config.log_level)
+   intranet_allowed=$(uci -q get openclash.config.intranet_allowed)
+   enable_udp_proxy=$(uci -q get openclash.config.enable_udp_proxy)
    disable_udp_quic=$(uci -q get openclash.config.disable_udp_quic)
-   operation_mode=$(uci get openclash.config.operation_mode 2>/dev/null)
-   lan_ac_mode=$(uci get openclash.config.lan_ac_mode 2>/dev/null)
-   enable_rule_proxy=$(uci get openclash.config.enable_rule_proxy 2>/dev/null)
-   stack_type=$(uci get openclash.config.stack_type 2>/dev/null)
-   china_ip_route=$(uci get openclash.config.china_ip_route 2>/dev/null)
-   small_flash_memory=$(uci get openclash.config.small_flash_memory 2>/dev/null)
-   mixed_port=$(uci get openclash.config.mixed_port 2>/dev/null)
-   interface_name=$(uci get openclash.config.interface_name 2>/dev/null)
-   common_ports=$(uci get openclash.config.common_ports 2>/dev/null)
-   dns_port=$(uci get openclash.config.dns_port 2>/dev/null)
+   operation_mode=$(uci -q get openclash.config.operation_mode)
+   lan_ac_mode=$(uci -q get openclash.config.lan_ac_mode)
+   enable_rule_proxy=$(uci -q get openclash.config.enable_rule_proxy)
+   stack_type=$(uci -q get openclash.config.stack_type)
+   china_ip_route=$(uci -q get openclash.config.china_ip_route)
+   small_flash_memory=$(uci -q get openclash.config.small_flash_memory)
+   mixed_port=$(uci -q get openclash.config.mixed_port)
+   interface_name=$(uci -q get openclash.config.interface_name)
+   common_ports=$(uci -q get openclash.config.common_ports)
+   dns_port=$(uci -q get openclash.config.dns_port)
    _koolshare=$(cat /usr/lib/os-release 2>/dev/null |grep OPENWRT_RELEASE 2>/dev/null |grep -i koolshare 2>/dev/null)
-   [ -z "$dns_port" ] && dns_port=7874 && uci set openclash.config.dns_port=7874 2>/dev/null
-   uci set openclash.config.restricted_mode=0 && uci commit openclash
+   [ -z "$dns_port" ] && dns_port=7874 && uci -q set openclash.config.dns_port=7874
+   uci -q set openclash.config.restricted_mode=0 && uci -q commit openclash
 }
 
 start()
