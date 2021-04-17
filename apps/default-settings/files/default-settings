@@ -5,10 +5,10 @@ uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
 uci commit system
 
-uci set network.lan.dns="127.0.0.1 127.0.0.1#10053 127.0.0.1#10054"
+uci set network.lan.dns="127.0.0.1"
 uci set network.lan.delegate="0"
 uci set network.wan.peerdns="0"
-uci set network.wan.dns="127.0.0.1 127.0.0.1#10053 127.0.0.1#10054"
+uci set network.wan.dns="127.0.0.1"
 uci set network.wan6.peerdns="0"
 uci set network.wan6.dns="::1 2001:4860:4860::8888"
 uci commit network
