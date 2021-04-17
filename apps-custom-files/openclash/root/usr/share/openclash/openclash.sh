@@ -39,9 +39,13 @@ kill_watchdog() {
 config_download()
 {
 if [ -n "$subscribe_url_param" ]; then
-   curl -sL --connect-timeout 10 --retry 2 https://openclash.gg/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
-   if [ "$?" -ne 0 ]; then
-      curl -sL --connect-timeout 10 --retry 2 http://127.0.0.1:25500/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
+   if [ -n "$c_address" ]; then
+      curl -sL --connect-timeout 10 --retry 2 "$c_address""$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
+   else
+      curl -sL --connect-timeout 10 --retry 2 https://openclash.gg/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
+      if [ "$?" -ne 0 ]; then
+         curl -sL --connect-timeout 10 --retry 2 http://127.0.0.1:25500/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
+      fi
    fi
 else
    curl -sL --connect-timeout 10 --retry 2 --user-agent "clash" "$subscribe_url" -o "$CFG_FILE" >/dev/null 2>&1
@@ -334,7 +338,7 @@ server_key_match()
 
 sub_info_get()
 {
-   local section="$1" subscribe_url template_path subscribe_url_param template_path_encode key_match_param key_ex_match_param
+   local section="$1" subscribe_url template_path subscribe_url_param template_path_encode key_match_param key_ex_match_param c_address 
    config_get_bool "enabled" "$section" "enabled" "1"
    config_get "name" "$section" "name" ""
    config_get "sub_convert" "$section" "sub_convert" ""
@@ -345,6 +349,7 @@ sub_info_get()
    config_get "udp" "$section" "udp" ""
    config_get "skip_cert_verify" "$section" "skip_cert_verify" ""
    config_get "sort" "$section" "sort" ""
+   config_get "convert_address" "$section" "convert_address" ""
    config_get "template" "$section" "template" ""
    config_get "node_type" "$section" "node_type" ""
    config_get "custom_template_url" "$section" "custom_template_url" ""
@@ -384,6 +389,7 @@ sub_info_get()
       	   [ -n "$key_ex_match_param" ] && key_ex_match_param=$(urlencode "$key_ex_match_param")
          fi
          subscribe_url_param="?target=clash&new_name=true&url=$subscribe_url&config=$template_path_encode&include=$key_match_param&exclude=$key_ex_match_param&emoji=$emoji&list=false&sort=$sort&udp=$udp&scv=$skip_cert_verify&append_type=$node_type&fdn=true"
+         c_address="$convert_address"
       else
          subscribe_url=$address
       fi

@@ -51,6 +51,16 @@ o = s:option(Flag, "sub_convert", translate("Subscribe Convert Online"))
 o.description = translate("Convert Subscribe Online With Template, Mix Proxies and Keep Settings options Will Not Effect")
 o.default=0
 
+---- Convert Address
+o = s:option(ListValue, "convert_address", translate("Convert Address"))
+o.rmempty     = true
+o.description = font_red..bold_on..translate("Note: There is A Risk of Privacy Leakage in Online Convert")..bold_off..font_off
+o:depends("sub_convert", "1")
+o:value("https://openclash.gg/sub", translate("openclash.gg")..translate("(Default)"))
+o:value("http://127.0.0.1:25500/sub", translate("local-ip")..translate("(Default)"))
+o:value("https://subconverter.herokuapp.com/sub", translate("herokuapp"))
+o.default = "https://openclash.gg/sub"
+
 ---- Template
 o = s:option(ListValue, "template", translate("Template Name"))
 o.rmempty     = true
