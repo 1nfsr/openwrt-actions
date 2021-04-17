@@ -104,6 +104,14 @@ cp -rf package/apps/luci-app-openclash/root/etc/openclash/github_share.yaml pack
 cp -rf package/apps/luci-app-openclash/root/etc/openclash/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/backup/
 
 
+## dnsmasq local Domain
+echo "address=/openclash.pro/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/wss.openclash.pro/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/openclash.su/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/openclash.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/adguardhome.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+
+
 ## SmartDNS
 mkdir -p feeds/packages/net/smartdns/files/etc/config/
 mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/files/etc/config/smartdns feeds/packages/net/smartdns/files/etc/config/
@@ -112,10 +120,6 @@ mv -f ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/Makefile feeds/packages/net
 # disable Rebind protection&&RBL checking and similar services
 sed -i "s/option rebind_protection 1/option rebind_protection 0/g" package/network/services/dnsmasq/files/dhcp.conf
 sed -i "s/option rebind_localhost 1/option rebind_localhost 0/g" package/network/services/dnsmasq/files/dhcp.conf
-
-
-## Opentomato Theme
-svn co https://github.com/solidus1983/luci-theme-opentomato/trunk/luci/themes/luci-theme-opentomato package/apps/luci-theme-opentomato
 
 
 ## Default Settings
