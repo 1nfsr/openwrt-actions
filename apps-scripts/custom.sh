@@ -53,8 +53,6 @@ mv -f ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/root/etc/init.d/AdGuardH
 # custom AdguardHome
 mv -f ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/luasrc/controller/AdGuardHome.lua package/apps/luci-app-adguardhome/luasrc/controller/
 mv -f ${GITHUB_WORKSPACE}/apps-custom-files/adguardhome/root/etc/config/AdGuardHome package/apps/luci-app-adguardhome/root/etc/config/
-# dnsmasq forwarder
-#sed -e '17s/#list/list/' -e '17s/\/mycompany.local\/1.2.3.4/127.0.0.1#10053/' package/network/services/dnsmasq/files/dhcp.conf
 # Firewall Rules
 echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> package/network/config/firewall/files/firewall.user
 echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53" >> package/network/config/firewall/files/firewall.user
@@ -110,6 +108,11 @@ echo "address=/wss.openclash.pro/192.168.77.1" >> package/network/services/dnsma
 echo "address=/openclash.su/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
 echo "address=/openclash.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
 echo "address=/adguardhome.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+# dnsmasq forwarder
+sed -i '/option resolvfile/i\      option noresolv         0' package/network/services/dnsmasq/files/dhcp.conf
+sed -i 's/option resolvfile/#option resolvfile/g' package/network/services/dnsmasq/files/dhcp.conf
+sed -i "/#list server/i\	list server             '127.0.0.1#10053'" package/network/services/dnsmasq/files/dhcp.conf
+sed -i "/#list server/c\	list server             '127.0.0.1#10054'" package/network/services/dnsmasq/files/dhcp.conf
 
 
 ## SmartDNS
