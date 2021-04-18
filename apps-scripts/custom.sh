@@ -12,6 +12,8 @@ sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/lu
 mv -f ${GITHUB_WORKSPACE}/apps/docker/etc/config/dockerd feeds/packages/utils/dockerd/files/etc/config/
 mkdir -p package/base-files/files/etc/docker/
 mv ${GITHUB_WORKSPACE}/apps/docker/daemon.json package/base-files/files/etc/docker/
+mv -f ${GITHUB_WORKSPACE}/other-script/fixdockernet.sh package/base-files/files/etc/fixdockernet.sh
+sed -i '/exit 0/i\bash /etc/fixdockernet.sh' package/base-files/files/etc/rc.local
 
 
 ## Turboacc
