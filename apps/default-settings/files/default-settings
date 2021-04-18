@@ -16,6 +16,9 @@ uci commit network
 uci set fstab.@global[0].anon_mount=1
 uci commit fstab
 
+uci del dhcp.lan.dhcpv6
+uci commit dhcp
+
 ln -sf /sbin/ip /usr/bin/ip
 
 sed -i 's#https://downloads.openwrt.org#https://mirrors.cloud.tencent.com/lede#g' /etc/opkg/distfeeds.conf
