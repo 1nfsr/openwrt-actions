@@ -38,6 +38,8 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
 sed -i 's/cbi.submit\"] = true/cbi.submit\"] = \"1\"/g' /usr/lib/lua/luci/dispatcher.lua
 
+sed -i 's/limit-as = 1000/limit-as = 10000/g' /etc/uwsgi/vassals/luci-webui.ini
+
 echo 'hsts=0' > /root/.wgetrc
 
 rm -rf /tmp/luci-modulecache/

@@ -29,10 +29,6 @@ sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 
-## Modify the maximum number of uwsgi
-sed -i 's/limit-as = 1000/limit-as = 2048/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-
-
 ## Crypto algorithm support kernel
 # reference 1: https://en.wikipedia.org/wiki/Salsa20
 # reference 2: https://tools.ietf.org/html/rfc7539
