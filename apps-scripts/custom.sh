@@ -120,7 +120,8 @@ sed -i "/#list server/c\	list server             '127.0.0.1#10054'" package/netw
 ## SmartDNS
 mkdir -p feeds/packages/net/smartdns/files/etc/config/
 mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/files/etc/config/smartdns feeds/packages/net/smartdns/files/etc/config/
-mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/files/etc/init.d/smartdnsprocd feeds/packages/net/smartdns/package/openwrt/files/etc/init.d/
+mkdir -p feeds/packages/net/smartdns/files/package/openwrt/files/etc/init.d/
+mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/files/etc/init.d/smartdnsprocd feeds/packages/net/smartdns/files/package/openwrt/files/etc/init.d/
 mv ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/files/address.conf feeds/packages/net/smartdns/files/
 mv -f ${GITHUB_WORKSPACE}/apps-custom-files/smartdns/Makefile feeds/packages/net/smartdns/
 # disable Rebind protection&&RBL checking and similar services
