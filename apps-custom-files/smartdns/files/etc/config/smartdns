@@ -34,6 +34,7 @@ config server
 	option type 'udp'
 	option server_group 'china'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -42,6 +43,7 @@ config server
 	option type 'udp'
 	option server_group 'china'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -50,6 +52,7 @@ config server
 	option type 'tls'
 	option server_group 'china'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -58,6 +61,7 @@ config server
 	option type 'https'
 	option server_group 'china'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -66,6 +70,7 @@ config server
 	option type 'udp'
 	option server_group 'china'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -74,6 +79,7 @@ config server
 	option type 'udp'
 	option server_group 'foreign'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -82,6 +88,7 @@ config server
 	option type 'https'
 	option server_group 'foreign'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -90,6 +97,7 @@ config server
 	option type 'tls'
 	option server_group 'foreign'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -98,6 +106,7 @@ config server
 	option type 'udp'
 	option server_group 'foreign'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -106,6 +115,7 @@ config server
 	option type 'https'
 	option server_group 'foreign'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
 
 config server
 	option enabled '1'
@@ -114,3 +124,4 @@ config server
 	option type 'tls'
 	option server_group 'foreign'
 	option blacklist_ip '0'
+	option addition_arg 'speed-check-mode tcp:443,tcp:80,ping'
