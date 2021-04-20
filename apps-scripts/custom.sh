@@ -8,6 +8,7 @@ mv ${GITHUB_WORKSPACE}/apps/miniupnpd feeds/packages/net/
 
 
 ## Docker
+rm -Rf feeds/luci/applications/luci-app-dockerman
 mv -f ${GITHUB_WORKSPACE}/apps/luci-app-dockerman feeds/luci/applications/
 sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
 mv -f ${GITHUB_WORKSPACE}/apps-custom-files/docker/etc/config/dockerd feeds/packages/utils/dockerd/files/etc/config/
