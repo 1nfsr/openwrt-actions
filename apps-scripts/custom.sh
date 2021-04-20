@@ -9,11 +9,11 @@ mv ${GITHUB_WORKSPACE}/apps/miniupnpd feeds/packages/net/
 
 ## Docker
 sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
-mv -f ${GITHUB_WORKSPACE}/apps/docker/etc/config/dockerd feeds/packages/utils/dockerd/files/etc/config/
-mkdir -p package/base-files/files/etc/docker/
-mv ${GITHUB_WORKSPACE}/apps/docker/daemon.json package/base-files/files/etc/docker/
-mv -f ${GITHUB_WORKSPACE}/other-script/fixdockernet.sh package/base-files/files/etc/fixdockernet.sh
-sed -i '/exit 0/i\bash /etc/fixdockernet.sh' package/base-files/files/etc/rc.local
+#mv -f ${GITHUB_WORKSPACE}/apps-custom-files/docker/etc/config/dockerd feeds/packages/utils/dockerd/files/etc/config/
+#mkdir -p package/base-files/files/etc/docker/
+#mv ${GITHUB_WORKSPACE}/apps-custom-files/docker/daemon.json package/base-files/files/etc/docker/
+#mv -f ${GITHUB_WORKSPACE}/apps-custom-files/docker/dockerd-restart.sh package/base-files/files/etc/init.d/
+#sed -i '/exit 0/i\bash /etc/dockerd-restart.sh' package/base-files/files/etc/rc.local
 
 
 ## Turboacc
