@@ -52,7 +52,7 @@ config openclash 'config'
 	option auto_restart_week_time '*'
 	option auto_restart_day_time '0'
 	option restricted_mode '0'
-	option config_path '/etc/openclash/config/github_share.yaml'
+	option config_path '/etc/openclash/config/baipiao.yaml'
 	option enable '1'
 	option config_reload '1'
 	option operation_mode 'redir-host'
@@ -63,6 +63,18 @@ config dns_servers
 	option type 'udp'
 	option ip '127.0.0.1'
 	option port '10053'
+
+config config_subscribe
+	option enabled '1'
+	option name 'baipiao'
+	option address 'https://aiyss.com/link/wsMYp6dtBFiYVmaG?clash=1'
+	option sub_convert '1'
+	option template 'Default'
+	option emoji 'false'
+	option udp 'true'
+	option skip_cert_verify 'true'
+	option sort 'true'
+	option node_type 'false'
 
 config config_subscribe
 	option enabled '1'
