@@ -99,9 +99,9 @@ mv ${GITHUB_WORKSPACE}/base-files/www/subconverter package/base-files/files/www/
 # modify Free subscription
 mkdir -p package/apps/luci-app-openclash/root/etc/openclash/config/
 mkdir -p package/apps/luci-app-openclash/root/etc/openclash/backup/
-wget -O package/apps/luci-app-openclash/root/etc/openclash/github_share.yaml https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yml
-cp -rf package/apps/luci-app-openclash/root/etc/openclash/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
-cp -rf package/apps/luci-app-openclash/root/etc/openclash/github_share.yaml package/apps/luci-app-openclash/root/etc/openclash/backup/
+wget -O package/apps/luci-app-openclash/root/etc/openclash/baipiao.yaml https://aiyss.com/link/wsMYp6dtBFiYVmaG?clash=1
+cp -rf package/apps/luci-app-openclash/root/etc/openclash/baipiao.yaml package/apps/luci-app-openclash/root/etc/openclash/config/
+cp -rf package/apps/luci-app-openclash/root/etc/openclash/baipiao.yaml package/apps/luci-app-openclash/root/etc/openclash/backup/
 
 
 ## dnsmasq local Domain
