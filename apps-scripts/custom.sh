@@ -88,9 +88,9 @@ mv -f ${GITHUB_WORKSPACE}/apps-custom-files/openclash/root/usr/share/openclash/r
 # clash dashboard (http://openclash.pro)
 mkdir -p package/base-files/files/www
 mv ${GITHUB_WORKSPACE}/base-files/www/clash-ui package/base-files/files/www/
-sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.openclash.pro/g' package/base-files/files/www/clash-ui/app.6706b8885424994ac6fe.js
+sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.open-wrt.tk/g' package/base-files/files/www/clash-ui/app.6706b8885424994ac6fe.js
 sed -i 's/secret:""/secret:"123456"/g' package/base-files/files/www/clash-ui/app.6706b8885424994ac6fe.js
-sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.openclash.pro/g' package/base-files/files/www/clash-ui/index.html
+sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.open-wrt.tk/g' package/base-files/files/www/clash-ui/index.html
 # subconverter server (http://openclash.gg)
 mv ${GITHUB_WORKSPACE}/base-files/etc/init.d/subconverter package/base-files/files/etc/init.d/
 mv ${GITHUB_WORKSPACE}/base-files/etc/subconverter package/base-files/files/etc/
@@ -105,11 +105,12 @@ cp -rf package/apps/luci-app-openclash/root/etc/openclash/baipiao.yaml package/a
 
 
 ## dnsmasq local Domain
-echo "address=/openclash.pro/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
-echo "address=/wss.openclash.pro/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
-echo "address=/openclash.su/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
-echo "address=/openclash.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
-echo "address=/adguardhome.gg/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/open-wrt.tk/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/yacd.open-wrt.tk/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/wss.open-wrt.tk/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/rules.open-wrt.tk/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/subd.open-wrt.tk/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
+echo "address=/adg.open-wrt.tk/192.168.77.1" >> package/network/services/dnsmasq/files/dnsmasq.conf
 # dnsmasq forwarder
 sed -i '/option resolvfile/i\      option noresolv         0' package/network/services/dnsmasq/files/dhcp.conf
 sed -i 's/option resolvfile/#option resolvfile/g' package/network/services/dnsmasq/files/dhcp.conf
