@@ -1,0 +1,21 @@
+luci-app-openclash
+luci-app-opkg
+luci-app-firewall
+luci-app-adguardhome
+luci-app-turboacc
+luci-mod-admin-full
+luci-theme-bootstrap
+
+nginx-mod-luci
+zsh
+openssh-server/client
+php7-fastcgi
+block-mount
+
+default-settings
+
+Network -->
+	Filesystem -->
+		netatalk
+	IP Addresses and Names -->
+		avahi-utils

@@ -69,13 +69,13 @@ mv ${GITHUB_WORKSPACE}/base-files/etc/nginx/nginx.conf package/base-files/files/
 
 ## Realtek RTL8168 Driver for Openwrt
 # sources: https://github.com/BROBIRD/openwrt-r8168
-git clone --depth=1 https://github.com/BROBIRD/openwrt-r8168.git  package/apps/openwrt-r8168
-echo "R8168=$PWD/package/apps/openwrt-r8168" >> $GITHUB_ENV
-if [ ! -d "$R8168"]; then
-	mv ${GITHUB_WORKSPACE}/apps/openwrt-r8168 package/apps/
-else
-	echo -e "\n openwrt-r8168 created"
-fi
+#git clone --depth=1 https://github.com/BROBIRD/openwrt-r8168.git  package/apps/openwrt-r8168
+#echo "R8168=$PWD/package/apps/openwrt-r8168" >> $GITHUB_ENV
+#if [ ! -d "$R8168"]; then
+#	mv ${GITHUB_WORKSPACE}/apps/openwrt-r8168 package/apps/
+#else
+#	echo -e "\n openwrt-r8168 created"
+#fi
 
 
 ## Remove status show model
