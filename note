@@ -15,7 +15,48 @@ block-mount
 default-settings
 
 Network -->
-	Filesystem -->
+Filesystem -->
 		netatalk
 	IP Addresses and Names -->
 		avahi-utils
+
+
+Target System --->
+	x86
+Subtarget --->
+	x86_64
+Global build settings --->
+	Use the testing kernel version
+Base system --->
+	block-mount
+	[-] dnsmasq
+	[+] dnsmasq-full
+			Build with DHCP support
+			Build with DHCPv6 support
+			Build with IPset support
+			Build with Conntrack support
+LuCI --->
+	Modules --->
+		luci-compat
+		luci-mod-admin-full
+	Applications --->
+		luci-app-adguardhome
+		luci-app-dockerman
+		luci-app-firewall
+		luci-app-openclash
+		luci-app-opkg
+		luci-app-smartdns
+		luci-app-turboacc
+			Include Flow Offload
+			Include BBR CCA
+	Themes --->
+		luci-theme-bootstrap
+	Protocols --->
+		luci-proto-ipv6
+Network -->
+	Filesystem --->
+		netatalk
+	IP Addresses and Names --->
+		avahi-utils
+	Web Servers/Proxies --->
+		nginx-mod-luci
