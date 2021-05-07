@@ -5,7 +5,7 @@
 #clone sources
 pushd /workdir
 git clone $REPO_URL -b $REPO_BRANCH openwrt
-ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+ln -sf /workdir/openwrt ${GITHUB_WORKSPACE}/openwrt
 popd
 #load custom feeds
 [ -e $FEEDS_CONF ] && mv -f $FEEDS_CONF openwrt/feeds.conf.default
@@ -17,7 +17,7 @@ popd
 #load custom configuration
 [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
 #scripts
-#source ...custom.sh
+source ${GITHUB_WORKSPACE}/custom.sh
 #download package
 pushd /workdir/openwrt
 make defconfig
