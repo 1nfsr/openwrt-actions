@@ -1,4 +1,0 @@
-[submodule "base-files/www/clash-ui"]
-	path = base-files/www/clash-ui
-	url = https://github.com/haishanh/yacd.git
-	branch = gh-pages
