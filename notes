@@ -1,0 +1,27 @@
+Target System --->
+	+ x86
+Subtarget --->
+	+ x86_64 
+Target Profile --->
+	+ Generic x86/64
+Target Images  --->
+	* (3)Seconds to wait before booting the default entry
+	* (1024) Root filesystem partition size (in MB)
+Base system  --->
+	+ block-mount
+	- dnsmasq
+	+ dnsmasq-full
+		+ Build with DHCP support.
+		+ Build with DHCPv6 support.
+		+ Build with IPset support.
+		+ Build with Conntrack support.
+LuCI  --->
+	Modules  --->
+		+ luci-mod-admin-full
+	Themes --->
+		+ luci-theme-bootstrap
+	Protocols --->
+		+ luci-proto-ipv6
+Network --->
+	Web Servers/Proxies --->
+		+ nginx-mod-luci
