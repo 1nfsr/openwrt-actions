@@ -22,6 +22,7 @@ LuCI  --->
 		+ luci-theme-bootstrap
 	Protocols --->
 		+ luci-proto-ipv6
+	+ default-settings
 Network --->
 	Web Servers/Proxies --->
 		+ nginx-mod-luci
