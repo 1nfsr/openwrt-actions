@@ -16,6 +16,9 @@ Base system  --->
 		+ Build with IPset support.
 		+ Build with Conntrack support.
 LuCI  --->
+	Applications --->
+		+ luci-app-smartdns
+		+ luci-app-turboacc
 	Modules  --->
 		+ luci-mod-admin-full
 	Themes --->

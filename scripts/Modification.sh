@@ -26,8 +26,8 @@ fi
 
 ## SmartDNS
 if [ `grep -c 'luci-app-smartdns=y' .config` -ne '0' ]; then
-	mkdir -p feeds/packages/net/smartdns/files/etc/config/
-	cp -rf ${GITHUB_WORKSPACE}/Modification/smartdns/config/smartdns feeds/packages/net/smartdns/files/etc/config/
+	#mkdir -p feeds/packages/net/smartdns/files/etc/config/
+	#cp -rf ${GITHUB_WORKSPACE}/Modification/smartdns/config/smartdns feeds/packages/net/smartdns/files/etc/config/
 	mkdir -p feeds/packages/net/smartdns/files/package/openwrt/files/etc/init.d/
 	mv ${GITHUB_WORKSPACE}/Modification/smartdns/init.d/smartdnsprocd feeds/packages/net/smartdns/files/package/openwrt/files/etc/init.d/
 	sed -i '/init.d\/smartdns/a\    $(INSTALL_BIN) .\/files\/package\/openwrt\/files\/etc\/init.d\/smartdnsprocd $(1)\/etc\/init.d\/smartdnsprocd' feeds/packages/net/smartdns/Makefile
