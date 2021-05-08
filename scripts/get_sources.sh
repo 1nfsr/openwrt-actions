@@ -17,8 +17,10 @@ popd
 #load custom configuration
 [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
 #scripts
-source ${GITHUB_WORKSPACE}/scripts/custom.sh
+pushd /workdir/openwrt
+source ${GITHUB_WORKSPACE}/scripts/Modification.sh
 source ${GITHUB_WORKSPACE}/scripts/DLC.sh
+popd
 #download package
 pushd /workdir/openwrt
 make defconfig
