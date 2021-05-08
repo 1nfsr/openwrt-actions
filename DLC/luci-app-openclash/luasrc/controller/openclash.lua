@@ -103,18 +103,6 @@ local function ipdb()
 	return os.date("%Y-%m-%d %H:%M:%S",fs.mtime("/etc/openclash/Country.mmdb"))
 end
 
-local function lhie1()
-	return os.date("%Y-%m-%d %H:%M:%S",fs.mtime("/usr/share/openclash/res/lhie1.yaml"))
-end
-
-local function ConnersHua()
-	return os.date("%Y-%m-%d %H:%M:%S",fs.mtime("/usr/share/openclash/res/ConnersHua.yaml"))
-end
-
-local function ConnersHua_return()
-	return os.date("%Y-%m-%d %H:%M:%S",fs.mtime("/usr/share/openclash/res/ConnersHua_return.yaml"))
-end
-
 local function chnroute()
 	return os.date("%Y-%m-%d %H:%M:%S",fs.mtime("/etc/openclash/rule_provider/ChinaIP.yaml"))
 end
@@ -326,9 +314,6 @@ end
 function action_state()
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
-		lhie1 = lhie1(),
-		ConnersHua = ConnersHua(),
-		ConnersHua_return = ConnersHua_return(),
 		ipdb = ipdb(),
 		historychecktime = historychecktime(),
 		chnroute = chnroute();

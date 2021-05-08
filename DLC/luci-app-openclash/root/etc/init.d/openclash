@@ -1772,7 +1772,7 @@ start()
    try_restore_start
 
    echo "第七步: 设置控制面板..." >$START_LOG
-   ln -s /usr/share/openclash/yacd /www/luci-static/openclash 2>/dev/null
+   echo "https://yacd.open-wrt.tk"
        
    echo "第八步: 设置防火墙规则..." >$START_LOG
    set_firewall
