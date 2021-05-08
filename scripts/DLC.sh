@@ -6,6 +6,8 @@ cp -r ${GITHUB_WORKSPACE}/DLC package/
 
 ## Adguardhome
 if [ `grep -c 'luci-app-adguardhome=y' .config` -ne '0' ]; then
+	#get latest core
+	bash ${GITHUB_WORKSPACE}/Modification/adguardhome/get_adguardhome_core.sh amd64
 	echo "Adguardhome configuration complete!"
 else
 	echo "Adguardhome is not set yet"
@@ -14,6 +16,8 @@ fi
 
 ## Openclash
 if [ `grep -c 'luci-app-openclash=y' .config` -ne '0' ]; then
+	#get latest core
+	bash ${GITHUB_WORKSPACE}/Modification/openclash/get_clash_core.sh amd64
 	echo "Openclash configuration complete!"
 else
 	echo "Openclash is not set yet"

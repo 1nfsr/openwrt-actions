@@ -59,7 +59,7 @@ function config_check(CONFIG_FILE)
 	   return "File Not Exist"
 	end
 end
-    
+
 ful = SimpleForm("upload", translate("Config Manage"), nil)
 ful.reset = false
 ful.submit = false
@@ -315,13 +315,68 @@ o.write = function()
   HTTP.redirect(DISP.build_url("admin", "services", "openclash", "rule-providers-file-manage"))
 end
 
+m = SimpleForm("openclash",translate("Config File Edit"))
+m.reset = false
+m.submit = false
+
+local tab = {
+ {user, default}
+}
+
+s = m:section(Table, tab)
+s.description = align_mid..translate("Support syntax check, press").." "..font_green..bold_on.."F11"..bold_off..font_off.." "..translate("to enter full screen editing mode")..align_mid_off
+s.anonymous = true
+s.addremove = false
+
+local conf = string.sub(SYS.exec("uci get openclash.config.config_path 2>/dev/null"), 1, -2)
+local dconf = "/usr/share/openclash/res/default.yaml"
+local conf_name = fs.basename(conf)
+if not conf_name or conf == "" then conf_name = "config.yaml" conf = "/etc/openclash/config/config.yaml" end
+local sconf = "/etc/openclash/"..conf_name
+
+sev = s:option(TextValue, "user")
+sev.description = translate("Modify Your Config file:").." "..font_green..bold_on..conf_name..bold_off..font_off.." "..translate("Here, Except The Settings That Were Taken Over")
+sev.rows = 40
+sev.wrap = "off"
+sev.cfgvalue = function(self, section)
+	return NXFS.readfile(conf) or NXFS.readfile(dconf) or ""
+end
+sev.write = function(self, section, value)
+if (CHIF == "0") then
+    value = value:gsub("\r\n?", "\n")
+    local old_value = NXFS.readfile(conf)
+	  if value ~= old_value then
+       NXFS.writefile(conf, value)
+    end
+end
+end
+
+def = s:option(TextValue, "default")
+if fs.isfile(sconf) then
+	def.description = translate("Config File Edited By OpenClash For Running")
+else
+	def.description = translate("Default Config File With Correct Template")
+end
+def.rows = 40
+def.wrap = "off"
+def.readonly = true
+def.cfgvalue = function(self, section)
+	return NXFS.readfile(sconf) or NXFS.readfile(dconf) or ""
+end
+def.write = function(self, section, value)
+end
+
+o = s:option(DummyValue, "")
+o.anonymous=true
+o.template = "openclash/config_editor"
+
 local t = {
     {Commit, Apply}
 }
 
-a = p:section(Table, t)
+a = m:section(Table, t)
 
-o = a:option(Button, "Commit", " ") 
+o = a:option(Button, "Commit", " ")
 o.inputtitle = translate("Commit Configurations")
 o.inputstyle = "apply"
 o.write = function()
@@ -340,4 +395,4 @@ o.write = function()
   HTTP.redirect(DISP.build_url("admin", "services", "openclash"))
 end
 
-return ful , form , p
+return ful , form , p , m

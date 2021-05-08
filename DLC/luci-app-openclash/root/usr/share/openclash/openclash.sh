@@ -50,9 +50,9 @@ if [ -n "$subscribe_url_param" ]; then
    if [ -n "$c_address" ]; then
       curl -sL --connect-timeout 10 --retry 2 "$c_address""$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
    else
-      curl -sL --connect-timeout 10 --retry 2 https://subd.open-wrt.tk/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
+      curl -sL --connect-timeout 10 --retry 2 https://api.dler.io/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
       if [ "$?" -ne 0 ]; then
-         curl -sL --connect-timeout 10 --retry 2 http://127.0.0.1:25500/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
+         curl -sL --connect-timeout 10 --retry 2 https://subcon.dlj.tf/sub"$subscribe_url_param" -o "$CFG_FILE" >/dev/null 2>&1
       fi
    fi
 else

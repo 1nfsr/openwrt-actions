@@ -75,6 +75,7 @@ begin
    Value['external-controller']='$controller_address:$5';
    Value['secret']='$4';
    Value['bind-address']='$bind_address';
+   Value['external-ui']='/usr/share/openclash/dashboard';
 if not Value.key?('dns') then
    Value_1={'dns'=>{'enable'=>true}}
    Value['dns']=Value_1['dns']
