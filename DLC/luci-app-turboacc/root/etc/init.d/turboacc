@@ -115,7 +115,7 @@ server {
 server {
     label = "special";                  # 这个随便写
     ip = 117.50.10.10,52.80.52.52,119.29.29.29; # 这里为备用DNS服务器的 ip 地址
-    port = 5353;                        # 推荐使用53以外的端口（DNS服务器必须支持
+    port = 5053;                        # 推荐使用53以外的端口（DNS服务器必须支持
     proxy_only = on;
     timeout = 5;
 }
