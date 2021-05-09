@@ -6,6 +6,16 @@ cp -r ${GITHUB_WORKSPACE}/DLC package/
 
 ## Adguardhome
 if [ `grep -c 'luci-app-adguardhome=y' .config` -ne '0' ]; then
+	# AdguardHome config
+	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/luasrc/model/cbi/AdGuardHome/base.lua package/DLC/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/AdGuardHome.yaml package/base-files/files/etc/config/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/root/etc/init.d/AdGuardHome package/DLC/luci-app-adguardhome/root/etc/init.d/
+	# custom AdguardHome
+	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/luasrc/controller/AdGuardHome.lua package/DLC/luci-app-adguardhome/luasrc/controller/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/root/etc/config/AdGuardHome package/DLC/luci-app-adguardhome/root/etc/config/
+	# Firewall Rules
+	echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> package/network/config/firewall/files/firewall.user
+	echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53" >> package/network/config/firewall/files/firewall.user
 	#get latest core
 	bash ${GITHUB_WORKSPACE}/Modification/adguardhome/get_adguardhome_core.sh amd64
 	echo "Adguardhome configuration complete!"

@@ -17,6 +17,7 @@ Base system  --->
 		+ Build with Conntrack support.
 LuCI  --->
 	Applications --->
+		+ luci-app-adguardhome
 		+ luci-app-smartdns
 		+ luci-app-turboacc
 	Modules  --->
