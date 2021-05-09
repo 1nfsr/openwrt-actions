@@ -8,6 +8,7 @@ cp -r ${GITHUB_WORKSPACE}/DLC package/
 if [ `grep -c 'luci-app-adguardhome=y' .config` -ne '0' ]; then
 	# AdguardHome config
 	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/luasrc/model/cbi/AdGuardHome/base.lua package/DLC/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/
+	mkdir -p package/base-files/files/etc/config/
 	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/AdGuardHome.yaml package/base-files/files/etc/config/
 	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/root/etc/init.d/AdGuardHome package/DLC/luci-app-adguardhome/root/etc/init.d/
 	# custom AdguardHome
@@ -26,8 +27,31 @@ fi
 
 ## Openclash
 if [ `grep -c 'luci-app-openclash=y' .config` -ne '0' ]; then
+	# custom clash
+	rm -rf package/DLC/luci-app-openclash/root/usr/share/openclash/{dashboard,yacd}
+	rm -rf package/DLC/luci-app-openclash/luasrc/view/config_editor.htm
+	rm -rf package/DLC/luci-app-openclash/root/www
+	rm -rf package/DLC/luci-app-openclash/root/usr/share/openclash/res/{ConnersHua_return.yaml,ConnersHua.yaml,lhie1.yaml,sub_ini.list}
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/root/usr/share/openclash/res/sub_ini.list package/DLC/luci-app-openclash/root/usr/share/openclash/res/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/root/etc/config/openclash package/DLC/luci-app-openclash/root/etc/config/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/luasrc/controller/openclash.lua package/DLC/luci-app-openclash/luasrc/controller/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/luasrc/model/cbi/openclash/* package/DLC/luci-app-openclash/luasrc/model/cbi/openclash/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/luasrc/view/openclash/status.htm package/DLC/luci-app-openclash/luasrc/view/openclash/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/root/etc/init.d/openclash package/DLC/luci-app-openclash/root/etc/init.d/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/root/usr/share/openclash/{yml_change.sh,openclash.sh} package/DLC/luci-app-openclash/root/usr/share/openclash/
 	#get latest core
 	bash ${GITHUB_WORKSPACE}/Modification/openclash/get_clash_core.sh amd64
+	# clash dashboard (https://yacd.open-wrt.tk)
+	mkdir -p package/base-files/files/www
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/yacd package/base-files/files/www/
+	sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.open-wrt.tk/g' package/base-files/files/www/yacd/app.6706b8885424994ac6fe.js
+	sed -i 's/secret:""/secret:"123456"/g' package/base-files/files/www/yacd/app.6706b8885424994ac6fe.js
+	sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.open-wrt.tk/g' package/base-files/files/www/yacd/index.html
+	# subconverter server (https://subd.open-wrt.tk)
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/subconverter package/base-files/files/etc/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/subconverterd package/base-files/files/etc/init.d/
+	# subconverter template ini (https://rules.open-wrt.tk)
+	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/sub-template package/base-files/files/www/
 	echo "Openclash configuration complete!"
 else
 	echo "Openclash is not set yet"
