@@ -33,6 +33,10 @@ LuCI  --->
 		+ luci-proto-ipv6
 	+ default-settings
 Network --->
+	Filesystem  --->
+		+ netatalk
+	IP Addresses and Names --->
+		+ avahi-utils
 	Firewall --->
 		+ iptables-mod-fullconenat
 	Web Servers/Proxies --->

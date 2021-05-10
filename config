@@ -3296,7 +3296,7 @@ CONFIG_PACKAGE_ruby-yaml=y
 # Filesystem
 #
 # CONFIG_PACKAGE_libacl is not set
-# CONFIG_PACKAGE_libattr is not set
+CONFIG_PACKAGE_libattr=y
 # CONFIG_PACKAGE_libfuse is not set
 # CONFIG_PACKAGE_libfuse3 is not set
 # CONFIG_PACKAGE_libow is not set
@@ -3951,9 +3951,9 @@ CONFIG_WOLFSSL_HAS_NO_HW=y
 # CONFIG_PACKAGE_libatasmart is not set
 # CONFIG_PACKAGE_libaudit is not set
 # CONFIG_PACKAGE_libauparse is not set
-# CONFIG_PACKAGE_libavahi-client is not set
+CONFIG_PACKAGE_libavahi-client=y
 # CONFIG_PACKAGE_libavahi-compat-libdnssd is not set
-# CONFIG_PACKAGE_libavahi-dbus-support is not set
+CONFIG_PACKAGE_libavahi-dbus-support=y
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
 # CONFIG_PACKAGE_libbfd is not set
 CONFIG_PACKAGE_libblkid=y
@@ -4016,13 +4016,13 @@ CONFIG_LIBCURL_PROXY=y
 # CONFIG_LIBCURL_UNIX_SOCKETS is not set
 # CONFIG_LIBCURL_LIBCURL_OPTION is not set
 # CONFIG_LIBCURL_VERBOSE is not set
-# CONFIG_PACKAGE_libdaemon is not set
+CONFIG_PACKAGE_libdaemon=y
 # CONFIG_PACKAGE_libdaq is not set
 # CONFIG_PACKAGE_libdaq3 is not set
 CONFIG_PACKAGE_libdb47=y
 # CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
-# CONFIG_PACKAGE_libdbus is not set
+CONFIG_PACKAGE_libdbus=y
 # CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdevmapper-selinux is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
@@ -4042,7 +4042,7 @@ CONFIG_PACKAGE_libelf=y
 # CONFIG_PACKAGE_libevent2-openssl is not set
 # CONFIG_PACKAGE_libevent2-pthreads is not set
 # CONFIG_PACKAGE_libexif is not set
-# CONFIG_PACKAGE_libexpat is not set
+CONFIG_PACKAGE_libexpat=y
 # CONFIG_PACKAGE_libexslt is not set
 CONFIG_PACKAGE_libext2fs=y
 # CONFIG_PACKAGE_libextractor is not set
@@ -4066,14 +4066,14 @@ CONFIG_FFMPEG_X86ASM=y
 # CONFIG_PACKAGE_libftdi is not set
 # CONFIG_PACKAGE_libftdi1 is not set
 # CONFIG_PACKAGE_libgabe is not set
-# CONFIG_PACKAGE_libgcrypt is not set
+CONFIG_PACKAGE_libgcrypt=y
 # CONFIG_PACKAGE_libgd is not set
 # CONFIG_PACKAGE_libgd-full is not set
-# CONFIG_PACKAGE_libgdbm is not set
+CONFIG_PACKAGE_libgdbm=y
 # CONFIG_PACKAGE_libgee is not set
 CONFIG_PACKAGE_libgmp=y
 # CONFIG_PACKAGE_libgnurl is not set
-# CONFIG_PACKAGE_libgpg-error is not set
+CONFIG_PACKAGE_libgpg-error=y
 # CONFIG_PACKAGE_libgpgme is not set
 # CONFIG_PACKAGE_libgpgmepp is not set
 # CONFIG_PACKAGE_libgphoto2 is not set
@@ -4785,7 +4785,7 @@ CONFIG_PACKAGE_curl=y
 # CONFIG_PACKAGE_ksmbd-avahi-service is not set
 # CONFIG_PACKAGE_ksmbd-server is not set
 # CONFIG_PACKAGE_ksmbd-utils is not set
-# CONFIG_PACKAGE_netatalk is not set
+CONFIG_PACKAGE_netatalk=y
 # CONFIG_PACKAGE_nfs-kernel-server is not set
 # CONFIG_PACKAGE_owftpd is not set
 # CONFIG_PACKAGE_owhttpd is not set
@@ -4900,10 +4900,10 @@ CONFIG_PACKAGE_iptables-mod-tproxy=y
 # CONFIG_PACKAGE_avahi-autoipd is not set
 # CONFIG_PACKAGE_avahi-daemon-service-http is not set
 # CONFIG_PACKAGE_avahi-daemon-service-ssh is not set
-# CONFIG_PACKAGE_avahi-dbus-daemon is not set
+CONFIG_PACKAGE_avahi-dbus-daemon=y
 # CONFIG_PACKAGE_avahi-dnsconfd is not set
 # CONFIG_PACKAGE_avahi-nodbus-daemon is not set
-# CONFIG_PACKAGE_avahi-utils is not set
+CONFIG_PACKAGE_avahi-utils=y
 # CONFIG_PACKAGE_bind-check is not set
 # CONFIG_PACKAGE_bind-client is not set
 # CONFIG_PACKAGE_bind-dig is not set
@@ -6259,7 +6259,7 @@ CONFIG_PACKAGE_coreutils-nohup=y
 # CONFIG_PACKAGE_csstidy is not set
 # CONFIG_PACKAGE_ct-bugcheck is not set
 # CONFIG_PACKAGE_ctop is not set
-# CONFIG_PACKAGE_dbus is not set
+CONFIG_PACKAGE_dbus=y
 # CONFIG_PACKAGE_dbus-utils is not set
 # CONFIG_PACKAGE_device-observatory is not set
 # CONFIG_PACKAGE_dfu-util is not set
