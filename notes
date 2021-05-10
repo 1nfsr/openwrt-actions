@@ -23,6 +23,10 @@ Kernel modules --->
 LuCI  --->
 	Applications --->
 		+ luci-app-adguardhome
+		+ luci-app-dockerman
+		+ luci-app-firewall
+		+ luci-app-openclash
+		+ luci-app-opkg
 		+ luci-app-smartdns
 		+ luci-app-turboacc
 	Modules  --->
@@ -42,3 +46,6 @@ Network --->
 		+ iptables-mod-fullconenat
 	Web Servers/Proxies --->
 		+ nginx-mod-luci
+Utilities --->
+	+ docker-compose
+	+ dockerd
