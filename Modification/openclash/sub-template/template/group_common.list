@@ -1,4 +1,4 @@
-节点选择`select`[]负载均衡`[]故障转移`[]自动选择`[]全球直连`.*
+节点选择`select`[]负载均衡`[]故障转移`[]自动选择`[]全球直连`[]HK`[]TW`[]SG`[]JP`[]US`.*
 故障转移`fallback`.*`http://www.gstatic.com/generate_204`180
 负载均衡`load-balance`.*`http://www.gstatic.com/generate_204`180
 自动选择`url-test`.*`http://www.gstatic.com/generate_204`300

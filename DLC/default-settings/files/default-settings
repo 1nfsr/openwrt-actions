@@ -37,10 +37,6 @@ echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53"
 echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
 
 
-sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
-sed -i "$ a\DISTRIB_DESCRIPTION=' Built by Infsr'" /etc/openwrt_release
-sed -i '/%D/a\ Infsr Build' /etc/banner
-
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
