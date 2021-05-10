@@ -8,7 +8,6 @@ cp -r ${GITHUB_WORKSPACE}/DLC package/
 if [ `grep -c 'luci-app-adguardhome=y' .config` -ne '0' ]; then
 	# AdguardHome config
 	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/luasrc/model/cbi/AdGuardHome/base.lua package/DLC/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/
-	mkdir -p package/base-files/files/etc/config/
 	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/AdGuardHome.yaml package/base-files/files/etc/config/
 	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/root/etc/init.d/AdGuardHome package/DLC/luci-app-adguardhome/root/etc/init.d/
 	# custom AdguardHome

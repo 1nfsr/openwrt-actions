@@ -1,6 +1,11 @@
 #!/bin/bash
 
 
+## Mount points
+mkdir -p package/base-files/files/etc/config/
+cp -rf ${GITHUB_WORKSPACE}/Modification/block-mount/fstab package/base-files/files/etc/config/
+
+
 ## Docker
 if [ `grep -c 'luci-app-dockerman=y' .config` -ne '0' ]; then
 	echo "Docker configuration complete!"
