@@ -15,6 +15,9 @@ Base system  --->
 		+ Build with DHCPv6 support.
 		+ Build with IPset support.
 		+ Build with Conntrack support.
+Kernel modules --->
+	Netfilter Extensions  --->
+		+ kmod-ipt-fullconenat
 LuCI  --->
 	Applications --->
 		+ luci-app-adguardhome
@@ -28,5 +31,7 @@ LuCI  --->
 		+ luci-proto-ipv6
 	+ default-settings
 Network --->
+	Firewall --->
+		+ iptables-mod-fullconenat
 	Web Servers/Proxies --->
 		+ nginx-mod-luci
