@@ -18,6 +18,8 @@ Base system  --->
 Kernel modules --->
 	Netfilter Extensions  --->
 		+ kmod-ipt-fullconenat
+	Network Support --->
+		+ kmod-tun
 LuCI  --->
 	Applications --->
 		+ luci-app-adguardhome
