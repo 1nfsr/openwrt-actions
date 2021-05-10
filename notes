@@ -26,6 +26,7 @@ LuCI  --->
 		+ luci-app-smartdns
 		+ luci-app-turboacc
 	Modules  --->
+		+ luci-compat
 		+ luci-mod-admin-full
 	Themes --->
 		+ luci-theme-bootstrap
