@@ -3,3 +3,6 @@
 
 
 Apps: 
+- AdGuardHome
+- OpenClash
+- SmartDNS

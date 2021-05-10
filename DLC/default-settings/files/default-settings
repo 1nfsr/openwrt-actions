@@ -38,7 +38,7 @@ echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53"
 
 
 sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
-sed -i "$ a\DISTRIB_DESCRIPTION='Built by Infsr($(date +%Y.%m.%d))@%D %V %C'" /etc/openwrt_release
+sed -i "$ a\DISTRIB_DESCRIPTION=' Built by Infsr'" /etc/openwrt_release
 sed -i '/%D/a\ Infsr Build' /etc/banner
 
 sed -i '/log-facility/d' /etc/dnsmasq.conf
