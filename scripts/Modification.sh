@@ -77,6 +77,10 @@ else
 fi
 
 
+## ohmyzsh
+cp -rf ${GITHUB_WORKSPACE}/Modification/base-file/etc/ohmyzsh package/base-files/files/etc/
+
+
 ## Docker
 if [ `grep -c 'luci-app-dockerman=y' .config` -ne '0' ]; then
 	sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile

@@ -20,6 +20,10 @@ Kernel modules --->
 		+ kmod-ipt-fullconenat
 	Network Support --->
 		+ kmod-tun
+Languages --->
+	PHP8 --->
+		+ php8
+		+ php8-fastcgi
 LuCI  --->
 	Applications --->
 		+ luci-app-adguardhome
