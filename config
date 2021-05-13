@@ -2353,7 +2353,7 @@ CONFIG_PACKAGE_kmod-phy-realtek=y
 # CONFIG_PACKAGE_kmod-phylink is not set
 # CONFIG_PACKAGE_kmod-qlcnic is not set
 # CONFIG_PACKAGE_kmod-r6040 is not set
-CONFIG_PACKAGE_kmod-r8168=y
+# CONFIG_PACKAGE_kmod-r8168 is not set
 CONFIG_PACKAGE_kmod-r8169=y
 # CONFIG_PACKAGE_kmod-sfc is not set
 # CONFIG_PACKAGE_kmod-sfc-falcon is not set
