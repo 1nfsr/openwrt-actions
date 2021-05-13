@@ -4,5 +4,6 @@
 
 Apps: 
 - AdGuardHome
+- Docker
 - OpenClash
 - SmartDNS

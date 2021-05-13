@@ -22,8 +22,8 @@ Kernel modules --->
 		+ kmod-tun
 Languages --->
 	PHP8 --->
-		+ php8
-		+ php8-fastcgi
+		+ php7
+		+ php7-fastcgi
 LuCI  --->
 	Applications --->
 		+ luci-app-adguardhome
