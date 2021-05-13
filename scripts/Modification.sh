@@ -81,6 +81,15 @@ fi
 cp -rf ${GITHUB_WORKSPACE}/Modification/base-file/etc/ohmyzsh package/base-files/files/etc/
 
 
+## php
+if [ `grep -c 'CONFIG_PACKAGE_php7=y' .config` -ne '0' ]; then
+	cp -rf ${GITHUB_WORKSPACE}/Modification/php7/php.ini feeds/packages/lang/php7/files/
+	echo "PHP7 configuration complete!"
+else
+	echo "PHP is not set yet"
+fi
+
+
 ## Docker
 if [ `grep -c 'luci-app-dockerman=y' .config` -ne '0' ]; then
 	sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
