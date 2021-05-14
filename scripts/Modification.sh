@@ -86,7 +86,7 @@ if [ `grep -c 'CONFIG_PACKAGE_php[7-8]=y' .config` -ne '0' ]; then
 	sed -i 's/;cgi.force_redirect/cgi.force_redirect/g' feeds/packages/lang/php[7-8]/files/php.ini
 	sed -i 's/;cgi.redirect_status_env = ;/cgi.redirect_status_env = "yes"/g' feeds/packages/lang/php[7-8]/files/php.ini
 	mkdir -p package/base-files/files/public_web
-	#touch package/base-files/files/public_web/.gitkeep
+	cp -rf ${GITHUB_WORKSPACE}/Modification/base-files/public_web/index.php package/base-files/files/public_web/
 	sed -i 's/www/public_web/g' feeds/packages/lang/php[7-8]/files/php.ini
 	echo "PHP configuration complete!"
 else
@@ -99,6 +99,10 @@ if [ `grep -c 'luci-app-dockerman=y' .config` -ne '0' ]; then
 	sed -i 's/+docker/+docker +dockerd +docker-compose/g' feeds/luci/applications/luci-app-dockerman/Makefile
 	mkdir -p package/base-files/files/etc/docker
 	cp -rf ${GITHUB_WORKSPACE}/Modification/docker/etc/daemon.json package/base-files/files/etc/docker/
+	# fix docker network errors
+	cp -rf ${GITHUB_WORKSPACE}/Modification/docker/dockerd-restart.sh package/base-files/files/etc/
+	sed -i "s/exit 0/bash \/etc\/dockerd-restart.sh/g" package/base-files/files/etc/rc.local
+	echo "exit 0" >> package/base-files/files/etc/rc.local
 	echo "Docker configuration complete!"
 else
 	echo "Docker is not set yet"
