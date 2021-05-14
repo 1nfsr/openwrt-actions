@@ -13,6 +13,12 @@ if [ `grep -c 'luci-app-adguardhome=y' .config` -ne '0' ]; then
 	# custom AdguardHome
 	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/luasrc/controller/AdGuardHome.lua package/DLC/luci-app-adguardhome/luasrc/controller/
 	cp -rf ${GITHUB_WORKSPACE}/Modification/adguardhome/root/etc/config/AdGuardHome package/DLC/luci-app-adguardhome/root/etc/config/
+	# modify ui
+	sed -i '27s/210/188/g' package/DLC/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/base.lua
+	sed -i '27s/Web:"..httpport.."/Web /g' package/DLC/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/base.lua
+	sed -i '27s/http/https/g' package/DLC/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/base.lua
+	sed -i $'27s/\'+window.location.hostname+\'/adg.open-wrt.tk/g' package/DLC/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/base.lua
+	sed -i '27s/:"..httpsport.."\///g' package/DLC/luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/base.lua
 	# Firewall Rules
 	echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> package/network/config/firewall/files/firewall.user
 	echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53" >> package/network/config/firewall/files/firewall.user
