@@ -78,13 +78,17 @@ fi
 
 
 ## ohmyzsh
-cp -rf ${GITHUB_WORKSPACE}/Modification/base-file/etc/ohmyzsh package/base-files/files/etc/
+cp -rf ${GITHUB_WORKSPACE}/Modification/base-files/etc/ohmyzsh package/base-files/files/etc/
 
 
 ## php
-if [ `grep -c 'CONFIG_PACKAGE_php7=y' .config` -ne '0' ]; then
-	cp -rf ${GITHUB_WORKSPACE}/Modification/php7/php.ini feeds/packages/lang/php7/files/
-	echo "PHP7 configuration complete!"
+if [ `grep -c 'CONFIG_PACKAGE_php[7-8]=y' .config` -ne '0' ]; then
+	sed -i 's/;cgi.force_redirect/cgi.force_redirect/g' feeds/packages/lang/php[7-8]/files/php.ini
+	sed -i 's/;cgi.redirect_status_env = ;/cgi.redirect_status_env = "yes"/g' feeds/packages/lang/php[7-8]/files/php.ini
+	mkdir -p package/base-files/files/public_web
+	#touch package/base-files/files/public_web/.gitkeep
+	sed -i 's/www/public_web/g' feeds/packages/lang/php[7-8]/files/php.ini
+	echo "PHP configuration complete!"
 else
 	echo "PHP is not set yet"
 fi
