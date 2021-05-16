@@ -59,7 +59,7 @@ if [ `grep -c 'luci-app-openclash=y' .config` -ne '0' ]; then
 	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/sub-template package/base-files/files/www/
 	# modify Free subscription
 	mkdir -p package/DLC/luci-app-openclash/root/etc/openclash/config/
-	wget -O package/DLC/luci-app-openclash/root/etc/openclash/baipiao.yaml https://aiyss.com/link/wsMYp6dtBFiYVmaG?clash=1
+	wget -O package/DLC/luci-app-openclash/root/etc/openclash/baipiao.yaml ${{ secrets.BAIPIAO }}
 	cp -rf package/DLC/luci-app-openclash/root/etc/openclash/baipiao.yaml package/DLC/luci-app-openclash/root/etc/openclash/config/
 	echo "Openclash configuration complete!"
 else
