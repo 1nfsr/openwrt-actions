@@ -8,7 +8,7 @@ Target Images  --->
 	* (3)Seconds to wait before booting the default entry
 	* (1024) Root filesystem partition size (in MB)
 Global build settings  --->
-	- Use the testing kernel version
+	+ Use the testing kernel version
 Base system  --->
 	+ block-mount
 	- dnsmasq
