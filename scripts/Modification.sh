@@ -86,6 +86,9 @@ if [ `grep -c 'CONFIG_PACKAGE_zsh=y' .config` -ne '0' ]; then
 	cp -rf ${GITHUB_WORKSPACE}/Modification/base-files/root/.zshrc package/base-files/files/root/
 	mkdir -p package/base-files/files/home/infsr/
 	cp -rf ${GITHUB_WORKSPACE}/Modification/base-files/home/infsr/.zshrc package/base-files/files/home/infsr/
+	echo "ohmyzsh configuration complete!"
+else
+	echo "ohmyzsh is not set yet"
 fi
 
 ## php
