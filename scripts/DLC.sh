@@ -49,8 +49,8 @@ if [ `grep -c 'luci-app-openclash=y' .config` -ne '0' ]; then
 	# clash dashboard (https://yacd.open-wrt.tk)
 	mkdir -p package/base-files/files/www
 	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/yacd package/base-files/files/www/
-	sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.open-wrt.tk/g' package/base-files/files/www/yacd/app.6706b8885424994ac6fe.js
-	sed -i 's/secret:""/secret:"123456"/g' package/base-files/files/www/yacd/app.6706b8885424994ac6fe.js
+	sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.open-wrt.tk/g' package/base-files/files/www/yacd/assets/index.e54f6767.js
+	sed -i 's/secret:""/secret:"123456"/g' package/base-files/files/www/yacd/assets/index.e54f6767.js
 	sed -i 's/http:\/\/127.0.0.1:9090/https:\/\/wss.open-wrt.tk/g' package/base-files/files/www/yacd/index.html
 	# subconverter server (https://subd.open-wrt.tk)
 	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/subconverter package/base-files/files/etc/
