@@ -35,6 +35,8 @@ config openclash 'config'
 	option interface_name 'eth1'
 	option common_ports '0'
 	option log_size '1024'
+	option tolerance '0'
+	option custom_fallback_filter '0'
 	option geo_custom_url 'http://www.ideame.top/mmdb/Country.mmdb'
 	option chnr_custom_url 'https://github.com/Hackl0us/GeoIP2-CN/raw/release/CN-ip-cidr.txt'
 	option config_auto_update_mode '0'
@@ -63,19 +65,6 @@ config dns_servers
 	option type 'udp'
 	option ip '127.0.0.1'
 	option port '10053'
-
-config config_subscribe
-	option enabled '1'
-	option name 'baipiao'
-	option address 'https://aiyss.com/link/wsMYp6dtBFiYVmaG?clash=1'
-	option sub_convert '1'
-	option convert_address 'http://127.0.0.1:25500/sub'
-	option template 'Default'
-	option emoji 'false'
-	option udp 'true'
-	option skip_cert_verify 'true'
-	option sort 'true'
-	option node_type 'false'
 
 config config_subscribe
 	option enabled '0'

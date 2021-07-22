@@ -59,7 +59,7 @@ if [ `grep -c 'luci-app-openclash=y' .config` -ne '0' ]; then
 	cp -rf ${GITHUB_WORKSPACE}/Modification/openclash/sub-template package/base-files/files/www/
 	# modify Free subscription
 	mkdir -p package/DLC/luci-app-openclash/root/etc/openclash/config/
-	wget -O package/DLC/luci-app-openclash/root/etc/openclash/baipiao.yaml https://api.ikuuu.science/link/Mlp1JQUz6BrOHfPc?clash=3
+	wget -O package/DLC/luci-app-openclash/root/etc/openclash/baipiao.yaml 'https://pub-api-1.bianyuan.xyz/sub?target=clash&url=https%3A%2F%2Fapi.ikuuu.science%2Flink%2FMlp1JQUz6BrOHfPc%3Fclash%3D3&insert=false&config=https%3A%2F%2Fsubconverter.oss-ap-southeast-1.aliyuncs.com%2FRules%2FRemoteConfig%2Funiversal%2Furltest.ini&emoji=true&list=false&tfo=false&scv=false&fdn=false&sort=false&new_name=true'
 	cp -rf package/DLC/luci-app-openclash/root/etc/openclash/baipiao.yaml package/DLC/luci-app-openclash/root/etc/openclash/config/
 	echo "Openclash configuration complete!"
 else

@@ -11,8 +11,8 @@ Telegram`select`[]节点选择`[]HK`[]TW`[]SG`[]JP`[]US`[]全球直连`.*
 全球拦截`select`[]REJECT`[]DIRECT
 应用拦截`select`[]REJECT`[]DIRECT
 漏网之鱼`select`[]节点选择`[]负载均衡`[]故障转移`[]自动选择`[]HK`[]TW`[]SG`[]JP`[]US`[]全球直连`.*
-HK`select`港|HK
-SG`select`新加坡|狮城|SG
-TW`select`台|新北|彰化|TW
-JP`select`日|东京|大阪|埼玉|JP
-US`select`美|洛杉矶|硅谷|达拉斯|费利蒙|凤凰城|芝加哥|圣何塞|西雅图|US
+HK`url-test`港|HK`http://www.gstatic.com/generate_204`300
+SG`url-test`新加坡|狮城|SG`http://www.gstatic.com/generate_204`300
+TW`url-test`台|新北|彰化|TW`http://www.gstatic.com/generate_204`300
+JP`url-test`日|东京|大阪|埼玉|JP`http://www.gstatic.com/generate_204`300
+US`url-test`美|洛杉矶|硅谷|达拉斯|费利蒙|凤凰城|芝加哥|圣何塞|西雅图|US`http://www.gstatic.com/generate_204`300
