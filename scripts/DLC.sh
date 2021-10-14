@@ -3,3 +3,5 @@
 
 mkdir -p package/custom/
 cp -rf ${GITHUB_WORKSPACE}/Applications/luci-app-openclash package/custom/luci-app-openclash
+
+cp -rf ${GITHUB_WORKSPACE}/Applications/turboacc package/custom/turboacc
