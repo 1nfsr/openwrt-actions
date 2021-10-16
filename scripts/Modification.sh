@@ -26,10 +26,6 @@ sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/vie
 cp -rf ${GITHUB_WORKSPACE}/Modification/base-files/etc/sysctl.d/60_tcp_fastopen.conf package/base-files/files/etc/sysctl.d/
 
 
-# Modify default IP
-sed -i 's/192.168.1.1/192.168.77.1/g' package/base-files/files/bin/config_generate
-
-
 ## custom compile information
 sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
 sed -i "$ a\DISTRIB_DESCRIPTION='Built by Infsr($(date +%Y.%m.%d))@%D %V %C'" package/base-files/files/etc/openwrt_release
