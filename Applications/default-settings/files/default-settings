@@ -6,10 +6,10 @@ uci set system.@system[0].zonename=Asia/Shanghai
 uci set system.@system[0].hostname=x86
 uci commit system
 
-uci set network.lan.dns="127.0.0.1"
+uci set network.lan.dns="114.114.114.114"
 uci set network.lan.delegate="0"
 uci set network.wan.peerdns="0"
-uci set network.wan.dns="127.0.0.1"
+uci set network.wan.dns="114.114.114.114"
 uci set network.wan6.peerdns="0"
 uci set network.wan6.dns="::1 2001:4860:4860::8888"
 uci commit network
