@@ -14,5 +14,6 @@ bash ${GITHUB_WORKSPACE}/Modification/openclash/get_clash_core.sh amd64
 cp -rf ${GITHUB_WORKSPACE}/Applications/default-settings package/custom/default-settings
 
 cp -rf ${GITHUB_WORKSPACE}/Applications/luci-app-turboacc package/custom/luci-app-turboacc
+cp -rf ${GITHUB_WORKSPACE}/Applications/turboacc package/custom/turboacc
 patch -p1 ${GITHUB_WORKSPACE}/Modification/patches/remove_firewall_view_offload.patch
 patch -p1 ${GITHUB_WORKSPACE}/Modification/patches/remove_turboacc_dns_acc.patch

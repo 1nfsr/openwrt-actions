@@ -25,7 +25,7 @@ tools-y += autoconf autoconf-archive automake bc bison cmake cpio dosfstools
 tools-y += e2fsprogs fakeroot findutils firmware-utils flex gengetopt
 tools-y += libressl libtool lzma m4 make-ext4fs meson missing-macros mkimage
 tools-y += mklibs mtd-utils mtools ninja padjffs2 patch-image
-tools-y += patchelf pkgconf quilt squashfskit4 sstrip xxd zip zlib zstd ucl upx
+tools-y += patchelf pkgconf quilt squashfskit4 sstrip ucl upx xxd zip zlib zstd
 tools-$(BUILD_B43_TOOLS) += b43-tools
 tools-$(BUILD_ISL) += isl
 tools-$(BUILD_TOOLCHAIN) += expat gmp mpc mpfr
@@ -118,34 +118,34 @@ endif
 
 ifndef DUMP_TARGET_DB
 define PrepareStaging
-    @for dir in $(1); do ( \
-        $(if $(QUIET),,set -x;) \
-        mkdir -p "$$dir"; \
-        cd "$$dir"; \
-        mkdir -p bin lib stamp usr/include usr/lib; \
-    ); done
+	@for dir in $(1); do ( \
+		$(if $(QUIET),,set -x;) \
+		mkdir -p "$$dir"; \
+		cd "$$dir"; \
+		mkdir -p bin lib stamp usr/include usr/lib; \
+	); done
 endef
 
 $(BIN_DIR):
-    mkdir -p $@
+	mkdir -p $@
 
 # preparatory work
 $(STAGING_DIR)/.prepared: $(TMP_DIR)/.build
-    $(call PrepareStaging,$(STAGING_DIR))
-    mkdir -p $(BUILD_DIR)/stamp
-    touch $@
+	$(call PrepareStaging,$(STAGING_DIR))
+	mkdir -p $(BUILD_DIR)/stamp
+	touch $@
 
 $(STAGING_DIR_HOST)/.prepared: $(TMP_DIR)/.build
-    $(call PrepareStaging,$(STAGING_DIR_HOST))
-    mkdir -p $(BUILD_DIR_HOST)/stamp $(STAGING_DIR_HOST)/include/sys
-    $(INSTALL_DATA) $(TOPDIR)/tools/include/*.h $(STAGING_DIR_HOST)/include/
-    $(INSTALL_DATA) $(TOPDIR)/tools/include/sys/*.h $(STAGING_DIR_HOST)/include/sys/
+	$(call PrepareStaging,$(STAGING_DIR_HOST))
+	mkdir -p $(BUILD_DIR_HOST)/stamp $(STAGING_DIR_HOST)/include/sys
+	$(INSTALL_DATA) $(TOPDIR)/tools/include/*.h $(STAGING_DIR_HOST)/include/
+	$(INSTALL_DATA) $(TOPDIR)/tools/include/sys/*.h $(STAGING_DIR_HOST)/include/sys/
 ifneq ($(HOST_OS),Linux)
-    mkdir -p $(STAGING_DIR_HOST)/include/asm
-    $(INSTALL_DATA) $(TOPDIR)/tools/include/asm/*.h $(STAGING_DIR_HOST)/include/asm/
+	mkdir -p $(STAGING_DIR_HOST)/include/asm
+	$(INSTALL_DATA) $(TOPDIR)/tools/include/asm/*.h $(STAGING_DIR_HOST)/include/asm/
 endif
-    ln -snf lib $(STAGING_DIR_HOST)/lib64
-    touch $@
+	ln -snf lib $(STAGING_DIR_HOST)/lib64
+	touch $@
 
 endif
 
