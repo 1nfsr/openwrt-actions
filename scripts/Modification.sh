@@ -2,6 +2,7 @@
 
 
 ## add tools
+rm -rf tools/Makefile
 cp -rf ${GITHUB_WORKSPACE}/Modification/tools/* tools/
 
 ## use O2 optimization
@@ -26,7 +27,7 @@ sed -i '55d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/vie
 ## TCP Fast Open(TFO)
 # reference 1: https://wiki.archlinux.org/index.php/sysctl
 # reference 2: https://www.keycdn.com/support/tcp-fast-open
-cp -rf ${GITHUB_WORKSPACE}/Modification/tools/* target/linux/generic/hack-5.10/* base-files/etc/sysctl.d/60_tcp_fastopen.conf package/base-files/files/etc/sysctl.d/
+cp -rf ${GITHUB_WORKSPACE}/Modification/base-files/etc/sysctl.d/60_tcp_fastopen.conf package/base-files/files/etc/sysctl.d/
 
 
 ## custom compile information
@@ -53,8 +54,3 @@ elif [ `grep -c 'CONFIG_LINUX_5_10=y' .config` -ne '0' ]; then
 else
 	echo "Crypto algorithm support kernel done"
 fi
-
-
-## patches
-cp -rf ${GITHUB_WORKSPACE}/Modification/target/linux/generic/hack-5.10/* target/linux/generic/hack-5.10/
-cp -rf ${GITHUB_WORKSPACE}/Modification/package/network/config/firewall/patches package/network/config/firewall/
