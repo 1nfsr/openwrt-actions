@@ -11,8 +11,10 @@ popd
 [ -e $FEEDS_CONF ] && mv -f $FEEDS_CONF openwrt/feeds.conf.default
 #update&install feeds
 pushd /workdir/openwrt
+source ${GITHUB_WORKSPACE}/scripts/before.sh
 ./scripts/feeds update -a
 ./scripts/feeds install -a
+source ${GITHUB_WORKSPACE}/scripts/after.sh
 popd
 #load custom configuration
 [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
