@@ -1,4 +1,4 @@
-name: OpenWrt IMG
+name: OpenWrt Image
 
 on: 
   # push: 
