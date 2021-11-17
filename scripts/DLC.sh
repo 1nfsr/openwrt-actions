@@ -13,5 +13,5 @@
 
 #cp -rf ${GITHUB_WORKSPACE}/Applications/default-settings package/custom/default-settings
 
-rm -rf package/lean/default-settings
+rm -rf package/lean
 mv ${GITHUB_WORKSPACE}/community package/
