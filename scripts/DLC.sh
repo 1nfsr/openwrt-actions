@@ -7,6 +7,8 @@ mkdir -p package/base-files/files/etc/openclash/
 #get latest core
 #bash ${GITHUB_WORKSPACE}/Modification/openclash/get_clash_core.sh amd64
 bash ${GITHUB_WORKSPACE}/scripts/get_clash_core.sh amd64
+rm -rf package/community/other/luci-app-openclash/root/etc/openclash/{china_ip6_route.ipset,china_ip_route.ipset,Country.mmdb}
+mv -f ${GITHUB_WORKSPACE}/diy/etc/openclash/{china_ip6_route.ipset,china_ip_route.ipset,Country.mmdb} package/community/other/luci-app-openclash/root/etc/openclash/
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/openclash/* package/base-files/files/etc/openclash/
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/openclash package/community/other/luci-app-openclash/root/etc/config/
 

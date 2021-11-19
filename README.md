@@ -1,9 +1,9 @@
-### OpenWrt on Nginx ssl base
+### OpenWrt ~~on Nginx ssl base~~
 
 
 
 Apps: 
 - AdGuardHome
-- Docker
 - OpenClash
+- PassWall
 - SmartDNS
