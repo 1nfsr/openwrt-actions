@@ -8,7 +8,7 @@ uci set system.@system[0].hostname=x86
 uci commit system
 
 
-uci set network.lan.dns="114.114.114.114"
+uci set network.lan.dns="127.0.0.1"
 #uci set network.lan.delegate="0"
 uci set network.lan.ipaddr='192.168.77.1'
 uci set network.lan.proto='static'
@@ -16,7 +16,7 @@ uci set network.lan.type='bridge'
 #uci set network.lan.ifname='eth0'
 #uci set network.wan.ifname='eth1'
 uci set network.wan.peerdns="0"
-uci set network.wan.dns="114.114.114.114"
+uci set network.wan.dns="127.0.0.1"
 uci set network.wan6.peerdns="0"
 uci set network.wan6.dns="::1 2001:4860:4860::8888"
 uci commit network
