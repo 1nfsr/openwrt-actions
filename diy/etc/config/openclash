@@ -25,7 +25,6 @@ config openclash 'config'
 	option common_ports '0'
 	option log_size '1024'
 	option store_fakeip '1'
-	option append_wan_dns '1'
 	option netflix_domains_prefetch '0'
 	option chnr6_custom_url 'https://ispip.clang.cn/all_cn_ipv6.txt'
 	option core_version 'linux-amd64'
@@ -64,131 +63,26 @@ config openclash 'config'
 	option config_update_week_time '0'
 	option auto_update_time '0'
 	option config_path '/etc/openclash/config/basic.yaml'
-	option config_reload '0'
+	option append_wan_dns '0'
+	option config_reload '1'
 
 config dns_servers
+	option enabled '1'
 	option group 'nameserver'
-	option type 'udp'
-	option ip '114.114.114.114'
-	option enabled '1'
-
-config dns_servers
-	option group 'nameserver'
-	option type 'udp'
-	option ip '119.29.29.29'
-	option enabled '1'
-
-config dns_servers
-	option group 'nameserver'
-	option type 'udp'
-	option ip '119.28.28.28'
-	option enabled '0'
-
-config dns_servers
-	option group 'nameserver'
-	option type 'udp'
-	option ip '223.5.5.5'
-	option enabled '0'
-
-config dns_servers
-	option type 'https'
-	option ip 'doh.pub/dns-query'
-	option group 'nameserver'
-	option enabled '1'
-
-config dns_servers
-	option type 'https'
-	option ip 'dns.alidns.com/dns-query'
-	option group 'nameserver'
-	option enabled '1'
-
-config dns_servers
-	option type 'https'
-	option group 'fallback'
-	option ip 'dns.cloudflare.com/dns-query'
-	option enabled '1'
-
-config dns_servers
-	option group 'fallback'
-	option ip 'dns.google'
-	option port '853'
-	option type 'tls'
-	option enabled '0'
-
-config dns_servers
-	option group 'fallback'
-	option type 'https'
-	option ip '1.1.1.1/dns-query'
-	option enabled '0'
-
-config dns_servers
-	option group 'fallback'
-	option ip '1.1.1.1'
-	option port '853'
-	option type 'tls'
-	option enabled '0'
-
-config dns_servers
-	option enabled '0'
-	option group 'fallback'
-	option ip '8.8.8.8'
-	option port '853'
-	option type 'tls'
-
-config dns_servers
-	option type 'udp'
-	option group 'fallback'
-	option ip '2001:4860:4860::8888'
-	option port '53'
-	option enabled '0'
-
-config dns_servers
-	option type 'udp'
-	option group 'fallback'
-	option ip '2001:4860:4860::8844'
-	option port '53'
-	option enabled '0'
-
-config dns_servers
-	option type 'udp'
-	option group 'fallback'
-	option ip '2001:da8::666'
-	option port '53'
-	option enabled '1'
-
-config dns_servers
-	option group 'fallback'
-	option type 'https'
-	option ip 'public.dns.iij.jp/dns-query'
-	option enabled '1'
-
-config dns_servers
-	option group 'fallback'
-	option type 'https'
-	option ip 'jp.tiar.app/dns-query'
-	option enabled '1'
-
-config dns_servers
-	option group 'fallback'
-	option type 'https'
-	option ip 'jp.tiarap.org/dns-query'
-	option enabled '1'
-
-config dns_servers
-	option group 'fallback'
-	option ip 'jp.tiar.app'
-	option type 'tls'
-	option enabled '0'
-
-config dns_servers
-	option group 'fallback'
-	option ip 'dot.tiar.app'
-	option type 'tls'
-	option enabled '1'
+	option ip '127.0.0.1'
+	option port '5353'
+	option type 'tcp'
 
 config config_subscribe
-	option enabled '0'
-	option name 'subscribe'
-	option address '#'
+	option enabled '1'
+	option name 'mojie'
+	option address 'https://mojie.link/api/v1/client/subscribe?token=939f7aafab64cf89a54d0d4743d43e2a'
 	option sub_convert '0'
+
+config dns_servers
+	option enabled '1'
+	option group 'fallback'
+	option ip '127.0.0.1'
+	option port '5353'
+	option type 'tcp'
 
