@@ -27,3 +27,19 @@ mkdir -p package/base-files/files/etc/adguardhome/
 bash ${GITHUB_WORKSPACE}/scripts/get_adguardhome_core.sh amd64
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/adguardhome/AdGuardHome.yaml package/base-files/files/etc/adguardhome/
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/AdGuardHome package/community/other/luci-app-adguardhome/root/etc/config/
+
+
+## SmartDNS
+if [ `grep -c 'luci-app-smartdns=y' .config` -ne '0' ]; then
+    mkdir -p feeds/packages/net/smartdns/files/etc/config/
+    cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/smartdns feeds/packages/net/smartdns/files/etc/config/
+    mkdir -p feeds/packages/net/smartdns/files/etc/init.d/
+    cp -rf ${GITHUB_WORKSPACE}/diy/smartdns/init.d/smartdnsprocd feeds/packages/net/smartdns/files/etc/init.d/
+    cp -rf ${GITHUB_WORKSPACE}/diy/smartdns/Makefile feeds/packages/net/smartdns/
+    # disable Rebind protection&&RBL checking and similar services
+    sed -i "s/option rebind_protection 1/option rebind_protection 0/g" package/network/services/dnsmasq/files/dhcp.conf
+    sed -i "s/option rebind_localhost 1/option rebind_localhost 0/g" package/network/services/dnsmasq/files/dhcp.conf
+    echo "SmartDNS configuration complete!"
+else
+    echo "SmartDNS is not set yet"
+fi

@@ -32,11 +32,10 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
-  - 114.114.114.114
-  - 1.1.1.1
+  - 127.0.0.1:6053
   upstream_dns_file: ""
   bootstrap_dns:
-  - 1.1.1.1
+  - 127.0.0.1:6053
   all_servers: true
   fastest_addr: false
   allowed_clients: []
