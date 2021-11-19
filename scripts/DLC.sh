@@ -18,3 +18,9 @@ cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/openclash package/community/other/luci
 #cp -rf ${GITHUB_WORKSPACE}/Applications/default-settings package/custom/default-settings
 
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/turboacc package/community/lean/luci-app-turboacc/root/etc/config/
+
+
+mkdir -p package/base-files/files/etc/adguardhome/
+bash ${GITHUB_WORKSPACE}/scripts/get_adguardhome_core.sh amd64
+cp -rf ${GITHUB_WORKSPACE}/diy/etc/adguardhome/AdGuardHome.yaml package/base-files/files/etc/adguardhome/
+cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/AdGuardHome package/community/other/luci-app-adguardhome/root/etc/config/

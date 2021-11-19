@@ -167,28 +167,13 @@ cfw-bypass:
 - "*.music.126.net"
 dns:
   nameserver:
-  - 192.168.1.1
-  - dhcp://"eth1"
-  - 114.114.114.114
-  - 119.29.29.29
-  - https://doh.pub/dns-query
-  - https://dns.alidns.com/dns-query
+  - tcp://127.0.0.1:5353
   fallback:
-  - https://dns.cloudflare.com/dns-query
-  - "[2001:da8::666]:53"
-  - https://public.dns.iij.jp/dns-query
-  - https://jp.tiar.app/dns-query
-  - https://jp.tiarap.org/dns-query
-  - tls://dot.tiar.app
+  - tcp://127.0.0.1:5353
   enable: true
   ipv6: false
   enhanced-mode: redir-host
   listen: 127.0.0.1:7874
-  default-nameserver:
-  - 192.168.1.1
-  - 114.114.114.114
-  - 119.29.29.29
-  - "[2001:da8::666]:53"
   fallback-filter:
     geoip: true
     geoip-code: CN
