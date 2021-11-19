@@ -75,8 +75,8 @@ config dns_servers
 
 config config_subscribe
 	option enabled '1'
-	option name 'mojie'
-	option address 'https://mojie.link/api/v1/client/subscribe?token=939f7aafab64cf89a54d0d4743d43e2a'
+	option name 'subscribe'
+	option address '#'
 	option sub_convert '0'
 
 config dns_servers
