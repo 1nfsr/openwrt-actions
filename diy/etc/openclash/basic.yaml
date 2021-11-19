@@ -1,0 +1,234 @@
+---
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: silent
+external-controller: 192.168.77.1:9090
+proxies:
+- name: "[VMess] 日本1-V2Ray"
+  server: jp01-vm0.entry.ikuuu.casa
+  port: 446
+  type: vmess
+  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  alterId: 1
+  cipher: auto
+  tls: false
+  skip-cert-verify: false
+  network: ws
+  ws-path: "/hls/cctv5phd.m3u8"
+  ws-headers:
+    Host: jp01-vm0.entry.ikuuu.casa
+  udp: true
+- name: "[VMess] 日本2-V2Ray"
+  server: jp02-vm0.entry.ikuuu.casa
+  port: 446
+  type: vmess
+  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  alterId: 1
+  cipher: auto
+  tls: false
+  skip-cert-verify: false
+  network: ws
+  ws-path: "/hls/cctv5phd.m3u8"
+  ws-headers:
+    Host: jp02-vm0.entry.ikuuu.casa
+  udp: true
+- name: "[VMess] 日本3-V2Ray"
+  server: jp03-vm0.entry.ikuuu.casa
+  port: 446
+  type: vmess
+  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  alterId: 1
+  cipher: auto
+  tls: false
+  skip-cert-verify: false
+  network: ws
+  ws-path: "/hls/cctv5phd.m3u8"
+  ws-headers:
+    Host: jp03-vm0.entry.ikuuu.casa
+  udp: true
+- name: "[VMess] 日本4-V2Ray"
+  server: jp04-vm0.entry.ikuuu.casa
+  port: 446
+  type: vmess
+  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  alterId: 1
+  cipher: auto
+  tls: false
+  skip-cert-verify: false
+  network: ws
+  ws-path: "/hls/cctv5phd.m3u8"
+  ws-headers:
+    Host: jp04-vm0.entry.ikuuu.casa
+  udp: true
+- name: "[VMess] 日本5-V2Ray"
+  server: jp05-vm0.entry.ikuuu.casa
+  port: 446
+  type: vmess
+  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  alterId: 1
+  cipher: auto
+  tls: false
+  skip-cert-verify: false
+  network: ws
+  ws-path: "/hls/cctv5phd.m3u8"
+  ws-headers:
+    Host: jp05-vm0.entry.ikuuu.casa
+  udp: true
+- name: "[VMess] 日本6-V2Ray"
+  server: jp06-vm0.entry.ikuuu.casa
+  port: 446
+  type: vmess
+  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  alterId: 1
+  cipher: auto
+  tls: false
+  skip-cert-verify: false
+  network: ws
+  ws-path: "/hls/cctv5phd.m3u8"
+  ws-headers:
+    Host: jp06-vm0.entry.ikuuu.casa
+  udp: true
+proxy-groups:
+- name: Proxies
+  type: select
+  proxies:
+  - 自动选择
+  - 故障转移
+  - 负载均衡
+  - "[VMess] 日本1-V2Ray"
+  - "[VMess] 日本2-V2Ray"
+  - "[VMess] 日本3-V2Ray"
+  - "[VMess] 日本4-V2Ray"
+  - "[VMess] 日本5-V2Ray"
+  - "[VMess] 日本6-V2Ray"
+- name: 自动选择
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  proxies:
+  - "[VMess] 日本1-V2Ray"
+  - "[VMess] 日本2-V2Ray"
+  - "[VMess] 日本3-V2Ray"
+  - "[VMess] 日本4-V2Ray"
+  - "[VMess] 日本5-V2Ray"
+  - "[VMess] 日本6-V2Ray"
+  tolerance: 100
+- name: 故障转移
+  type: fallback
+  url: http://www.gstatic.com/generate_204
+  interval: 180
+  proxies:
+  - "[VMess] 日本1-V2Ray"
+  - "[VMess] 日本2-V2Ray"
+  - "[VMess] 日本3-V2Ray"
+  - "[VMess] 日本4-V2Ray"
+  - "[VMess] 日本5-V2Ray"
+  - "[VMess] 日本6-V2Ray"
+- name: 负载均衡
+  type: load-balance
+  url: http://www.gstatic.com/generate_204
+  interval: 180
+  proxies:
+  - "[VMess] 日本1-V2Ray"
+  - "[VMess] 日本2-V2Ray"
+  - "[VMess] 日本3-V2Ray"
+  - "[VMess] 日本4-V2Ray"
+  - "[VMess] 日本5-V2Ray"
+  - "[VMess] 日本6-V2Ray"
+rules:
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- DOMAIN-KEYWORD,amazon,Proxies
+- DOMAIN-KEYWORD,google,Proxies
+- DOMAIN-KEYWORD,gmail,Proxies
+- DOMAIN-KEYWORD,youtube,Proxies
+- DOMAIN-KEYWORD,facebook,Proxies
+- DOMAIN-SUFFIX,fb.me,Proxies
+- DOMAIN-SUFFIX,fbcdn.net,Proxies
+- DOMAIN-KEYWORD,twitter,Proxies
+- DOMAIN-KEYWORD,instagram,Proxies
+- DOMAIN-KEYWORD,dropbox,Proxies
+- DOMAIN-SUFFIX,twimg.com,Proxies
+- DOMAIN-KEYWORD,blogspot,Proxies
+- DOMAIN-SUFFIX,youtu.be,Proxies
+- DOMAIN-KEYWORD,whatsapp,Proxies
+- DOMAIN-SUFFIX,local,DIRECT
+- IP-CIDR,127.0.0.0/8,DIRECT
+- IP-CIDR,172.16.0.0/12,DIRECT
+- IP-CIDR,192.168.0.0/16,DIRECT
+- IP-CIDR,10.0.0.0/8,DIRECT
+- IP-CIDR,17.0.0.0/8,DIRECT
+- IP-CIDR,100.64.0.0/10,DIRECT
+- GEOIP,CN,DIRECT
+- MATCH,Proxies
+cfw-bypass:
+- music.163.com
+- "*.music.126.net"
+dns:
+  nameserver:
+  - 192.168.1.1
+  - dhcp://"eth1"
+  - 114.114.114.114
+  - 119.29.29.29
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
+  fallback:
+  - https://dns.cloudflare.com/dns-query
+  - "[2001:da8::666]:53"
+  - https://public.dns.iij.jp/dns-query
+  - https://jp.tiar.app/dns-query
+  - https://jp.tiarap.org/dns-query
+  - tls://dot.tiar.app
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 127.0.0.1:7874
+  default-nameserver:
+  - 192.168.1.1
+  - 114.114.114.114
+  - 119.29.29.29
+  - "[2001:da8::666]:53"
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.0.0.0/24
+    - 192.0.2.0/24
+    - 192.88.99.0/24
+    - 192.168.0.0/16
+    - 198.18.0.0/15
+    - 198.51.100.0/24
+    - 203.0.113.0/24
+    - 224.0.0.0/4
+    - 240.0.0.0/4
+    - 255.255.255.255/32
+    domain:
+    - "+.google.com"
+    - "+.facebook.com"
+    - "+.youtube.com"
+    - "+.githubusercontent.com"
+    - "+.googlevideo.com"
+redir-port: 7892
+tproxy-port: 7895
+mixed-port: 7893
+secret: '123456'
+bind-address: 192.168.77.1
+external-ui: "/usr/share/openclash/dashboard"
+ipv6: false
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+  - tcp://8.8.8.8:53
+  - tcp://8.8.4.4:53
+profile:
+  store-selected: true
+  store-fake-ip: true
+interface-name: eth1
