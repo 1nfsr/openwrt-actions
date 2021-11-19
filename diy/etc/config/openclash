@@ -62,8 +62,8 @@ config openclash 'config'
 	option config_update_week_time '0'
 	option auto_update_time '0'
 	option append_wan_dns '0'
-	option enable '1'
 	option config_path '/etc/openclash/config/basic.yaml'
+	option enable '1'
 	option config_reload '1'
 
 config dns_servers
