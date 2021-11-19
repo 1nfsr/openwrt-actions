@@ -28,7 +28,7 @@ dns:
   blocked_response_ttl: 10
   parental_block_host: family-block.dns.adguard.com
   safebrowsing_block_host: standard-block.dns.adguard.com
-  ratelimit: 20
+  ratelimit: 0
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
@@ -36,12 +36,9 @@ dns:
   - 1.1.1.1
   upstream_dns_file: ""
   bootstrap_dns:
-  - 9.9.9.10
-  - 149.112.112.10
-  - 2620:fe::10
-  - 2620:fe::fe:10
-  all_servers: false
-  fastest_addr: true
+  - 1.1.1.1
+  all_servers: true
+  fastest_addr: false
   allowed_clients: []
   disallowed_clients: []
   blocked_hosts:
@@ -52,7 +49,7 @@ dns:
   cache_ttl_min: 0
   cache_ttl_max: 0
   bogus_nxdomain: []
-  aaaa_disabled: false
+  aaaa_disabled: true
   enable_dnssec: false
   edns_client_subnet: false
   max_goroutines: 300

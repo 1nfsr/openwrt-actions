@@ -20,6 +20,7 @@ cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/openclash package/community/other/luci
 #cp -rf ${GITHUB_WORKSPACE}/Applications/default-settings package/custom/default-settings
 
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/turboacc package/community/lean/luci-app-turboacc/root/etc/config/
+sed -i 's/fullcone  0/fullcone  1/g' package/network/config/firewall/files/firewall.config
 
 
 mkdir -p package/base-files/files/etc/adguardhome/
