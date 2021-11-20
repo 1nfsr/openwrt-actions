@@ -28,7 +28,6 @@ sed -i '/Need Start From Luci Page/d' package/community/other/luci-app-openclash
 #cp -rf ${GITHUB_WORKSPACE}/Applications/default-settings package/custom/default-settings
 
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/turboacc package/community/lean/luci-app-turboacc/root/etc/config/
-sed -i 's/fullcone 0/fullcone 1/g' package/network/config/firewall/files/firewall.config
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/startup_fullcone.sh package/base-files/files/etc/
 sed -i "s/exit 0/bash \/etc\/startup.sh/g" package/base-files/files/etc/rc.local
 echo "exit 0" >> package/base-files/files/etc/rc.local
