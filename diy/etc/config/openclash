@@ -73,12 +73,6 @@ config dns_servers
 	option port '5353'
 	option type 'tcp'
 
-config config_subscribe
-	option enabled '1'
-	option name 'subscribe'
-	option address '#'
-	option sub_convert '0'
-
 config dns_servers
 	option enabled '1'
 	option group 'fallback'
@@ -86,3 +80,15 @@ config dns_servers
 	option port '5353'
 	option type 'tcp'
 
+config config_subscribe
+	option enabled '1'
+	option name 'subscribe'
+	option address '#'
+	option sub_convert '1'
+	option convert_address 'https://api.dler.io/sub'
+	option template 'ACL4SSR 规则标准版'
+	option emoji 'false'
+	option udp 'true'
+	option skip_cert_verify 'true'
+	option sort 'true'
+	option node_type 'true'

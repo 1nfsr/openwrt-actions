@@ -13,6 +13,6 @@ else
     echo "full cone nat running"
 fi
 
-sed -i 's/bash \/etc\/startup.sh//g' /etc/rc.local
+sed -i '/startup_fullcone.sh/d' /etc/rc.local
 
 rm $0
