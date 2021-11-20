@@ -11,6 +11,10 @@ rm -rf package/community/other/luci-app-openclash/root/etc/openclash/{china_ip6_
 mv -f ${GITHUB_WORKSPACE}/diy/etc/openclash/{china_ip6_route.ipset,china_ip_route.ipset,Country.mmdb} package/community/other/luci-app-openclash/root/etc/openclash/
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/openclash/* package/base-files/files/etc/openclash/
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/openclash package/community/other/luci-app-openclash/root/etc/config/
+# 删除需要从Luci启动,
+sed -i '/Need Start From Luci Page/d' package/community/other/luci-app-openclash/root/etc/init.d/openclash
+
+
 #
 #cp -rf ${GITHUB_WORKSPACE}/diy/etc/startup.sh package/base-files/files/etc/
 #sed -i "s/exit 0/bash \/etc\/startup.sh/g" package/base-files/files/etc/rc.local
@@ -25,6 +29,10 @@ cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/openclash package/community/other/luci
 
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/turboacc package/community/lean/luci-app-turboacc/root/etc/config/
 sed -i 's/fullcone 0/fullcone 1/g' package/network/config/firewall/files/firewall.config
+cp -rf ${GITHUB_WORKSPACE}/diy/etc/startup_fullcone.sh package/base-files/files/etc/
+sed -i "s/exit 0/bash \/etc\/startup.sh/g" package/base-files/files/etc/rc.local
+echo "exit 0" >> package/base-files/files/etc/rc.local
+
 
 
 mkdir -p package/base-files/files/etc/adguardhome/

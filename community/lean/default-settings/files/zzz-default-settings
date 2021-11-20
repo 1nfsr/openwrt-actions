@@ -7,7 +7,7 @@ uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
 uci commit system
 
-uci set network.lan.dns="114.114.114.114"
+uci set network.lan.dns="127.0.0.1"
 #uci set network.lan.delegate="0"
 uci set network.lan.ipaddr='192.168.77.1'
 uci set network.lan.proto='static'
@@ -15,38 +15,14 @@ uci set network.lan.type='bridge'
 #uci set network.lan.ifname='eth0'
 #uci set network.wan.ifname='eth1'
 uci set network.wan.peerdns="0"
-uci set network.wan.dns="114.114.114.114"
-uci set network.wan6.peerdns="0"
-uci set network.wan6.dns="::1 2001:4860:4860::8888"
+uci set network.wan.dns="127.0.0.1"
+#uci set network.wan6.peerdns="0"
+#uci set network.wan6.dns="::1 2001:4860:4860::8888"
 uci commit network
 
 uci set fstab.@global[0].anon_mount=1
 uci commit fstab
 
-rm -f /usr/lib/lua/luci/view/admin_status/index/mwan.htm
-rm -f /usr/lib/lua/luci/view/admin_status/index/upnp.htm
-rm -f /usr/lib/lua/luci/view/admin_status/index/ddns.htm
-rm -f /usr/lib/lua/luci/view/admin_status/index/minidlna.htm
-
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/aria2.lua
-sed -i 's/services/nas/g' /usr/lib/lua/luci/view/aria2/overview_status.htm
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/hd_idle.lua
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/samba.lua
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/samba4.lua
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/minidlna.lua
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/transmission.lua
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/mjpg-streamer.lua
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/p910nd.lua
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/usb_printer.lua
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/xunlei.lua
-sed -i 's/services/nas/g'  /usr/lib/lua/luci/view/minidlna_status.htm
-
-if [ -x "$(command -v mtkwifi)" ]; then
-  sed -i "/luci.model.network/a local wifi_infs = \"ra0 rai0\"" /usr/lib/lua/luci/view/cbi/network_ifacelist.htm
-  sed -i '/"id".*"_custom")/a ifattr(self.network == "lan", "checked", "checked") ..' /usr/lib/lua/luci/view/cbi/network_ifacelist.htm
-  sed -i 's#attr("value", " ")#ifattr(self.network == "lan", "value", wifi_infs)#' /usr/lib/lua/luci/view/cbi/network_ifacelist.htm
-  sed -i "s/_custom').checked=true\"/_custom').checked=true\" <%=ifattr(self.network == \"lan\", \"value\", wifi_infs)%>/" /usr/lib/lua/luci/view/cbi/network_ifacelist.htm
-fi
 
 ln -sf /sbin/ip /usr/bin/ip
 
@@ -62,8 +38,6 @@ echo 'iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53'
 echo '[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
 echo '[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
 
-sed -i '/option disabled/d' /etc/config/wireless
-sed -i '/set wireless.radio${devidx}.disabled/d' /lib/wifi/mac80211.sh
 
 sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release
 echo "DISTRIB_REVISION='Built by Infsr($(date +%Y.%m.%d))'" >> /etc/openwrt_release
