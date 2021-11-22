@@ -8,9 +8,9 @@ external-controller: 192.168.77.1:9090
 proxies:
 - name: "[VMess] 日本1-V2Ray"
   server: jp01-vm0.entry.ikuuu.casa
-  port: 446
+  port: 444
   type: vmess
-  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  uuid: 85f7edaa-40b3-3b43-b833-a3aacbff74b1
   alterId: 1
   cipher: auto
   tls: false
@@ -22,9 +22,9 @@ proxies:
   udp: true
 - name: "[VMess] 日本2-V2Ray"
   server: jp02-vm0.entry.ikuuu.casa
-  port: 446
+  port: 444
   type: vmess
-  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  uuid: 85f7edaa-40b3-3b43-b833-a3aacbff74b1
   alterId: 1
   cipher: auto
   tls: false
@@ -36,9 +36,9 @@ proxies:
   udp: true
 - name: "[VMess] 日本3-V2Ray"
   server: jp03-vm0.entry.ikuuu.casa
-  port: 446
+  port: 444
   type: vmess
-  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  uuid: 85f7edaa-40b3-3b43-b833-a3aacbff74b1
   alterId: 1
   cipher: auto
   tls: false
@@ -50,9 +50,9 @@ proxies:
   udp: true
 - name: "[VMess] 日本4-V2Ray"
   server: jp04-vm0.entry.ikuuu.casa
-  port: 446
+  port: 444
   type: vmess
-  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  uuid: 85f7edaa-40b3-3b43-b833-a3aacbff74b1
   alterId: 1
   cipher: auto
   tls: false
@@ -64,9 +64,9 @@ proxies:
   udp: true
 - name: "[VMess] 日本5-V2Ray"
   server: jp05-vm0.entry.ikuuu.casa
-  port: 446
+  port: 444
   type: vmess
-  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  uuid: 85f7edaa-40b3-3b43-b833-a3aacbff74b1
   alterId: 1
   cipher: auto
   tls: false
@@ -78,9 +78,9 @@ proxies:
   udp: true
 - name: "[VMess] 日本6-V2Ray"
   server: jp06-vm0.entry.ikuuu.casa
-  port: 446
+  port: 444
   type: vmess
-  uuid: d5416287-2eae-3fd7-99a0-cdc8d399347a
+  uuid: 85f7edaa-40b3-3b43-b833-a3aacbff74b1
   alterId: 1
   cipher: auto
   tls: false
