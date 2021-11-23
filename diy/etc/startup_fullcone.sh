@@ -8,8 +8,8 @@ if [ "$fullcone_enable" -eq 0 ]; then
     uci commit turboacc
     #sleep 3
     echo "full cone nat Start Successful"
-    #echo "Restart turboacc"
-    #/etc/init.d/turboacc restart
+    echo "Restart turboacc"
+    /etc/init.d/turboacc restart
 else
     echo "full cone nat running"
 fi

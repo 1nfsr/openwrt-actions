@@ -1708,11 +1708,10 @@ CONFIG_BUSYBOX_CONFIG_BASENAME=y
 CONFIG_BUSYBOX_CONFIG_CAT=y
 # CONFIG_BUSYBOX_CONFIG_FEATURE_CATN is not set
 # CONFIG_BUSYBOX_CONFIG_FEATURE_CATV is not set
-CONFIG_BUSYBOX_CONFIG_CHGRP=y
-CONFIG_BUSYBOX_CONFIG_CHMOD=y
-CONFIG_BUSYBOX_CONFIG_CHOWN=y
-# CONFIG_BUSYBOX_CONFIG_FEATURE_CHOWN_LONG_OPTIONS is not set
-CONFIG_BUSYBOX_CONFIG_CHROOT=y
+# CONFIG_BUSYBOX_CONFIG_CHGRP is not set
+# CONFIG_BUSYBOX_CONFIG_CHMOD is not set
+# CONFIG_BUSYBOX_CONFIG_CHOWN is not set
+# CONFIG_BUSYBOX_CONFIG_CHROOT is not set
 # CONFIG_BUSYBOX_CONFIG_CKSUM is not set
 # CONFIG_BUSYBOX_CONFIG_COMM is not set
 CONFIG_BUSYBOX_CONFIG_CP=y
@@ -7231,10 +7230,10 @@ CONFIG_PACKAGE_coreutils-base64=y
 # CONFIG_PACKAGE_coreutils-basenc is not set
 # CONFIG_PACKAGE_coreutils-cat is not set
 # CONFIG_PACKAGE_coreutils-chcon is not set
-# CONFIG_PACKAGE_coreutils-chgrp is not set
-# CONFIG_PACKAGE_coreutils-chmod is not set
-# CONFIG_PACKAGE_coreutils-chown is not set
-# CONFIG_PACKAGE_coreutils-chroot is not set
+CONFIG_PACKAGE_coreutils-chgrp=y
+CONFIG_PACKAGE_coreutils-chmod=y
+CONFIG_PACKAGE_coreutils-chown=y
+CONFIG_PACKAGE_coreutils-chroot=y
 # CONFIG_PACKAGE_coreutils-cksum is not set
 # CONFIG_PACKAGE_coreutils-comm is not set
 # CONFIG_PACKAGE_coreutils-cp is not set
