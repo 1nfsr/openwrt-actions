@@ -30,6 +30,11 @@ sed -i '/Need Start From Luci Page/d' package/community/other/luci-app-openclash
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/turboacc package/community/lean/luci-app-turboacc/root/etc/config/
 cp -rf ${GITHUB_WORKSPACE}/diy/etc/startup_fullcone.sh package/base-files/files/etc/
 sed -i "s/exit 0/bash \/etc\/startup_fullcone.sh/g" package/base-files/files/etc/rc.local
+
+# homeassistant id
+cp -rf ${GITHUB_WORKSPACE}/diy/etc/homeassistant.sh package/base-files/files/etc/
+echo "bash /etc/homeassistant.sh" package/base-files/files/etc/rc.local
+
 echo "exit 0" >> package/base-files/files/etc/rc.local
 
 
