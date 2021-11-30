@@ -1,0 +1,7 @@
+
+config global
+
+config dnscrypt-proxy 'ns1'
+    option address '0.0.0.0'
+    option port '7053'
+    option resolver 'acsacsar-ams-ipv4'

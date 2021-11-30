@@ -33,6 +33,7 @@ dns:
   refuse_any: true
   upstream_dns:
   - 127.0.0.1:6053
+  - 127.0.0.1:7053
   upstream_dns_file: ""
   bootstrap_dns:
   - 127.0.0.1:6053

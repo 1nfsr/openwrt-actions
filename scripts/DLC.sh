@@ -60,3 +60,6 @@ if [ `grep -c 'luci-app-smartdns=y' .config` -ne '0' ]; then
 else
     echo "SmartDNS is not set yet"
 fi
+
+## dnscrypt-proxy
+sed -i 's/5353/7053/g' feeds/packages/net/dnscrypt-proxy/files/dnscrypt-proxy.config
