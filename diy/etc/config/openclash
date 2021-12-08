@@ -86,7 +86,7 @@ config config_subscribe
 	option name 'subscribe'
 	option address '#'
 	option sub_convert '1'
-	option convert_address 'https://api.dler.io/sub'
+	option convert_address 'https://subcon.dlj.tf/sub'
 	option template 'ACL4SSR 规则标准版'
 	option emoji 'false'
 	option udp 'true'
