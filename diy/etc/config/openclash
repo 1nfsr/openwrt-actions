@@ -66,6 +66,9 @@ config openclash 'config'
 	option config_path '/etc/openclash/config/basic.yaml'
 	option enable '1'
 	option config_reload '1'
+	option stream_domains_prefetch '1'
+    option stream_domains_prefetch_interval '1440'
+    option stream_auto_select '0'
 
 config dns_servers
 	option enabled '1'
