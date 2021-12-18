@@ -5,7 +5,6 @@ rm -rf ./lean/{luci-app-turboacc,openwrt-fullconenat,pdnsd-alt,r8168,shortcut-fe
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autocore ./lean/autocore
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount ./lean/automount
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/dnsforwarder ./lean/dnsforwarder
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/dnsproxy ./lean/dnsproxy
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper ./lean/ipv6-helper
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind ./lean/luci-app-arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-turboacc ./lean/luci-app-turboacc
