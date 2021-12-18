@@ -61,5 +61,17 @@ else
     echo "SmartDNS is not set yet"
 fi
 
+
+## passwall
+# geoip.dat https://github.com/v2fly/geoip/releases
+# geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases
+if [ `grep -c 'luci-app-passwall=y' .config` -ne '0' ]; then
+    cp -rf ${GITHUB_WORKSPACE}/diy/passwall/Makefile package/community/lienol/luci-app-passwall/
+    cp -rf ${GITHUB_WORKSPACE}/diy/usr/share/xray package/community/lienol/luci-app-passwall/root/usr/share/
+    echo "PassWall configuration complete!"
+else
+    echo "PassWall is not set yet"
+fi
+
 ## dnscrypt-proxy
 sed -i 's/5353/7053/g' feeds/packages/net/dnscrypt-proxy/files/dnscrypt-proxy.config
