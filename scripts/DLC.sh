@@ -15,8 +15,8 @@ cp -rf ${GITHUB_WORKSPACE}/diy/etc/config/openclash package/community/other/luci
 sed -i '/Need Start From Luci Page/d' package/community/other/luci-app-openclash/root/etc/init.d/openclash
 
 # nodes
-curl -o package/base-files/files/etc/openclash/config/basic.yaml https://pub-api-1.bianyuan.xyz/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fgit-yusteven%2Fopenit%2Fmain%2Flong&insert=false&config=https%3A%2F%2Fsubconverter.oss-ap-southeast-1.aliyuncs.com%2FRules%2FRemoteConfig%2Funiversal%2Furltest.ini&append_type=true&emoji=false&list=false&tfo=false&scv=false&fdn=true&sort=true&udp=true&new_name=true
-cp -rf package/base-files/files/etc/openclash/config/basic.yaml package/base-files/files/etc/openclash/
+#curl -o package/base-files/files/etc/openclash/config/basic.yaml https://pub-api-1.bianyuan.xyz/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fgit-yusteven%2Fopenit%2Fmain%2Flong&insert=false&config=https%3A%2F%2Fsubconverter.oss-ap-southeast-1.aliyuncs.com%2FRules%2FRemoteConfig%2Funiversal%2Furltest.ini&append_type=true&emoji=false&list=false&tfo=false&scv=false&fdn=true&sort=true&udp=true&new_name=true
+#cp -rf package/base-files/files/etc/openclash/config/basic.yaml package/base-files/files/etc/openclash/
 
 
 #
