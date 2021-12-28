@@ -147,8 +147,8 @@ endef
 define Package/$(PKG_NAME)/conffiles
 /etc/config/passwall
 /etc/config/passwall_server
-/usr/share/xray/geoip.dat
-/usr/share/xray/geosite.dat
+/usr/share/v2ray/geoip.dat
+/usr/share/v2ray/geosite.dat
 /usr/share/passwall/rules/direct_host
 /usr/share/passwall/rules/direct_ip
 /usr/share/passwall/rules/proxy_host

@@ -71,7 +71,7 @@ fi
 # geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases
 if [ `grep -c 'luci-app-passwall=y' .config` -ne '0' ]; then
     cp -rf ${GITHUB_WORKSPACE}/diy/passwall/Makefile package/community/lienol/luci-app-passwall/
-    cp -rf ${GITHUB_WORKSPACE}/diy/usr/share/xray package/community/lienol/luci-app-passwall/root/usr/share/
+    cp -rf ${GITHUB_WORKSPACE}/diy/usr/share/v2ray package/community/lienol/luci-app-passwall/root/usr/share/
     echo "PassWall configuration complete!"
 else
     echo "PassWall is not set yet"
