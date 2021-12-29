@@ -28,3 +28,5 @@ rm -rf ./other/luci-app-adguardhome/.github
 
 rm -rf ./other/luci-theme-atmaterial_new
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new ./other/luci-theme-atmaterial_new
+
+find . -type d -name ".svn"|xargs rm -rf
