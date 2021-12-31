@@ -66,6 +66,15 @@ else
 fi
 
 
+## SmartDNS
+if [ `grep -c 'luci-app-dnscrypt-proxy=y' .config` -ne '0' ]; then
+    cp -rf ${GITHUB_WORKSPACE}/diy/usr/share/dnscrypt-proxy/dnscrypt-resolvers.csv feeds/packages/net/dnscrypt-proxy/files/
+else
+    echo "DNScrypt is not set yet"
+fi
+
+
+
 ## passwall
 # geoip.dat https://github.com/v2fly/geoip/releases
 # geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases
