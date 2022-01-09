@@ -39,18 +39,18 @@ cp -rf ${GITHUB_WORKSPACE}/Modification/base-files/etc/sysctl.d/60_tcp_fastopen.
 ## Crypto algorithm support kernel
 # reference 1: https://en.wikipedia.org/wiki/Salsa20
 # reference 2: https://tools.ietf.org/html/rfc7539
-if [ `grep -c 'CONFIG_LINUX_5_4=y' .config` -ne '0' ]; then
-	echo '
-	CONFIG_CRYPTO_CHACHA20_X86_64=y
-	CONFIG_CRYPTO_POLY1305_X86_64=y
-	' >> ./target/linux/x86/64/config-5.4
-	echo "Crypto algorithm support kernel 5.4, done"
-elif [ `grep -c 'CONFIG_LINUX_5_10=y' .config` -ne '0' ]; then
+if [ `grep -c 'CONFIG_LINUX_5_10=y' .config` -ne '0' ]; then
 	echo '
 	CONFIG_CRYPTO_CHACHA20_X86_64=y
 	CONFIG_CRYPTO_POLY1305_X86_64=y
 	' >> ./target/linux/x86/64/config-5.10
 	echo "Crypto algorithm support kernel 5.10, done"
+elif [ `grep -c 'CONFIG_LINUX_5_15=y' .config` -ne '0' ]; then
+	echo '
+	CONFIG_CRYPTO_CHACHA20_X86_64=y
+	CONFIG_CRYPTO_POLY1305_X86_64=y
+	' >> ./target/linux/x86/64/config-5.15
+	echo "Crypto algorithm support kernel 5.15, done"
 else
 	echo "Crypto algorithm support kernel done"
 fi
