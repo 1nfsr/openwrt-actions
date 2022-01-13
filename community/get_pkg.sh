@@ -29,4 +29,10 @@ rm -rf ./other/luci-app-adguardhome/.github
 rm -rf ./other/luci-theme-atmaterial_new
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new ./other/luci-theme-atmaterial_new
 
+rm -rf ./other/luci-app-mosdns
+svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns ./other/luci-app-mosdns
+
+rm -rf ./other/mosdns
+svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns ./other/mosdns
+
 find . -type d -name ".svn"|xargs rm -rf
