@@ -8,10 +8,6 @@ mkdir -p package/base-files/files/etc/openclash/
 #bash ${GITHUB_WORKSPACE}/Modification/openclash/get_clash_core.sh amd64
 bash ${GITHUB_WORKSPACE}/scripts/get_clash_core.sh amd64
 
-#clash core old version
-rm -rf package/base-files/files/etc/openclash/core/clash_tun
-mv -f ${GITHUB_WORKSPACE}/diy/clash_tun package/base-files/files/etc/openclash/core/
-chmod +x package/base-files/files/etc/openclash/core/clash_tun
 
 rm -rf package/community/other/luci-app-openclash/root/etc/openclash/{china_ip6_route.ipset,china_ip_route.ipset,Country.mmdb}
 mv -f ${GITHUB_WORKSPACE}/diy/etc/openclash/{china_ip6_route.ipset,china_ip_route.ipset,Country.mmdb} package/community/other/luci-app-openclash/root/etc/openclash/
@@ -23,7 +19,7 @@ sed -i '/Need Start From Luci Page/d' package/community/other/luci-app-openclash
 # nodes
 #curl -o package/base-files/files/etc/openclash/config/basic.yaml https://pub-api-1.bianyuan.xyz/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fgit-yusteven%2Fopenit%2Fmain%2Flong&insert=false&config=https%3A%2F%2Fsubconverter.oss-ap-southeast-1.aliyuncs.com%2FRules%2FRemoteConfig%2Funiversal%2Furltest.ini&append_type=true&emoji=false&list=false&tfo=false&scv=false&fdn=true&sort=true&udp=true&new_name=true
 #cp -rf package/base-files/files/etc/openclash/config/basic.yaml package/base-files/files/etc/openclash/
-curl -o package/base-files/files/etc/openclash/config/basic.yaml https://pub-api-1.bianyuan.xyz/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fgit-yusteven%2Fopenit%2Fmain%2Flong&insert=false&config=https%3A%2F%2Fsubconverter.oss-ap-southeast-1.aliyuncs.com%2FRules%2FRemoteConfig%2Funiversal%2Furltest.ini&append_type=true&emoji=true&list=false&tfo=false&scv=false&fdn=true&sort=true&udp=true&new_name=true
+curl -o package/base-files/files/etc/openclash/config/basic.yaml https://api-suc.0z.gs/sub?target=clash&url=https%3A%2F%2Fniaocloud-rss.com%2Flink%2Fh2GeM24DKdpdRlyZ%3Fsub%3D3&insert=false&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&append_type=true&emoji=false&list=false&tfo=false&scv=false&fdn=true&sort=true&udp=true&new_name=true
 cp -rf package/base-files/files/etc/openclash/config/basic.yaml package/base-files/files/etc/openclash/
 
 #
