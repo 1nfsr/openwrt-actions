@@ -19,6 +19,8 @@ if [ `grep -c 'luci-app-openclash=y' .config` -ne '0' ]; then
 	#cp -rf package/base-files/files/etc/openclash/basic.yaml package/base-files/files/etc/openclash/config/
     ## custom
     cp -rf ${GITHUB_WORKSPACE}/Modification/OpenClash/etc/config/openclash package/community/other/luci-app-openclash/root/etc/config/
+    ## fix openclash watchdog
+    sed -i 's/ps |grep openclash_watchdog.sh/ps -w |grep openclash_watchdog.sh/g' package/community/other/luci-app-openclash/luasrc/controller/openclash.lua
     echo "OpenClash configuration complete!"
 else
     echo "OpenClash is not set yet!"
