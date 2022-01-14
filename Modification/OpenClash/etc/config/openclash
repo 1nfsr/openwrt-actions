@@ -62,7 +62,7 @@ config dns_servers
 	option group 'nameserver'
 	option ip '127.0.0.1'
 	option type 'udp'
-	option port '6035'
+	option port '5353'
 
 config dns_servers
 	option enabled '1'
