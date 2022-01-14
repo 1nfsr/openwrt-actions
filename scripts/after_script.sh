@@ -8,11 +8,6 @@ if [ `grep -c 'luci-app-openclash=y' .config` -ne '0' ]; then
 	mkdir -p package/base-files/files/etc/openclash/
 	## get latest core
 	bash ${GITHUB_WORKSPACE}/scripts/get_clash_core.sh amd64
-	## use bash first open
-	sed -i '/Need Start From Luci Page/d' package/community/other/luci-app-openclash/root/etc/init.d/openclash
-	cp -rf ${GITHUB_WORKSPACE}/Modification/OpenClash/etc/startup.sh package/base-files/files/etc/
-	sed -i "s/exit 0/bash \/etc\/startup.sh/g" package/base-files/files/etc/rc.local
-	echo "exit 0" >> package/base-files/files/etc/rc.local
 	## ip data
 	rm -rf package/community/other/luci-app-openclash/root/etc/openclash/{china_ip6_route.ipset,china_ip_route.ipset,Country.mmdb}
 	cp -rf ${GITHUB_WORKSPACE}/Modification/OpenClash/etc/openclash/{china_ip6_route.ipset,china_ip_route.ipset,Country.mmdb} package/community/other/luci-app-openclash/root/etc/openclash/
@@ -74,9 +69,6 @@ fi
 if [ `grep -c 'luci-app-turboacc=y' .config` -ne '0' ]; then
 	## custom
 	cp -rf ${GITHUB_WORKSPACE}/Modification/Turboacc/etc/config/turboacc package/community/lean/luci-app-turboacc/root/etc/config/
-	cp -rf ${GITHUB_WORKSPACE}/Modification/Turboacc/etc/startup_fullcone.sh package/base-files/files/etc/
-	sed -i "s/exit 0/bash \/etc\/startup_fullcone.sh/g" package/base-files/files/etc/rc.local
-	echo "exit 0" >> package/base-files/files/etc/rc.local
 	echo "Turboacc configuration complete!"
 else 
 	echo "Turboacc is not set yet!"
@@ -110,3 +102,22 @@ else
 	echo "DNScrypt Proxy is not set yet!"
 fi
 #################### DNScrypt Proxy End ####################
+
+
+#################### MosDNS Start ####################
+if [ `grep -c 'luci-app-mosdns=y' .config` -ne '0' ]; then
+	## custom
+	cp -rf ${GITHUB_WORKSPACE}/Modification/MosDNS/etc/config/mosdns package/community/other/luci-app-mosdns/root/etc/config/
+	echo "MosDNS configuration complete!"
+else 
+	echo "MosDNS is not set yet!"
+fi
+#################### MosDNS End ####################
+
+
+#################### Startup Assist Start ####################
+cp -rf ${GITHUB_WORKSPACE}/Modification/base-files/etc/startup-assist.sh package/base-files/files/etc/
+sed -i "s/exit 0/bash \/etc\/startup-assist.sh/g" package/base-files/files/etc/rc.local
+echo "exit 0" >> package/base-files/files/etc/rc.local
+echo "Startup Assist configuration complete!"
+#################### Startup Assist End ####################
