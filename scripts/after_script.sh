@@ -110,6 +110,8 @@ fi
 if [ `grep -c 'luci-app-mosdns=y' .config` -ne '0' ]; then
 	## custom
 	cp -rf ${GITHUB_WORKSPACE}/Modification/MosDNS/etc/config/mosdns package/community/other/luci-app-mosdns/root/etc/config/
+	## fix crontab
+	sed -i 's/all/*/g' package/community/other/luci-app-mosdns/luasrc/model/cbi/mosdns/update.lua
 	echo "MosDNS configuration complete!"
 else 
 	echo "MosDNS is not set yet!"
