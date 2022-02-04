@@ -69,16 +69,3 @@ config dns_servers
 	option group 'fallback'
 	option ip '1.1.1.1'
 	option type 'udp'
-
-config config_subscribe
-	option enabled '1'
-	option name 'subscribe'
-	option address '#'
-	option sub_convert '1'
-	option convert_address 'https://subconverter.herokuapp.com/sub'
-	option template 'ACL4SSR 规则标准版'
-	option emoji 'false'
-	option udp 'true'
-	option skip_cert_verify 'true'
-	option sort 'true'
-	option node_type 'true'
