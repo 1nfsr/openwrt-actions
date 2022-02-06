@@ -13,14 +13,16 @@ if [ `grep -c 'luci-app-openclash=y' .config` -ne '0' ]; then
 	cp -rf ${GITHUB_WORKSPACE}/Modification/OpenClash/etc/openclash/{china_ip6_route.ipset,china_ip_route.ipset,Country.mmdb} package/community/other/luci-app-openclash/root/etc/openclash/
 	#copy node config && update node config(niaoyun.me)
 	mkdir -p package/base-files/files/etc/openclash/config
-	cp -rf ${GITHUB_WORKSPACE}/Modification/OpenClash/etc/openclash/basic.yaml package/base-files/files/etc/openclash/
-	cp -rf package/base-files/files/etc/openclash/basic.yaml package/base-files/files/etc/openclash/config/
+	#cp -rf ${GITHUB_WORKSPACE}/Modification/OpenClash/etc/openclash/basic.yaml package/base-files/files/etc/openclash/
+	#cp -rf package/base-files/files/etc/openclash/basic.yaml package/base-files/files/etc/openclash/config/
 	#curl -o package/base-files/files/etc/openclash/basic.yaml https://api-suc.0z.gs/sub?target=clash&url=https%3A%2F%2Fniaocloud-rss.com%2Flink%2Fh2GeM24DKdpdRlyZ%3Fsub%3D3&insert=false&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&append_type=true&emoji=false&list=false&tfo=false&scv=false&fdn=true&sort=true&udp=true&new_name=true
 	#cp -rf package/base-files/files/etc/openclash/basic.yaml package/base-files/files/etc/openclash/config/
+    curl -o package/base-files/files/etc/openclash/basic.yaml https://raw.githubusercontent.com/git-yusteven/openit/main/Clash.yaml
+    cp -rf package/base-files/files/etc/openclash/basic.yaml package/base-files/files/etc/openclash/config/
     ## custom
     cp -rf ${GITHUB_WORKSPACE}/Modification/OpenClash/etc/config/openclash package/community/other/luci-app-openclash/root/etc/config/
     ## fix openclash watchdog
-    sed -i 's/ps |grep openclash_watchdog.sh/ps -w |grep openclash_watchdog.sh/g' package/community/other/luci-app-openclash/luasrc/controller/openclash.lua
+    #sed -i 's/ps |grep openclash_watchdog.sh/ps -w |grep openclash_watchdog.sh/g' package/community/other/luci-app-openclash/luasrc/controller/openclash.lua
     echo "OpenClash configuration complete!"
 else
     echo "OpenClash is not set yet!"
