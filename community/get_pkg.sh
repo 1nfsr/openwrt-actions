@@ -1,17 +1,17 @@
 #!bin/bash
 
-rm -rf ./lean/{autocore,automount,dnsforwarder,dnsproxy,ipv6-helper,luci-app-arpbind}
-rm -rf ./lean/{luci-app-turboacc,openwrt-fullconenat,pdnsd-alt,r8168,shortcut-fe}
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autocore ./lean/autocore
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount ./lean/automount
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/dnsforwarder ./lean/dnsforwarder
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper ./lean/ipv6-helper
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind ./lean/luci-app-arpbind
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-turboacc ./lean/luci-app-turboacc
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat ./lean/openwrt-fullconenat
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt ./lean/pdnsd-alt
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 ./lean/r8168
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe ./lean/shortcut-fe
+#rm -rf ./lean/{autocore,automount,dnsforwarder,dnsproxy,ipv6-helper,luci-app-arpbind}
+#rm -rf ./lean/{luci-app-turboacc,openwrt-fullconenat,pdnsd-alt,r8168,shortcut-fe}
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autocore ./lean/autocore
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount ./lean/automount
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/dnsforwarder ./lean/dnsforwarder
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper ./lean/ipv6-helper
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind ./lean/luci-app-arpbind
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-turboacc ./lean/luci-app-turboacc
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat ./lean/openwrt-fullconenat
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt ./lean/pdnsd-alt
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 ./lean/r8168
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe ./lean/shortcut-fe
 
 
 rm -rf ./lienol
