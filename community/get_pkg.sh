@@ -12,6 +12,13 @@
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt ./lean/pdnsd-alt
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 ./lean/r8168
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe ./lean/shortcut-fe
+rm -rf ./lean/{autocore,automount,ipv6-helper,openwrt-fullconenat,r8168,shortcut-fe}
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autocore ./lean/autocore
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount ./lean/automount
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper ./lean/ipv6-helper
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat ./lean/openwrt-fullconenat
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 ./lean/r8168
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe ./lean/shortcut-fe
 
 
 rm -rf ./lienol
