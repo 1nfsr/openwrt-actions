@@ -72,7 +72,7 @@ fi
 #################### Turboacc Start ####################
 if [ `grep -c 'luci-app-turboacc=y' .config` -ne '0' ]; then
 	## custom
-	cp -rf ${GITHUB_WORKSPACE}/Modification/Turboacc/etc/config/turboacc package/community/lean/luci-app-turboacc/root/etc/config/
+	cp -rf ${GITHUB_WORKSPACE}/Modification/Turboacc/etc/config/turboacc feeds/luci/applications/luci-app-turboacc/root/etc/config/
 	echo "Turboacc configuration complete!"
 else 
 	echo "Turboacc is not set yet!"
