@@ -13,8 +13,6 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config
-  UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: true
 
 jobs:
   Build:
@@ -49,20 +47,35 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
 
-    - name: Upload firmware to cowtransfer
-      id: cowtransfer
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
+    - name: Upload firmware to file.io
+      id: upload
+      if: steps.organize.outputs.status == 'success'
       run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-        echo "::set-output name=url::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
-    
-    - name: Upload firmware to WeTransfer
-      id: wetransfer
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
+        cd $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
+        echo "Uploading firmware..."
+        echo "DOWNLOAD_LINKS<<EOF" >> $GITHUB_ENV
+        echo "Firmware download links:" >> $GITHUB_ENV
+        for file in *; do
+          if [[ $file == *"rootfs"* || $file == *".manifest" || $file == *".kernel" || $file == *".json" ]]; then
+            continue
+          fi
+          chmod +x $GITHUB_WORKSPACE/fileio
+          link=$($GITHUB_WORKSPACE/fileio --downloads 50 "$file" | grep "File link" | cut -d' ' -f2)
+          if [ ! -z "$link" ]; then
+            echo "- $file: $link" >> $GITHUB_ENV
+          fi
+        done
+        echo "EOF" >> $GITHUB_ENV
+
+    - name: Show download links
+      if: steps.upload.outcome == 'success' && !cancelled()
       run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
-        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-        echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
+        echo "::group::Download Links"
+        echo "${{ env.DOWNLOAD_LINKS }}"
+        echo "::endgroup::"
+
+    - name: Delete old workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 3
